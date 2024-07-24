@@ -103,7 +103,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.css" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.min.css" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.rtl.css" />
@@ -120,6 +119,19 @@
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap.min.css" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap.rtl.css" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap.rtl.min.css" />
+    <Content Include="Asset\css\build\css\demo.css" />
+    <Content Include="Asset\css\build\css\intITellnputRTL.css" />
+    <Content Include="Asset\css\build\css\intlTelInput.min.css" />
+    <Content Include="Asset\css\build\css\intlTelInputLTR.css" />
+    <Content Include="Asset\css\build\img\flags%402x.png" />
+    <Content Include="Asset\css\build\img\flags.png" />
+    <Content Include="Asset\css\build\js\data.js" />
+    <Content Include="Asset\css\build\js\data.min.js" />
+    <Content Include="Asset\css\build\js\intlTelInput-jquery.js" />
+    <Content Include="Asset\css\build\js\intlTelInput-jquery.min.js" />
+    <Content Include="Asset\css\build\js\intlTelInput.js" />
+    <Content Include="Asset\css\build\js\intlTelInput.min.js" />
+    <Content Include="Asset\css\build\js\utils.js" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\attribution.js" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\css\all.css" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\css\all.min.css" />
@@ -1767,6 +1779,7 @@
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\webfonts\fa-brands-400.svg" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\webfonts\fa-regular-400.svg" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\webfonts\fa-solid-900.svg" />
+    <Content Include="Asset\css\Forms.css" />
     <Content Include="Asset\css\main.css" />
     <Content Include="Asset\css\select2\select2.min.css" />
     <Content Include="Asset\css\select2\select2.min.js" />
@@ -2196,7 +2209,10 @@
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\System.Web.Optimization.dll" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Contact.aspx" />
+    <Content Include="Company\CompanyProfile.aspx" />
+    <Content Include="Company\GIP.aspx" />
+    <Content Include="Company\Programmes.aspx" />
+    <Content Include="Company\QesaTech.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -2214,10 +2230,13 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Default.aspx" />
+    <Content Include="ErrorLog\Login.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -2358,34 +2377,44 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="VerifyUser.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\BasicString.cs" />
+    <Compile Include="App_Code\ReCaptchaResponse.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Company\CompanyProfile.aspx.cs">
+      <DependentUpon>CompanyProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
+    <Compile Include="Company\CompanyProfile.aspx.designer.cs">
+      <DependentUpon>CompanyProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Company\GIP.aspx.cs">
+      <DependentUpon>GIP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Company\GIP.aspx.designer.cs">
+      <DependentUpon>GIP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\Programmes.aspx.cs">
+      <DependentUpon>Programmes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\Programmes.aspx.designer.cs">
+      <DependentUpon>Programmes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\QesaTech.aspx.cs">
+      <DependentUpon>QesaTech.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\QesaTech.aspx.designer.cs">
+      <DependentUpon>QesaTech.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2397,8 +2426,29 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2412,6 +2462,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VerifyUser.aspx.cs">
+      <DependentUpon>VerifyUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerifyUser.aspx.designer.cs">
+      <DependentUpon>VerifyUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

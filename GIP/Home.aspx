@@ -44,14 +44,14 @@
     <script src="Asset/css/toastr/toastr.min.js"></script>
 
      <%--PhoneNumber--%>
-      <link href="Asset/build/css/intITellnputRTL.css" rel="stylesheet" />
-      <script src="Asset/build/js/intlTelInput.js"></script>
+      <link href="Asset/css/build/css/intITellnputRTL.css" rel="stylesheet" />
+      <script src="Asset/css/build/js/intlTelInput.js"></script>
     <!-- Favicons -->
   <link href="Asset/img/Logo/MoDEE1.png" rel="icon">
   <link href="Asset/img/Logo/MoDEE1.png" rel="apple-touch-icon">
     
   <!-- Fonts -->
-  <link href="../Asset/font/stylesheet.css" />
+  <link href="../Asset/font/stylesheet.css" rel="stylesheet" />
  
   <!-- Vendor CSS Files -->
   <link href="Asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -82,32 +82,16 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">الصفحة الرئيسية<br></a></li>
+          <li><a href="Home.aspx" class="active">الصفحة الرئيسية<br></a></li>
           <li><a href="#about">من نحن</a></li>
-          <li><a href="#services">البرامج التدريبية</a></li>
-       <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">اتصل بنا</a></li>
+          <li><a href="#Program">البرامج التدريبية</a></li>
+          <li><a href="#faq">الاسئلة الشائعة</a></li>
+          <li><a href="Home.aspx#contact">اتصل بنا</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#about">Get Started</a>
+      <a class="btn-getstarted" href="Login.aspx">تسجيل دخول</a>
 
     </div>
   </header>
@@ -122,12 +106,12 @@
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-out">
           <div class="col-xl-7 col-lg-9 text-center">
-            <h1> برنامج تدريب وتشغيل خريجي الاتصالات وتكنولوجيا المعلومات</h1>
+            <h1>  تدريب وتشغيل خريجي الاتصالات وتكنولوجيا المعلومات</h1>
             <p></p>
           </div>
         </div>
         <div class="text-center" data-aos="zoom-out" data-aos-delay="100">
-          <a href="#about" class="btn-get-started">Get Started</a>
+          <a href="#Program" class="btn-get-started">تعرف على برامجنا التدريبية </a>
         </div>
 
         <div class="row gy-4 mt-5">
@@ -167,8 +151,6 @@
       </div>
 
     </section>
-      
-      
       <!-- /Hero Section -->
 
     <!-- About Section -->
@@ -244,7 +226,7 @@
     </section><!-- /Stats Section -->
 
     <!-- About Alt Section -->
-    <section id="about-alt" class="about-alt section">
+    <section id="Program" class="about-alt section">
 
         <div class="container">
 
@@ -535,56 +517,43 @@
           </a>
           <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://x.com/MoDEEJO?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/MoDEEJO/?locale=ar_AR"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/MoDEEJO/?hl=ar"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/modeejo/mycompany/"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
+        <div class="col-lg-3 col-6 footer-links">
+          <h4>أهم الروابط</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="Home.aspx">صفحة رئيسية</a></li>
+            <li><a href="#About">من نحن</a></li>
+            <li><a href="#Program">برامجنا</a></li>
+              <li><a href="#faq">أسئلة شائعه</a></li>
+            <li><a href="#contact">اتصل بنا</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
+       
 
-        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-          <h4>Contact Us</h4>
-          <p>A108 Adam Street</p>
-          <p>New York, NY 535022</p>
-          <p>United States</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-end">
+          <h4>أتصل بنا</h4>
+          <p>عمان- الدوار الثامن -بيادر وادي السير -</p>
+    
+          <p>عمان- الأردن</p>
+          <p class="mt-4"><strong>رقم هاتف:</strong> <span>+962 65 805 700</span></p>
+          <p><strong>البريد الالكتروني:</strong> <span>InvestmentTeam@modee.gov.jo</span></p>
         </div>
 
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">OnePage</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+      <p>
+            &copy; جميع الحقوق محفوظة  <strong><span>وزارة الاقتصاد الرقمي الريادة </span></strong>
+      </p>
+      
     </div>
 
   </footer>
