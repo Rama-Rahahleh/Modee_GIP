@@ -20,14 +20,16 @@ namespace GIP
             Basic.Errorpath = "/ErrorLog/Login.txt";
             if (Session["UnVerifiedUserEmail"] == null)
             {
-                Response.Redirect("../logout.aspx");
+                Response.Redirect("logout.aspx");
             }
             else
             {
+                lblMessage1.Visible = true;
+                lblMessage1.Text = Session["OTP"].ToString();
 
                 if (Session["OTP"] == null)
                 {
-                    if (Session["compno"] == null)
+                    if (Session["UnVerifiedUserID"] == null)
                     {
                         Response.Redirect("Home.aspx");
 
@@ -172,9 +174,9 @@ namespace GIP
                                     command.Connection = connection;
                                     command.CommandType = CommandType.StoredProcedure;
                                     command.CommandText = "VerifyUser";
-                                    command.Parameters.AddWithValue("UserId", Convert.ToInt32(Session["UnVerifiedUserID"].ToString()));
+                                command.Parameters.AddWithValue("@Company_No", Session["UnVerifiedUserID"].ToString());
 
-                                    odr = command.ExecuteReader();
+                                odr = command.ExecuteReader();
                                     if (odr.HasRows == true)
                                     {
                                         while (odr.Read())
@@ -189,13 +191,14 @@ namespace GIP
                                             else
                                             {
 
-                                                Session["userid"] = odr["DC_user_id"].ToString();
-                                                Session["OrgId"] = odr["DC_org_id"].ToString();
-                                                Session["OrgName"] = odr["DC_orgNameAr"].ToString();
-                                                Session["UserEmail"] = odr["DC_useremail"].ToString();
+                                            Session["UserName"] = odr["Company_Name"].ToString();
+                                         
+                                         
+                                            Session["UserEmail"] = odr["Company_Email"].ToString();
+                                            Session["CmpID"] = odr["Company_No"].ToString();
 
 
-                                                 Response.Redirect("Company/Programmes.aspx");
+                                            Response.Redirect("Company/Programmes.aspx");
                                                 
                                             }
                                         }

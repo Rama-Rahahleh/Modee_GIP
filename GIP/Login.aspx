@@ -39,7 +39,16 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  
+  <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="false" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="UpdatePanel1">
+
+    <ProgressTemplate>
+        <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0;">
+            <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="assets/images/loader.gif"
+                AlternateText="Loading ..." ToolTip="Loading ..."
+                Style="padding: 10px; position: fixed; top: 45%; left: 50%;" />
+        </div>
+    </ProgressTemplate>
+</asp:UpdateProgress>
     <section id="hero" class="hero section Login">
 
         <img src="Asset/img/hero-bg-abstract.jpg" alt="" data-aos="fade-in" class="">
@@ -60,8 +69,10 @@
                             <!-- Tab1 -->
                             <div id="login" class="container tab-pane active">
                                 <div>
+                                    <asp:Label ID="Label1" runat="server" CssClass="form-label mb-2" Text="الرقم الوطني للمنشأة"
+                                        Font-Bold="true" Font-Size="Small"></asp:Label>
 
-                                    <label for="CompanyNat" class="sr-only">الرقم الوطني للمنشأة</label>
+
                                     <asp:TextBox ID="CompanyNat" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني للمنشأة"
                                         Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
                                     <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
@@ -71,7 +82,9 @@
                                         ControlToValidate="CompanyNat"></asp:RequiredFieldValidator>
                                 </div>
                                 <div>
-                                    <label for="Password" class="sr-only">كلمة المرور</label>
+                                    <asp:Label ID="Label2" runat="server" CssClass="form-label mb-2" Text="كلمة المرور"
+                                        Font-Bold="true" Font-Size="Small"></asp:Label>
+                                  
                                     <asp:TextBox ID="Password" runat="server" CssClass="form-control mb-2" placeholder="كلمة المرور"
                                         Font-Bold="true" Font-Size="Small" TextMode="Password"></asp:TextBox>
 
@@ -101,7 +114,7 @@
                                         CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="تسجيل الدخول"></asp:Button>
 
                                     <p class="mr-4 mt-3 f-s-18 font-weight-bold" id="createLable" runat="server" style="font-weight: bold; font-size: 12px;">
-                                        لإنشاء حساب جديد  <a href="Create.aspx">اضغط هنا </a>
+                                        لإنشاء حساب جديد  <a href="Register.aspx">اضغط هنا </a>
                                     </p>
 
                                 </div>

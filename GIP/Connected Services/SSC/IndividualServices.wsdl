@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="IndividualServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_IIndividualServices_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/SSC.Entities" />
+      <xs:element name="GetBeneficiaryInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="gFatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="RetiredNationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="RetiredInsuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="beneficiaryNationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetBeneficiaryInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetBeneficiaryInfoResult" nillable="true" type="q1:BeneficiaryInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataForCertainPerson">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="gFatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataForCertainPersonResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetDataForCertainPersonResult" nillable="true" type="q2:IndividualBasicInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataForCertainPersonWithPersNo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="gFatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="personalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataForCertainPersonWithPersNoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetDataForCertainPersonWithPersNoResult" nillable="true" type="q3:IndividualBasicInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSubscriptionPeriod">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSubscriptionPeriodResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetSubscriptionPeriodResult" nillable="true" type="q4:SubscriptionPeriod_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSubscriptionPeriodWithPersNo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSubscriptionPeriodWithPersNoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetSubscriptionPeriodWithPersNoResult" nillable="true" type="q5:SubscriptionPeriod_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSalarySlip">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSalarySlipResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetSalarySlipResult" nillable="true" type="q6:SalarySlip_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSalarySlipWithPersNo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetSalarySlipWithPersNoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetSalarySlipWithPersNoResult" nillable="true" type="q7:SalarySlip_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNumberOfEmployeesByNationality">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="companyInsuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="companyNationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNumberOfEmployeesByNationalityResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetNumberOfEmployeesByNationalityResult" nillable="true" type="q8:NumberEmployeeByNationality_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNameOfJordanianEmployees">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PageSize" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PageIndex" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNameOfJordanianEmployeesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetNameOfJordanianEmployeesResult" nillable="true" type="q9:JordanianEmployee_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNameOfNonJordanianEmployees">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PageSize" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PageIndex" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNameOfNonJordanianEmployeesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetNameOfNonJordanianEmployeesResult" nillable="true" type="q10:NonJordanianEmployee_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTheStatusOfInsuredPerson">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="gFatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTheStatusOfInsuredPersonResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetTheStatusOfInsuredPersonResult" nillable="true" type="q11:StatusOfInsuredPerson_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTheStatusOfInsuredPersonWithPersNo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="gFatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetTheStatusOfInsuredPersonWithPersNoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetTheStatusOfInsuredPersonWithPersNoResult" nillable="true" type="q12:StatusOfInsuredPerson_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRetiredInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="nationalID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="fatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="gFatherName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetRetiredInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetRetiredInfoResult" nillable="true" type="q13:RetiredInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetPENSIONInsurance">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PI_PEN_NAT_NO" type="xs:long" />
+            <xs:element minOccurs="0" name="PI_MONTHLY_VAL" type="xs:double" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetPENSIONInsuranceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="SetPENSIONInsuranceResult" nillable="true" type="q14:Result_PENSION_Insurance" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataForMilitaryPerson">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="insuranceID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetDataForMilitaryPersonResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetDataForMilitaryPersonResult" nillable="true" type="q15:IndividualMilitaryBasicInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWorkPersonStutus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PI_PERSNO" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_TEL" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetWorkPersonStutusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetWorkPersonStutusResult" nillable="true" type="q16:StatusOfWorkPerson_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPersonInfoByNatId">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="NatID" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPersonInfoByNatIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetPersonInfoByNatIdResult" nillable="true" type="q17:PersonInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEMPLOY_EST_INFO">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PI_est_NATNO" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEMPLOY_EST_INFOResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetEMPLOY_EST_INFOResult" nillable="true" type="q18:EMPLOY_EST_INFO_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEST_ACTIV_EMP_FOR_YEAR">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PI_EST_NATNO" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEST_ACTIV_EMP_FOR_YEARResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetEST_ACTIV_EMP_FOR_YEARResult" nillable="true" type="q19:EST_ACTIV_EMP_FOR_YEAR_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEmploy_Emp_info">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="pi_emp_natno" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEmploy_Emp_infoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetEmploy_Emp_infoResult" nillable="true" type="q20:Employ_Emp_info_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEmploy_Emp_Add_Validate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="pi_emp_natno" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="pi_est_natno" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="pi_for_month" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetEmploy_Emp_Add_ValidateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetEmploy_Emp_Add_ValidateResult" nillable="true" type="q21:Employ_Emp_Add_Validate_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPSF_Retired_Ded_Data_Result">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PI_NAT" nillable="true" type="xs:long" />
+            <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_FROM_DT" type="xs:dateTime" />
+            <xs:element minOccurs="0" name="PI_TO_DT" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPSF_Retired_Ded_Data_ResultResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetPSF_Retired_Ded_Data_ResultResult" nillable="true" type="q22:PSF_Retired_Ded_Data_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNO_Employees_byNat_Interval">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="PI_SERNO" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_NAT" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="PI_NO_MONTHS" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNO_Employees_byNat_IntervalResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetNO_Employees_byNat_IntervalResult" nillable="true" type="q23:NO_Employees_byNat_Interval_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SSC.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SSC.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="BeneficiaryInfo_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BeneficiaryInfo_Array" nillable="true" type="tns:ArrayOfBeneficiaryInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BeneficiaryInfo_Result" nillable="true" type="tns:BeneficiaryInfo_Result" />
+      <xs:complexType name="ArrayOfBeneficiaryInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BeneficiaryInfo" nillable="true" type="tns:BeneficiaryInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfBeneficiaryInfo" nillable="true" type="tns:ArrayOfBeneficiaryInfo" />
+      <xs:complexType name="BeneficiaryInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Act" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Actcod" type="xs:int" />
+          <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BeneficiaryQuotes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HealthInsuranseNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BeneficiaryInfo" nillable="true" type="tns:BeneficiaryInfo" />
+      <xs:complexType name="IndividualBasicInfo_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IndividualBasicInfo_Array" nillable="true" type="tns:ArrayOfIndividualBasicInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="IndividualBasicInfo_Result" nillable="true" type="tns:IndividualBasicInfo_Result" />
+      <xs:complexType name="ArrayOfIndividualBasicInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="IndividualBasicInfo" nillable="true" type="tns:IndividualBasicInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfIndividualBasicInfo" nillable="true" type="tns:ArrayOfIndividualBasicInfo" />
+      <xs:complexType name="IndividualBasicInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CompanyID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MotherName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="REGDATE" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strBirthDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strRegDate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="IndividualBasicInfo" nillable="true" type="tns:IndividualBasicInfo" />
+      <xs:complexType name="SubscriptionPeriod_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SubscriptionPeriodDetail_Array" nillable="true" type="tns:ArrayOfSubscriptionPeriodDetail" />
+          <xs:element minOccurs="0" name="SubscriptionPeriodInfo_Item" nillable="true" type="tns:SubscriptionPeriodInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SubscriptionPeriod_Result" nillable="true" type="tns:SubscriptionPeriod_Result" />
+      <xs:complexType name="ArrayOfSubscriptionPeriodDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SubscriptionPeriodDetail" nillable="true" type="tns:SubscriptionPeriodDetail" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSubscriptionPeriodDetail" nillable="true" type="tns:ArrayOfSubscriptionPeriodDetail" />
+      <xs:complexType name="SubscriptionPeriodDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DangerousJOB" type="xs:int" />
+          <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="StopDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="strStartDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strStopDate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SubscriptionPeriodDetail" nillable="true" type="tns:SubscriptionPeriodDetail" />
+      <xs:complexType name="SubscriptionPeriodInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SubscriptionPeriodInfo" nillable="true" type="tns:SubscriptionPeriodInfo" />
+      <xs:complexType name="SalarySlip_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SalarySlipDetail_Array" nillable="true" type="tns:ArrayOfSalarySlipDetail" />
+          <xs:element minOccurs="0" name="SalarySlipInfo_Item" nillable="true" type="tns:SalarySlipInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SalarySlip_Result" nillable="true" type="tns:SalarySlip_Result" />
+      <xs:complexType name="ArrayOfSalarySlipDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SalarySlipDetail" nillable="true" type="tns:SalarySlipDetail" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfSalarySlipDetail" nillable="true" type="tns:ArrayOfSalarySlipDetail" />
+      <xs:complexType name="SalarySlipDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FinancialYear" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SalarySlipDetail" nillable="true" type="tns:SalarySlipDetail" />
+      <xs:complexType name="SalarySlipInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SalarySlipInfo" nillable="true" type="tns:SalarySlipInfo" />
+      <xs:complexType name="NumberEmployeeByNationality_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NumberEmployeeByNationalityDetail_Array" nillable="true" type="tns:ArrayOfNumberEmployeeByNationalityDetail" />
+          <xs:element minOccurs="0" name="NumberEmployeeByNationalityInfo_Item" nillable="true" type="tns:NumberEmployeeByNationalityInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NumberEmployeeByNationality_Result" nillable="true" type="tns:NumberEmployeeByNationality_Result" />
+      <xs:complexType name="ArrayOfNumberEmployeeByNationalityDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="NumberEmployeeByNationalityDetail" nillable="true" type="tns:NumberEmployeeByNationalityDetail" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfNumberEmployeeByNationalityDetail" nillable="true" type="tns:ArrayOfNumberEmployeeByNationalityDetail" />
+      <xs:complexType name="NumberEmployeeByNationalityDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EmployeeTotalNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberOfJordanian" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberOfNonJordanian" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberofJordanianFemale" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberofJordanianMale" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberofNoneJordanianFemale" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberofNoneJordanianMale" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NumberEmployeeByNationalityDetail" nillable="true" type="tns:NumberEmployeeByNationalityDetail" />
+      <xs:complexType name="NumberEmployeeByNationalityInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyInsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyNationalID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NumberEmployeeByNationalityInfo" nillable="true" type="tns:NumberEmployeeByNationalityInfo" />
+      <xs:complexType name="JordanianEmployee_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="JordanianEmployee_Array" nillable="true" type="tns:ArrayOfJordanianEmployee" />
+          <xs:element minOccurs="0" name="PagesCount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RowsCount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="JordanianEmployee_Result" nillable="true" type="tns:JordanianEmployee_Result" />
+      <xs:complexType name="ArrayOfJordanianEmployee">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="JordanianEmployee" nillable="true" type="tns:JordanianEmployee" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfJordanianEmployee" nillable="true" type="tns:ArrayOfJordanianEmployee" />
+      <xs:complexType name="JordanianEmployee">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="strStartDate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="JordanianEmployee" nillable="true" type="tns:JordanianEmployee" />
+      <xs:complexType name="NonJordanianEmployee_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NonJordanianEmployee_Array" nillable="true" type="tns:ArrayOfNonJordanianEmployee" />
+          <xs:element minOccurs="0" name="PagesCount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RowsCount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NonJordanianEmployee_Result" nillable="true" type="tns:NonJordanianEmployee_Result" />
+      <xs:complexType name="ArrayOfNonJordanianEmployee">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="NonJordanianEmployee" nillable="true" type="tns:NonJordanianEmployee" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfNonJordanianEmployee" nillable="true" type="tns:ArrayOfNonJordanianEmployee" />
+      <xs:complexType name="NonJordanianEmployee">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NATCOD" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NATDESC" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="strStartDate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NonJordanianEmployee" nillable="true" type="tns:NonJordanianEmployee" />
+      <xs:complexType name="StatusOfInsuredPerson_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusOfInsuredPerson_Array" nillable="true" type="tns:ArrayOfStatusOfInsuredPerson" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="StatusOfInsuredPerson_Result" nillable="true" type="tns:StatusOfInsuredPerson_Result" />
+      <xs:complexType name="ArrayOfStatusOfInsuredPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="StatusOfInsuredPerson" nillable="true" type="tns:StatusOfInsuredPerson" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfStatusOfInsuredPerson" nillable="true" type="tns:ArrayOfStatusOfInsuredPerson" />
+      <xs:complexType name="StatusOfInsuredPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="STATUS_CODE" type="xs:int" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="StatusOfInsuredPerson" nillable="true" type="tns:StatusOfInsuredPerson" />
+      <xs:complexType name="RetiredInfo_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RetiredInfo_Array" nillable="true" type="tns:ArrayOfRetiredInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetiredInfo_Result" nillable="true" type="tns:RetiredInfo_Result" />
+      <xs:complexType name="ArrayOfRetiredInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="RetiredInfo" nillable="true" type="tns:RetiredInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfRetiredInfo" nillable="true" type="tns:ArrayOfRetiredInfo" />
+      <xs:complexType name="RetiredInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Estnum" type="xs:long" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HealthInsuranseNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsuranceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastCompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RetirementDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="RetirementType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Salary" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TOTSAL" type="xs:double" />
+          <xs:element minOccurs="0" name="strRetirementDate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="RetiredInfo" nillable="true" type="tns:RetiredInfo" />
+      <xs:complexType name="Result_PENSION_Insurance">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PENSION_Insurance_Array" nillable="true" type="tns:ArrayOfPENSION_Insurance" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Result_PENSION_Insurance" nillable="true" type="tns:Result_PENSION_Insurance" />
+      <xs:complexType name="ArrayOfPENSION_Insurance">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PENSION_Insurance" nillable="true" type="tns:PENSION_Insurance" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPENSION_Insurance" nillable="true" type="tns:ArrayOfPENSION_Insurance" />
+      <xs:complexType name="PENSION_Insurance">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="P_Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDesc" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PENSION_Insurance" nillable="true" type="tns:PENSION_Insurance" />
+      <xs:complexType name="IndividualMilitaryBasicInfo_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IndividualMilitaryBasicInfo_Array" nillable="true" type="tns:ArrayOfIndividualMilitaryBasicInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="IndividualMilitaryBasicInfo_Result" nillable="true" type="tns:IndividualMilitaryBasicInfo_Result" />
+      <xs:complexType name="ArrayOfIndividualMilitaryBasicInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="IndividualMilitaryBasicInfo" nillable="true" type="tns:IndividualMilitaryBasicInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfIndividualMilitaryBasicInfo" nillable="true" type="tns:ArrayOfIndividualMilitaryBasicInfo" />
+      <xs:complexType name="IndividualMilitaryBasicInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DESCR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="INS_ARMY" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MIL_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RANK_DESC" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SECNO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="price" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="IndividualMilitaryBasicInfo" nillable="true" type="tns:IndividualMilitaryBasicInfo" />
+      <xs:complexType name="StatusOfWorkPerson_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusOfWorkPerson_Array" nillable="true" type="tns:ArrayOfStatusOfWorkPerson" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="StatusOfWorkPerson_Result" nillable="true" type="tns:StatusOfWorkPerson_Result" />
+      <xs:complexType name="ArrayOfStatusOfWorkPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="StatusOfWorkPerson" nillable="true" type="tns:StatusOfWorkPerson" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfStatusOfWorkPerson" nillable="true" type="tns:ArrayOfStatusOfWorkPerson" />
+      <xs:complexType name="StatusOfWorkPerson">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PO_STATUS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PO_STATUS_AR_DESC" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="StatusOfWorkPerson" nillable="true" type="tns:StatusOfWorkPerson" />
+      <xs:complexType name="PersonInfo_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PersonInfo_Array" nillable="true" type="tns:ArrayOfPersonInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PersonInfo_Result" nillable="true" type="tns:PersonInfo_Result" />
+      <xs:complexType name="ArrayOfPersonInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonInfo" nillable="true" type="tns:PersonInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPersonInfo" nillable="true" type="tns:ArrayOfPersonInfo" />
+      <xs:complexType name="PersonInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BenificiaryNatId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FamilyRelation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InsituteName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="InstitueNatId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Name1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name4" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NatId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PaymentAmount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PensionType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PersonType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RetireDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="RetireeNatId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SalaryAmount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SecNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TaxNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strLastDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strRetireDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="strStartDate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PersonInfo" nillable="true" type="tns:PersonInfo" />
+      <xs:complexType name="EMPLOY_EST_INFO_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EMPLOY_EST_INFO_Array" nillable="true" type="tns:ArrayOfEMPLOY_EST_INFO" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EMPLOY_EST_INFO_Result" nillable="true" type="tns:EMPLOY_EST_INFO_Result" />
+      <xs:complexType name="ArrayOfEMPLOY_EST_INFO">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="EMPLOY_EST_INFO" nillable="true" type="tns:EMPLOY_EST_INFO" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEMPLOY_EST_INFO" nillable="true" type="tns:ArrayOfEMPLOY_EST_INFO" />
+      <xs:complexType name="EMPLOY_EST_INFO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ACT_SUB" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BOX" type="xs:long" />
+          <xs:element minOccurs="0" name="POST_COD" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TEL" type="xs:long" />
+          <xs:element minOccurs="0" name="act" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="all_count" type="xs:long" />
+          <xs:element minOccurs="0" name="branch" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="eadd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ename" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="est_natno" type="xs:long" />
+          <xs:element minOccurs="0" name="jo_female_count" type="xs:long" />
+          <xs:element minOccurs="0" name="jo_male_count" type="xs:long" />
+          <xs:element minOccurs="0" name="non_jo_female_count" type="xs:long" />
+          <xs:element minOccurs="0" name="non_jo_male_count" type="xs:long" />
+          <xs:element minOccurs="0" name="recs" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="register_date" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="serno" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EMPLOY_EST_INFO" nillable="true" type="tns:EMPLOY_EST_INFO" />
+      <xs:complexType name="EST_ACTIV_EMP_FOR_YEAR_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EST_ACTIV_EMP_FOR_YEAR_Array" nillable="true" type="tns:ArrayOfEST_ACTIV_EMP_FOR_YEAR" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EST_ACTIV_EMP_FOR_YEAR_Result" nillable="true" type="tns:EST_ACTIV_EMP_FOR_YEAR_Result" />
+      <xs:complexType name="ArrayOfEST_ACTIV_EMP_FOR_YEAR">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="EST_ACTIV_EMP_FOR_YEAR" nillable="true" type="tns:EST_ACTIV_EMP_FOR_YEAR" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEST_ACTIV_EMP_FOR_YEAR" nillable="true" type="tns:ArrayOfEST_ACTIV_EMP_FOR_YEAR" />
+      <xs:complexType name="EST_ACTIV_EMP_FOR_YEAR">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FOR_MONTH" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TOT_ACTIVE" type="xs:long" />
+          <xs:element minOccurs="0" name="serno" type="xs:long" />
+          <xs:element minOccurs="0" name="tot_new_emp" type="xs:long" />
+          <xs:element minOccurs="0" name="tot_stop_emp" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="EST_ACTIV_EMP_FOR_YEAR" nillable="true" type="tns:EST_ACTIV_EMP_FOR_YEAR" />
+      <xs:complexType name="Employ_Emp_info_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Employ_Emp_info_Array" nillable="true" type="tns:ArrayOfEmploy_Emp_info" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_activ_desc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_emp_name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_emp_secno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_last_est_name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_last_est_natno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_last_est_serno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="po_last_est_stope" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Employ_Emp_info_Result" nillable="true" type="tns:Employ_Emp_info_Result" />
+      <xs:complexType name="ArrayOfEmploy_Emp_info">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Employ_Emp_info" nillable="true" type="tns:Employ_Emp_info" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEmploy_Emp_info" nillable="true" type="tns:ArrayOfEmploy_Emp_info" />
+      <xs:complexType name="Employ_Emp_info">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="est_natno" type="xs:long" />
+          <xs:element minOccurs="0" name="estno" type="xs:long" />
+          <xs:element minOccurs="0" name="stadate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="stodate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="whystop_desc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="whystop_no" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Employ_Emp_info" nillable="true" type="tns:Employ_Emp_info" />
+      <xs:complexType name="Employ_Emp_Add_Validate_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Employ_Emp_Add_Validat_Array" nillable="true" type="tns:ArrayOfEmploy_Emp_Add_Validate" />
+          <xs:element minOccurs="0" name="En_StatusDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Employ_Emp_Add_Validate_Result" nillable="true" type="tns:Employ_Emp_Add_Validate_Result" />
+      <xs:complexType name="ArrayOfEmploy_Emp_Add_Validate">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Employ_Emp_Add_Validate" nillable="true" type="tns:Employ_Emp_Add_Validate" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfEmploy_Emp_Add_Validate" nillable="true" type="tns:ArrayOfEmploy_Emp_Add_Validate" />
+      <xs:complexType name="Employ_Emp_Add_Validate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PI_Username" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PO_STATUS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PO_STATUS_DESC_AR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PO_STATUS_DESC_EN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pi_emp_natno" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pi_est_natno" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Employ_Emp_Add_Validate" nillable="true" type="tns:Employ_Emp_Add_Validate" />
+      <xs:complexType name="PSF_Retired_Ded_Data_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EnStatusDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PSF_Retired_Ded_Data_Array" nillable="true" type="tns:ArrayOfPSF_Retired_Ded_Data" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PSF_Retired_Ded_Data_Result" nillable="true" type="tns:PSF_Retired_Ded_Data_Result" />
+      <xs:complexType name="ArrayOfPSF_Retired_Ded_Data">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PSF_Retired_Ded_Data" nillable="true" type="tns:PSF_Retired_Ded_Data" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfPSF_Retired_Ded_Data" nillable="true" type="tns:ArrayOfPSF_Retired_Ded_Data" />
+      <xs:complexType name="PSF_Retired_Ded_Data">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DED_DESC" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FNAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="INST_MONTH" type="xs:int" />
+          <xs:element minOccurs="0" name="INST_YEAR" type="xs:int" />
+          <xs:element minOccurs="0" name="NAT_NO" type="xs:long" />
+          <xs:element minOccurs="0" name="TOT_AMT" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="PSF_Retired_Ded_Data" nillable="true" type="tns:PSF_Retired_Ded_Data" />
+      <xs:complexType name="NO_Employees_byNat_Interval_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NumberEmployees_Array" nillable="true" type="tns:ArrayOfNOEmployees" />
+          <xs:element minOccurs="0" name="PO_STATUS" type="xs:int" />
+          <xs:element minOccurs="0" name="PO_STATUS_DESC" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NO_Employees_byNat_Interval_Result" nillable="true" type="tns:NO_Employees_byNat_Interval_Result" />
+      <xs:complexType name="ArrayOfNOEmployees">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="NOEmployees" nillable="true" type="tns:NOEmployees" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfNOEmployees" nillable="true" type="tns:ArrayOfNOEmployees" />
+      <xs:complexType name="NOEmployees">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NUM_JOR" type="xs:int" />
+          <xs:element minOccurs="0" name="NUM_NON_JOR" type="xs:int" />
+          <xs:element minOccurs="0" name="SAL_NON_JOR" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Sal_JOR" type="xs:decimal" />
+          <xs:element minOccurs="0" name="for_month1" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="NOEmployees" nillable="true" type="tns:NOEmployees" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="IIndividualServices_GetBeneficiaryInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBeneficiaryInfo" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetBeneficiaryInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBeneficiaryInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetDataForCertainPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataForCertainPerson" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetDataForCertainPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataForCertainPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetDataForCertainPersonWithPersNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataForCertainPersonWithPersNo" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetDataForCertainPersonWithPersNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataForCertainPersonWithPersNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSubscriptionPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscriptionPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSubscriptionPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscriptionPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSubscriptionPeriodWithPersNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscriptionPeriodWithPersNo" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSubscriptionPeriodWithPersNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscriptionPeriodWithPersNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSalarySlip_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalarySlip" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSalarySlip_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalarySlipResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSalarySlipWithPersNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalarySlipWithPersNo" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetSalarySlipWithPersNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSalarySlipWithPersNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNumberOfEmployeesByNationality_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberOfEmployeesByNationality" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNumberOfEmployeesByNationality_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNumberOfEmployeesByNationalityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNameOfJordanianEmployees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameOfJordanianEmployees" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNameOfJordanianEmployees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameOfJordanianEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNameOfNonJordanianEmployees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameOfNonJordanianEmployees" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNameOfNonJordanianEmployees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameOfNonJordanianEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetTheStatusOfInsuredPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTheStatusOfInsuredPerson" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetTheStatusOfInsuredPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTheStatusOfInsuredPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetTheStatusOfInsuredPersonWithPersNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTheStatusOfInsuredPersonWithPersNo" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetTheStatusOfInsuredPersonWithPersNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTheStatusOfInsuredPersonWithPersNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetRetiredInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetiredInfo" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetRetiredInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRetiredInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_SetPENSIONInsurance_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPENSIONInsurance" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_SetPENSIONInsurance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPENSIONInsuranceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetDataForMilitaryPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataForMilitaryPerson" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetDataForMilitaryPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataForMilitaryPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetWorkPersonStutus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkPersonStutus" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetWorkPersonStutus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorkPersonStutusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetPersonInfoByNatId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonInfoByNatId" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetPersonInfoByNatId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonInfoByNatIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEMPLOY_EST_INFO_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEMPLOY_EST_INFO" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEMPLOY_EST_INFO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEMPLOY_EST_INFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEST_ACTIV_EMP_FOR_YEAR_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEST_ACTIV_EMP_FOR_YEAR" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEST_ACTIV_EMP_FOR_YEAR_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEST_ACTIV_EMP_FOR_YEARResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEmploy_Emp_info_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmploy_Emp_info" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEmploy_Emp_info_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmploy_Emp_infoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEmploy_Emp_Add_Validate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmploy_Emp_Add_Validate" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetEmploy_Emp_Add_Validate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmploy_Emp_Add_ValidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetPSF_Retired_Ded_Data_Result_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPSF_Retired_Ded_Data_Result" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetPSF_Retired_Ded_Data_Result_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPSF_Retired_Ded_Data_ResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNO_Employees_byNat_Interval_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNO_Employees_byNat_Interval" />
+  </wsdl:message>
+  <wsdl:message name="IIndividualServices_GetNO_Employees_byNat_Interval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNO_Employees_byNat_IntervalResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IIndividualServices">
+    <wsdl:operation name="GetBeneficiaryInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetBeneficiaryInfo" message="tns:IIndividualServices_GetBeneficiaryInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetBeneficiaryInfoResponse" message="tns:IIndividualServices_GetBeneficiaryInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataForCertainPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetDataForCertainPerson" message="tns:IIndividualServices_GetDataForCertainPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetDataForCertainPersonResponse" message="tns:IIndividualServices_GetDataForCertainPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataForCertainPersonWithPersNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetDataForCertainPersonWithPersNo" message="tns:IIndividualServices_GetDataForCertainPersonWithPersNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetDataForCertainPersonWithPersNoResponse" message="tns:IIndividualServices_GetDataForCertainPersonWithPersNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptionPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetSubscriptionPeriod" message="tns:IIndividualServices_GetSubscriptionPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetSubscriptionPeriodResponse" message="tns:IIndividualServices_GetSubscriptionPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptionPeriodWithPersNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetSubscriptionPeriodWithPersNo" message="tns:IIndividualServices_GetSubscriptionPeriodWithPersNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetSubscriptionPeriodWithPersNoResponse" message="tns:IIndividualServices_GetSubscriptionPeriodWithPersNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSalarySlip">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetSalarySlip" message="tns:IIndividualServices_GetSalarySlip_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetSalarySlipResponse" message="tns:IIndividualServices_GetSalarySlip_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSalarySlipWithPersNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetSalarySlipWithPersNo" message="tns:IIndividualServices_GetSalarySlipWithPersNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetSalarySlipWithPersNoResponse" message="tns:IIndividualServices_GetSalarySlipWithPersNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfEmployeesByNationality">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetNumberOfEmployeesByNationality" message="tns:IIndividualServices_GetNumberOfEmployeesByNationality_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetNumberOfEmployeesByNationalityResponse" message="tns:IIndividualServices_GetNumberOfEmployeesByNationality_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNameOfJordanianEmployees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetNameOfJordanianEmployees" message="tns:IIndividualServices_GetNameOfJordanianEmployees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetNameOfJordanianEmployeesResponse" message="tns:IIndividualServices_GetNameOfJordanianEmployees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNameOfNonJordanianEmployees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetNameOfNonJordanianEmployees" message="tns:IIndividualServices_GetNameOfNonJordanianEmployees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetNameOfNonJordanianEmployeesResponse" message="tns:IIndividualServices_GetNameOfNonJordanianEmployees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTheStatusOfInsuredPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetTheStatusOfInsuredPerson" message="tns:IIndividualServices_GetTheStatusOfInsuredPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetTheStatusOfInsuredPersonResponse" message="tns:IIndividualServices_GetTheStatusOfInsuredPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTheStatusOfInsuredPersonWithPersNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetTheStatusOfInsuredPersonWithPersNo" message="tns:IIndividualServices_GetTheStatusOfInsuredPersonWithPersNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetTheStatusOfInsuredPersonWithPersNoResponse" message="tns:IIndividualServices_GetTheStatusOfInsuredPersonWithPersNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRetiredInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetRetiredInfo" message="tns:IIndividualServices_GetRetiredInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetRetiredInfoResponse" message="tns:IIndividualServices_GetRetiredInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPENSIONInsurance">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/SetPENSIONInsurance" message="tns:IIndividualServices_SetPENSIONInsurance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/SetPENSIONInsuranceResponse" message="tns:IIndividualServices_SetPENSIONInsurance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataForMilitaryPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetDataForMilitaryPerson" message="tns:IIndividualServices_GetDataForMilitaryPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetDataForMilitaryPersonResponse" message="tns:IIndividualServices_GetDataForMilitaryPerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkPersonStutus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetWorkPersonStutus" message="tns:IIndividualServices_GetWorkPersonStutus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetWorkPersonStutusResponse" message="tns:IIndividualServices_GetWorkPersonStutus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfoByNatId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetPersonInfoByNatId" message="tns:IIndividualServices_GetPersonInfoByNatId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetPersonInfoByNatIdResponse" message="tns:IIndividualServices_GetPersonInfoByNatId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEMPLOY_EST_INFO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetEMPLOY_EST_INFO" message="tns:IIndividualServices_GetEMPLOY_EST_INFO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetEMPLOY_EST_INFOResponse" message="tns:IIndividualServices_GetEMPLOY_EST_INFO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEST_ACTIV_EMP_FOR_YEAR">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetEST_ACTIV_EMP_FOR_YEAR" message="tns:IIndividualServices_GetEST_ACTIV_EMP_FOR_YEAR_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetEST_ACTIV_EMP_FOR_YEARResponse" message="tns:IIndividualServices_GetEST_ACTIV_EMP_FOR_YEAR_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmploy_Emp_info">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetEmploy_Emp_info" message="tns:IIndividualServices_GetEmploy_Emp_info_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetEmploy_Emp_infoResponse" message="tns:IIndividualServices_GetEmploy_Emp_info_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmploy_Emp_Add_Validate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetEmploy_Emp_Add_Validate" message="tns:IIndividualServices_GetEmploy_Emp_Add_Validate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetEmploy_Emp_Add_ValidateResponse" message="tns:IIndividualServices_GetEmploy_Emp_Add_Validate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPSF_Retired_Ded_Data_Result">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetPSF_Retired_Ded_Data_Result" message="tns:IIndividualServices_GetPSF_Retired_Ded_Data_Result_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetPSF_Retired_Ded_Data_ResultResponse" message="tns:IIndividualServices_GetPSF_Retired_Ded_Data_Result_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNO_Employees_byNat_Interval">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIndividualServices/GetNO_Employees_byNat_Interval" message="tns:IIndividualServices_GetNO_Employees_byNat_Interval_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIndividualServices/GetNO_Employees_byNat_IntervalResponse" message="tns:IIndividualServices_GetNO_Employees_byNat_Interval_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_IIndividualServices" type="tns:IIndividualServices">
+    <wsp:PolicyReference URI="#CustomBinding_IIndividualServices_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetBeneficiaryInfo">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetBeneficiaryInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataForCertainPerson">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetDataForCertainPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataForCertainPersonWithPersNo">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetDataForCertainPersonWithPersNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptionPeriod">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetSubscriptionPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptionPeriodWithPersNo">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetSubscriptionPeriodWithPersNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalarySlip">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetSalarySlip" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalarySlipWithPersNo">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetSalarySlipWithPersNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfEmployeesByNationality">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetNumberOfEmployeesByNationality" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNameOfJordanianEmployees">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetNameOfJordanianEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNameOfNonJordanianEmployees">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetNameOfNonJordanianEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTheStatusOfInsuredPerson">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetTheStatusOfInsuredPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTheStatusOfInsuredPersonWithPersNo">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetTheStatusOfInsuredPersonWithPersNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRetiredInfo">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetRetiredInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPENSIONInsurance">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/SetPENSIONInsurance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataForMilitaryPerson">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetDataForMilitaryPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkPersonStutus">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetWorkPersonStutus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonInfoByNatId">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetPersonInfoByNatId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEMPLOY_EST_INFO">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetEMPLOY_EST_INFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEST_ACTIV_EMP_FOR_YEAR">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetEST_ACTIV_EMP_FOR_YEAR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmploy_Emp_info">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetEmploy_Emp_info" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmploy_Emp_Add_Validate">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetEmploy_Emp_Add_Validate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPSF_Retired_Ded_Data_Result">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetPSF_Retired_Ded_Data_Result" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNO_Employees_byNat_Interval">
+      <soap:operation soapAction="http://tempuri.org/IIndividualServices/GetNO_Employees_byNat_Interval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IndividualServices">
+    <wsdl:port name="CustomBinding_IIndividualServices" binding="tns:CustomBinding_IIndividualServices">
+      <soap:address location="https://api-gateway.stg.gsb.gov.jo:9443/porg-g2g/g2g/IndividualServices" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

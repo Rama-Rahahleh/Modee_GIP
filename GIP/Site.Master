@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GIP.SiteMaster" %>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -22,7 +23,7 @@
     <!--fav Modee_icone-->
     <link href="/Asset/img/Logo/logo.png" rel="icon">
     <link href="/Asset/img/Logo/logo.png" rel="apple-touch-icon">
-    
+
     <%--jQuery--%>
     <script src="/Asset/js/jquery-3.7.1.min.js"></script>
 
@@ -31,147 +32,153 @@
 
     <%--Bootstrap--%>
     <link rel="stylesheet" href="/Asset/css/bootstrap-5.0.2/bootstrap.min.css">
-    
-    
+
+    <%-- select2 --%>
+    <link href="/Asset/css/select2/select2.min.css" rel="stylesheet" />
+
     <!--  Fonts -->
     <link href="/Asset/font/stylesheet.css" rel="stylesheet">
 
     <!-- Font-awesome  Css -->
     <link href="/Asset/css/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet" media='all' />
 
-    <%--Toaster--%>
-    <link href="/Asset/css/toastr/toastr.min.css" rel="stylesheet" />
-    <script src="/Asset/css/toastr/toastr.min.js"></script>
-
-     <%--PhoneNumber--%>
-      <link href="/Asset/css/build/css/intITellnputRTL.css" rel="stylesheet" />
-      <script src="/Asset/css/build/js/intlTelInput.js"></script>
+   
     <!-- Favicons -->
-  <link href="/Asset/img/Logo/MoDEE1.png" rel="icon">
-  <link href="/Asset/img/Logo/MoDEE1.png" rel="apple-touch-icon">
-    
-  <!-- Fonts -->
-  <link href="/Asset/font/stylesheet.css" />
- 
-  <!-- Vendor CSS Files -->
-  <link href="/Asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/Asset/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/Asset/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/Asset/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/Asset/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/Asset/img/Logo/MoDEE1.png" rel="icon">
+    <link href="/Asset/img/Logo/MoDEE1.png" rel="apple-touch-icon">
 
-  <!-- Main CSS File -->
-  <link href="/Asset/css/main.css" rel="stylesheet">
- 
- <!-- Template Main CSS File -->
- <link href="/Asset/css/main.css" rel="stylesheet">
-          <asp:ContentPlaceHolder ID="head" runat="server">
-</asp:ContentPlaceHolder>
- 
+    <!-- Fonts -->
+    <link href="/Asset/font/stylesheet.css" rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="/Asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Asset/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/Asset/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/Asset/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/Asset/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+     <%--Toaster--%>
+ <link href="/Asset/css/toastr/toastr.min.css" rel="stylesheet" />
+ <script src="/Asset/css/toastr/toastr.min.js"></script>
+
+ <%--PhoneNumber--%>
+ <link href="/Asset/css/build/css/intITellnputRTL.css" rel="stylesheet" />
+ <script src="/Asset/css/build/js/intlTelInput.js"></script>
+    <!-- Main CSS File -->
+    <link href="/Asset/css/main.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/Asset/css/main.css" rel="stylesheet">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
 </head>
-  
-   
- 
+
+
+
 <body class="index-page">
-     <form id="form1" runat="server">
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <form id="form1" runat="server">
+        <header id="header" class="header d-flex align-items-center sticky-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="Home.aspx" class="logo d-flex align-items-center ms-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="Asset/img/logo.png" alt=""> -->
-        <h1 class="sitename"><img src="/Asset/img/modee2.png"/></h1>
-      </a>
+                <a href="Home.aspx" class="logo d-flex align-items-center ms-auto">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="Asset/img/logo.png" alt=""> -->
+                    <h1 class="sitename">
+                        <img src="/Asset/img/modee2.png" /></h1>
+                </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="/Home.aspx" class="active">الصفحة الرئيسية<br></a></li>
-          <li><a href="/Home.aspx#about">من نحن</a></li>
-          <li><a href="/Home.aspx#services">البرامج التدريبية</a></li>
-         <li><a href="/Home.aspx#faq">الاسئلة الشائعة</a></li>
-          <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="/Home.aspx" class="active">الصفحة الرئيسية<br>
+                        </a></li>
+                        <li><a href="/Home.aspx#about">من نحن</a></li>
+                        <li><a href="/Home.aspx#services">البرامج التدريبية</a></li>
+                        <li><a href="/Home.aspx#faq">الاسئلة الشائعة</a></li>
+                        <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
 
-      <a class="btn-getstarted" href="Login">تسجيل دخول</a>
+                <a class="btn-getstarted" href="Login">تسجيل دخول</a>
+                
+            </div>
 
-    </div>
-      
-  </header>
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-</asp:ContentPlaceHolder>
- </form>
-  <footer id="footer" class="footer light-background">
+        </header>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+    <footer id="footer" class="footer light-background">
 
-   <div class="container footer-top">
-     <div class="row gy-4">
-       <div class="col-lg-5 col-md-12 footer-about">
-         <a href="Home.aspx" class="logo d-flex align-items-center">
-           <span class="sitename">منصة تدريب خريجي تكنولوجيات المعلومات</span>
-         </a>
-         <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-         <div class="social-links d-flex mt-4">
-           <a href="https://x.com/MoDEEJO?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="bi bi-twitter-x"></i></a>
-           <a href="https://www.facebook.com/MoDEEJO/?locale=ar_AR"><i class="bi bi-facebook"></i></a>
-           <a href="https://www.instagram.com/MoDEEJO/?hl=ar"><i class="bi bi-instagram"></i></a>
-           <a href="https://www.linkedin.com/company/modeejo/mycompany/"><i class="bi bi-linkedin"></i></a>
-         </div>
-       </div>
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-about">
+                    <a href="Home.aspx" class="logo d-flex align-items-center">
+                        <span class="sitename">منصة تدريب خريجي تكنولوجيات المعلومات</span>
+                    </a>
+                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href="https://x.com/MoDEEJO?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://www.facebook.com/MoDEEJO/?locale=ar_AR"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/MoDEEJO/?hl=ar"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/modeejo/mycompany/"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
 
-         <div class="col-lg-2 col-6 footer-links">
-             <h4>أهم الروابط</h4>
-             <ul>
-                 <li><a href="Home.aspx">صفحة رئيسية</a></li>
-                 <li><a href="/Home.aspx#About">من نحن</a></li>
-                 <li><a href="/Home.aspx#Program">برامجنا</a></li>
-                 <li><a href="/Home.aspx#faq">أسئلة شائعه</a></li>
-                 <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
-             </ul>
-         </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>أهم الروابط</h4>
+                    <ul>
+                        <li><a href="Home.aspx">صفحة رئيسية</a></li>
+                        <li><a href="/Home.aspx#About">من نحن</a></li>
+                        <li><a href="/Home.aspx#Program">برامجنا</a></li>
+                        <li><a href="/Home.aspx#faq">أسئلة شائعه</a></li>
+                        <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
 
 
 
-         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-end">
-             <h4>أتصل بنا</h4>
-         <p>عمان- الدوار الثامن -بيادر وادي السير -</p>
-   
-         <p>عمان- الأردن</p>
-         <p class="mt-4"><strong>رقم هاتف:</strong> <span>+962 65 805 700</span></p>
-         <p><strong>البريد الالكتروني:</strong> <span>InvestmentTeam@modee.gov.jo</span></p>
-       </div>
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-end">
+                    <h4>أتصل بنا</h4>
+                    <p>عمان- الدوار الثامن -بيادر وادي السير -</p>
 
-     </div>
-   </div>
+                    <p>عمان- الأردن</p>
+                    <p class="mt-4"><strong>رقم هاتف:</strong> <span>+962 65 805 700</span></p>
+                    <p><strong>البريد الالكتروني:</strong> <span>InvestmentTeam@modee.gov.jo</span></p>
+                </div>
 
-   <div class="container copyright text-center mt-4">
-     <p>
-           &copy; جميع الحقوق محفوظة  <strong><span>وزارة الاقتصاد الرقمي الريادة </span></strong>
-     </p>
-     
-   </div>
+            </div>
+        </div>
 
- </footer>
+        <div class="container copyright text-center mt-4">
+            <p>
+                &copy; جميع الحقوق محفوظة  <strong><span>وزارة الاقتصاد الرقمي الريادة </span></strong>
+            </p>
 
- <!-- Scroll Top -->
- <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        </div>
+
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="/Asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
  
- <!-- Preloader -->
- <div id="preloader"></div>
+    <script src="/Asset/vendor/aos/aos.js"></script>
+    <script src="/Asset/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/Asset/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/Asset/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/Asset/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="/Asset/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
- <!-- Vendor JS Files -->
- <script src="/Asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
- <script src="/Asset/vendor/php-email-form/validate.js"></script>
- <script src="/Asset/vendor/aos/aos.js"></script>
- <script src="/Asset/vendor/purecounter/purecounter_vanilla.js"></script>
- <script src="/Asset/vendor/glightbox/js/glightbox.min.js"></script>
- <script src="/Asset/vendor/swiper/swiper-bundle.min.js"></script>
- <script src="/Asset/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
- <script src="/Asset/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-   
- <!-- Main JS File -->
- <script src="/Asset/js/main.js"></script>
+    <script src="/Asset/css/select2/select2.min.js"></script>
+    <!-- Main JS File -->
+    <script src="/Asset/js/main.js"></script>
 </body>
-  
+
 </html>

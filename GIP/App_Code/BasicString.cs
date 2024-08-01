@@ -11,11 +11,24 @@ namespace GIP.App_Code
     public class BasicString
     {
        private string ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["GIPInatiativesConnectionString"].ConnectionString;
+        string GsbUser = "MoDEEstg";
+        string GsbPass = "M0!cT@123";
+        string ClientID = "fbdbadb546c2f7c466260453732843a2";
+        string ClientSecret = "34a88c54e196a6bc3cbc37fec9f75612";
         public  string Errorpath;
 
         public string GetConnectionString { get { return ConnectionString; } }
+        public string GetGsbUser { get { return GsbUser; } }
+        public string GetGsbPass { get { return GsbPass; } }
+        public string GetClientID { get { return ClientID; } }
+        public string GetClientSecret { get { return ClientSecret; } }
 
-        
+        public bool IsNumeric(string text)
+        {
+            double test;
+            return double.TryParse(text, out test);
+        }
+
         public bool sndMailLocal(string recip_From, string recip_To, string Subject, string Message_body)
         {
             try

@@ -23,13 +23,18 @@ namespace GIP
        
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UnVerifiedUserEmail"] != null)
+            {
+                Response.Redirect("VerifyUser.aspx");
+            }
+          
+            if(Session["CmpID"]!=null)
+            {
+                Response.Redirect("../Company/Programmes.aspx");
+            }
+            
         }
-        public static bool IsNumeric(string text)
-        {
-            double test;
-            return double.TryParse(text, out test);
-        }
+      
         protected string Generate_otp()
         {
             char[] charArr = "0123456789".ToCharArray();
@@ -77,7 +82,7 @@ namespace GIP
                 if (isValidCaptcha)
                 {
 
-                    if (IsNumeric(CompanyNat.Text) == false || CompanyNat.Text == "")
+                    if (Basic.IsNumeric(CompanyNat.Text) == false || CompanyNat.Text == "")
                     {
                         lblMessage1.Text = "***ادخل الرقم الوطني للمنشأة بشكل صحيح***";
                         return;
@@ -94,8 +99,8 @@ namespace GIP
                                     connection.Open();
                                     command.Parameters.Clear();
                                     command.CommandType = CommandType.StoredProcedure;
-                                    command.Parameters.AddWithValue("@p_usr",CompanyNat.Text);
-                                    command.Parameters.AddWithValue("@p_pass",Password.Text);
+                                    command.Parameters.AddWithValue("@Company_No", CompanyNat.Text);
+                                    command.Parameters.AddWithValue("@Password", Password.Text);
                                     SqlDataReader reader = command.ExecuteReader();
                                     if (reader.Read())
                                     {
@@ -117,10 +122,10 @@ namespace GIP
                                             string otp = Generate_otp();
                                             Session["OTP"] = otp;
                                             Session["Allowed_OTP_Attempts"] = 3;
-                                            Session["UnVerifiedUserEmail"] = reader["Email"].ToString();
+                                            Session["UnVerifiedUserEmail"] = reader["Company_Email"].ToString();
                                             Session["UnVerifiedUserID"] = reader["Company_No"].ToString();
 
-                                            SendOTP(otp, reader["Email"].ToString(), Session["UserName"].ToString());
+                                            SendOTP(otp, reader["Company_Email"].ToString(), Session["UserName"].ToString());
                                             string VerifyLink = "VerifyUser.aspx";
                                             Response.Redirect(VerifyLink, true);
                                         }

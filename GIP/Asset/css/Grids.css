@@ -1,0 +1,9 @@
+﻿.TableHeader{
+    border-bottom:1px solid ;
+  text-align:center
+}
+
+.direction-ltr {
+    direction: ltr !important;
+}
+

@@ -11,9 +11,9 @@ namespace GIP.Company
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["compno"] == null )
+            if (Session["CmpID"] == null)
             {
-                Response.Redirect("Logout.aspx");
+                Response.Redirect("/Logout.aspx");
 
             }
             else
@@ -21,6 +21,6 @@ namespace GIP.Company
 
             }
 
-            }
+        }
     }
 }

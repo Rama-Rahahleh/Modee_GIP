@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="CorporationServices" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_ICorporationServices_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://schemas.datacontract.org/2004/07/SSC.Entities" />
+      <xs:element name="GetCompanyPermit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="corporationInsuranceNo" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="corporationNationalNo" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCompanyPermitResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetCompanyPermitResult" nillable="true" type="q1:CompanyPermit_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCorporationBasicInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="corporationInsuranceNo" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="corporationNatNo" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="corporationName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCorporationBasicInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SSC.Entities" minOccurs="0" name="GetCorporationBasicInfoResult" nillable="true" type="q2:CorporationBasicInfo_Result" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SSC.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SSC.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="CompanyPermit_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CompanyPermit_Array" nillable="true" type="tns:ArrayOfCompanyPermit" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CompanyPermit_Result" nillable="true" type="tns:CompanyPermit_Result" />
+      <xs:complexType name="ArrayOfCompanyPermit">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CompanyPermit" nillable="true" type="tns:CompanyPermit" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCompanyPermit" nillable="true" type="tns:ArrayOfCompanyPermit" />
+      <xs:complexType name="CompanyPermit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ComitCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanySSN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DebitBalance" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsDebit" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CompanyPermit" nillable="true" type="tns:CompanyPermit" />
+      <xs:complexType name="CorporationBasicInfo_Result">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CorporationBasicInfo_Array" nillable="true" type="tns:ArrayOfCorporationBasicInfo" />
+          <xs:element minOccurs="0" name="Status" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusDescription" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CorporationBasicInfo_Result" nillable="true" type="tns:CorporationBasicInfo_Result" />
+      <xs:complexType name="ArrayOfCorporationBasicInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CorporationBasicInfo" nillable="true" type="tns:CorporationBasicInfo" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfCorporationBasicInfo" nillable="true" type="tns:ArrayOfCorporationBasicInfo" />
+      <xs:complexType name="CorporationBasicInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Branch" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MainActivates" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostOfficeBox" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TotalSalaries" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="CorporationBasicInfo" nillable="true" type="tns:CorporationBasicInfo" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ICorporationServices_GetCompanyPermit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyPermit" />
+  </wsdl:message>
+  <wsdl:message name="ICorporationServices_GetCompanyPermit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompanyPermitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICorporationServices_GetCorporationBasicInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCorporationBasicInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICorporationServices_GetCorporationBasicInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCorporationBasicInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICorporationServices">
+    <wsdl:operation name="GetCompanyPermit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICorporationServices/GetCompanyPermit" message="tns:ICorporationServices_GetCompanyPermit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICorporationServices/GetCompanyPermitResponse" message="tns:ICorporationServices_GetCompanyPermit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporationBasicInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICorporationServices/GetCorporationBasicInfo" message="tns:ICorporationServices_GetCorporationBasicInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICorporationServices/GetCorporationBasicInfoResponse" message="tns:ICorporationServices_GetCorporationBasicInfo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_ICorporationServices" type="tns:ICorporationServices">
+    <wsp:PolicyReference URI="#CustomBinding_ICorporationServices_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCompanyPermit">
+      <soap:operation soapAction="http://tempuri.org/ICorporationServices/GetCompanyPermit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporationBasicInfo">
+      <soap:operation soapAction="http://tempuri.org/ICorporationServices/GetCorporationBasicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CorporationServices">
+    <wsdl:port name="CustomBinding_ICorporationServices" binding="tns:CustomBinding_ICorporationServices">
+      <soap:address location="https://api-gateway.stg.gsb.gov.jo:9443/porg-g2g/g2g/CorporationServices" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

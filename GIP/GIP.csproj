@@ -45,12 +45,104 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.102.3.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.102.3\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Irony, Version=1.0.11.0, Culture=neutral, PublicKeyToken=ca48ace7223ead47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Irony.NetCore.1.0.11\lib\net461\Irony.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=111.4.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.111.4.0\lib\net48\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.6.0.0\lib\net461\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.4, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.4\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -96,6 +188,10 @@
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="XLParser, Version=1.5.2.0, Culture=neutral, PublicKeyToken=63397e1e46bb91b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\XLParser.1.5.2\lib\net461\XLParser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -103,6 +199,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AllTrainers.aspx" />
+    <Content Include="Admin\comapp.aspx" />
+    <Content Include="Admin\ComDetails.aspx" />
+    <Content Include="Admin\ComTrDetail.aspx" />
+    <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\VerifyUser.aspx" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.css" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.min.css" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.rtl.css" />
@@ -132,6 +234,7 @@
     <Content Include="Asset\css\build\js\intlTelInput.js" />
     <Content Include="Asset\css\build\js\intlTelInput.min.js" />
     <Content Include="Asset\css\build\js\utils.js" />
+    <Content Include="Asset\css\FileUploaderModal.css" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\attribution.js" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\css\all.css" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\css\all.min.css" />
@@ -1780,6 +1883,7 @@
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\webfonts\fa-regular-400.svg" />
     <Content Include="Asset\css\fontawesome-free-5.15.4-web\webfonts\fa-solid-900.svg" />
     <Content Include="Asset\css\Forms.css" />
+    <Content Include="Asset\css\Grids.css" />
     <Content Include="Asset\css\main.css" />
     <Content Include="Asset\css\select2\select2.min.css" />
     <Content Include="Asset\css\select2\select2.min.js" />
@@ -1821,6 +1925,7 @@
     <Content Include="Asset\img\portfolio\books-1.jpg" />
     <Content Include="Asset\img\portfolio\branding-1.jpg" />
     <Content Include="Asset\img\portfolio\product-1.jpg" />
+    <Content Include="Asset\img\Delete.png" />
     <Content Include="Asset\img\services.jpg" />
     <Content Include="Asset\img\team\team-1.jpg" />
     <Content Include="Asset\img\team\team-2.jpg" />
@@ -1924,6 +2029,7 @@
     <Content Include="Asset\font\Cairo-SemiBold.eot" />
     <Content Include="Asset\font\Cairo-SemiBold.woff" />
     <Content Include="Asset\font\Cairo-SemiBold.woff2" />
+    <Content Include="Admin\DashBored.Master" />
     <None Include="Asset\js\jquery-3.4.1.intellisense.js" />
     <Content Include="Asset\js\jquery-3.4.1.js" />
     <Content Include="Asset\js\jquery-3.4.1.min.js" />
@@ -2142,7 +2248,6 @@
     <Content Include="Asset\Scripts\WebForms\WebForms.js" />
     <Content Include="Asset\Scripts\WebForms\WebParts.js" />
     <Content Include="Asset\Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="Asset\scss\Readme.txt" />
     <Content Include="Asset\vendor\aos\aos.cjs.js" />
     <Content Include="Asset\vendor\aos\aos.css" />
     <Content Include="Asset\vendor\aos\aos.esm.js" />
@@ -2171,29 +2276,10 @@
     <Content Include="Asset\vendor\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Asset\vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Asset\vendor\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Asset\vendor\fontawesome-free\css\all.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\all.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\brands.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\brands.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\fontawesome.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\fontawesome.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\regular.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\regular.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\solid.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\solid.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\svg-with-js.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\svg-with-js.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\v4-font-face.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\v4-font-face.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\v4-shims.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\v4-shims.min.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\v5-font-face.css" />
-    <Content Include="Asset\vendor\fontawesome-free\css\v5-font-face.min.css" />
     <Content Include="Asset\vendor\glightbox\css\glightbox.css" />
     <Content Include="Asset\vendor\glightbox\css\glightbox.min.css" />
     <Content Include="Asset\vendor\glightbox\js\glightbox.js" />
     <Content Include="Asset\vendor\glightbox\js\glightbox.min.js" />
-    <Content Include="Asset\vendor\php-email-form\validate.js" />
     <Content Include="Asset\vendor\purecounter\purecounter_vanilla.js" />
     <Content Include="Asset\vendor\swiper\swiper-bundle.min.css" />
     <Content Include="Asset\vendor\swiper\swiper-bundle.min.js" />
@@ -2213,6 +2299,151 @@
     <Content Include="Company\GIP.aspx" />
     <Content Include="Company\Programmes.aspx" />
     <Content Include="Company\QesaTech.aspx" />
+    <None Include="Connected Services\CCD\configuration91.svcinfo" />
+    <None Include="Connected Services\CCD\configuration.svcinfo" />
+    <Content Include="Connected Services\CCD\GIP.CCD.Company.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CCD\GIP.CCD.CompanyMember.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CCD\GIP.CCD.CompanyNo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\CCD\GIP.CCD.CompanyProfile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\CCD\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\Corporation\CorporationServices.wsdl" />
+    <Content Include="Connected Services\Corporation\GIP.Corporation.CompanyPermit_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Corporation\GIP.Corporation.CorporationBasicInfo_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\MIT\configuration91.svcinfo" />
+    <None Include="Connected Services\MIT\configuration.svcinfo" />
+    <None Include="Connected Services\Corporation\configuration91.svcinfo" />
+    <None Include="Connected Services\Corporation\configuration.svcinfo" />
+    <None Include="Connected Services\Corporation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\MIT\GIP.MIT.CapitalHistory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.ccd_name.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.CentralRegistration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.CentralRegistrationRS.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.CentralRegistrationS.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.comminfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.comm_names.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.InstituteInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.InstituteInformation2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.Intended.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.Logo_mark.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.Modifications.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.RegisteryPurposes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.TradeMark.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\MIT\GIP.MIT.TradeMarksLogo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\MIT\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\SSC\configuration91.svcinfo" />
+    <None Include="Connected Services\SSC\configuration.svcinfo" />
+    <Content Include="Connected Services\SSC\GIP.SSC.BeneficiaryInfo_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.Employ_Emp_Add_Validate_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.Employ_Emp_info_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.EMPLOY_EST_INFO_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.EST_ACTIV_EMP_FOR_YEAR_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.IndividualBasicInfo_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.IndividualMilitaryBasicInfo_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.JordanianEmployee_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.NonJordanianEmployee_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.NO_Employees_byNat_Interval_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.NumberEmployeeByNationality_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.PersonInfo_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.PSF_Retired_Ded_Data_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.Result_PENSION_Insurance.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.RetiredInfo_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.SalarySlip_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.StatusOfInsuredPerson_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.StatusOfWorkPerson_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SSC\GIP.SSC.SubscriptionPeriod_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\SSC\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -2230,6 +2461,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="ErrorLog\Josn.txt" />
     <Content Include="ErrorLog\Login.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -2339,16 +2571,11 @@
     <Content Include="Asset\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
     <Content Include="Asset\vendor\bootstrap\js\bootstrap.js.map" />
     <Content Include="Asset\vendor\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-brands-400.ttf" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-brands-400.woff2" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-regular-400.ttf" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-regular-400.woff2" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-solid-900.ttf" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-v4compatibility.ttf" />
-    <Content Include="Asset\vendor\fontawesome-free\webfonts\fa-v4compatibility.woff2" />
     <Content Include="Asset\vendor\purecounter\purecounter_vanilla.js.map" />
     <Content Include="Asset\vendor\swiper\swiper-bundle.min.js.map" />
+    <None Include="Connected Services\CCD\CompanySrv.wsdl" />
+    <None Include="Connected Services\MIT\MITService.wsdl" />
+    <None Include="Connected Services\SSC\IndividualServices.wsdl" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2382,9 +2609,65 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <None Include="WSDL\ccd-companysrv-all_1.0.3.wsdl" />
+    <None Include="WSDL\mit-mitservice-all_1.0.5.wsdl" />
+    <None Include="WSDL\ssc-corporationservices-all_1.0.0.wsdl" />
+    <None Include="WSDL\ssc-individualservices-all_1.0.5.wsdl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AllTrainers.aspx.cs">
+      <DependentUpon>AllTrainers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AllTrainers.aspx.designer.cs">
+      <DependentUpon>AllTrainers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\comapp.aspx.cs">
+      <DependentUpon>comapp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\comapp.aspx.designer.cs">
+      <DependentUpon>comapp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ComDetails.aspx.cs">
+      <DependentUpon>ComDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ComDetails.aspx.designer.cs">
+      <DependentUpon>ComDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ComTrDetail.aspx.cs">
+      <DependentUpon>ComTrDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ComTrDetail.aspx.designer.cs">
+      <DependentUpon>ComTrDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DashBored.Master.cs">
+      <DependentUpon>DashBored.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DashBored.Master.designer.cs">
+      <DependentUpon>DashBored.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\VerifyUser.aspx.cs">
+      <DependentUpon>VerifyUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\VerifyUser.aspx.designer.cs">
+      <DependentUpon>VerifyUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\BasicString.cs" />
+    <Compile Include="App_Code\IDMClass.cs" />
+    <Compile Include="App_Code\IDMuserInfo.cs" />
+    <Compile Include="App_Code\ParameterList.cs" />
     <Compile Include="App_Code\ReCaptchaResponse.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -2415,6 +2698,26 @@
     </Compile>
     <Compile Include="Company\QesaTech.aspx.designer.cs">
       <DependentUpon>QesaTech.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CCD\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\Corporation\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\MIT\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\SSC\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2499,6 +2802,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CCD\" />
+    <WCFMetadataStorage Include="Connected Services\Corporation\" />
+    <WCFMetadataStorage Include="Connected Services\MIT\" />
+    <WCFMetadataStorage Include="Connected Services\SSC\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
