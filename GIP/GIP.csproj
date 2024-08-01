@@ -2299,6 +2299,7 @@
     <Content Include="Company\GIP.aspx" />
     <Content Include="Company\Programmes.aspx" />
     <Content Include="Company\QesaTech.aspx" />
+    <Content Include="Company\Site.Master" />
     <None Include="Connected Services\CCD\configuration91.svcinfo" />
     <None Include="Connected Services\CCD\configuration.svcinfo" />
     <Content Include="Connected Services\CCD\GIP.CCD.Company.datasource">
@@ -2667,7 +2668,6 @@
     <Compile Include="App_Code\BasicString.cs" />
     <Compile Include="App_Code\IDMClass.cs" />
     <Compile Include="App_Code\IDMuserInfo.cs" />
-    <Compile Include="App_Code\ParameterList.cs" />
     <Compile Include="App_Code\ReCaptchaResponse.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -2698,6 +2698,13 @@
     </Compile>
     <Compile Include="Company\QesaTech.aspx.designer.cs">
       <DependentUpon>QesaTech.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\CCD\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -2783,6 +2790,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CompanyFiles\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>

@@ -77,14 +77,14 @@
                                         <asp:Label ID="Label1" runat="server" CssClass="form-label mb-2" Text="الرقم الوطني/الشخصي"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
-                                        <asp:TextBox ID="txtNatNo" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني/الشخصي"
+                                      <%--  <asp:TextBox ID="txtNatNo" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني/الشخصي"
                                             Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
 
                                         <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
                                             Font-Size="Small" Font-Bold="true" Display="Dynamic"
                                             ErrorMessage="يرجى ادخال ادخل الرقم الوطني/ الشخصي"
                                             ID="CompanyNatValidator" runat="server" ValidationGroup="Sanadlogin"
-                                            ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>
+                                            ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>--%>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label2" runat="server" CssClass="form-label mb-2" Text="كلمة مرور تطبيق سند"
@@ -285,7 +285,7 @@
                                     </div>
                                 </div>
 
-                                <div id="CompanyBranch" runat="server" visible="false">
+                                <div id="CompanyBranch" runat="server" visible="false" >
                                     <div>
                                         <div>
                                             <asp:Label ID="Label18" runat="server" CssClass="form-label mb-2" Text="أفرع للشركة/ المؤسسة فردية"
@@ -364,6 +364,25 @@
                                         <span class="form-header mb-4">يرجى إدخال تفاصيل الخاصة في مقدم الطلب </span>
                                     </div>
                                     <div>
+                                        <asp:Label ID="Label23" runat="server" CssClass="form-label mb-2" Text="الرقم الوطني/الشخصي"
+                                            Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                        <asp:TextBox ID="txtNatNo" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني/الشخصي"
+                                            Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
+
+                                        <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
+                                            Font-Size="Small" Font-Bold="true" Display="Dynamic"
+                                            ErrorMessage="يرجى ادخال ادخل الرقم الوطني/ الشخصي"
+                                            ID="CompanyNatValidator" runat="server" ValidationGroup="Sanadlogin"
+                                            ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="col-md-12 align-content-center " style="text-align: center;">
+                                        <asp:Button ID="CheckCSPD" ValidationGroup="CompanyInfo" runat="server"
+                                            OnClick="CheckCSPD_Click"
+                                            CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
+
+                                    </div>
+                                    <div>
                                         <asp:Label ID="Label3" runat="server" CssClass="form-label mb-2" Text="اسم مقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
@@ -382,14 +401,14 @@
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadPhone" runat="server" CssClass="form-control mb-4 phoneInput" placeholder="رقم الهاتف لمقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label6" runat="server" CssClass="form-label mb-2" Text="البريد الالكتروني لمقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadEmail" runat="server" CssClass="form-control mb-4" placeholder="البريد الالكتروني لمقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" ></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label7" runat="server" CssClass="form-label mb-2" Text="المسمى الوظيفي لمقدم الطلب"
@@ -439,7 +458,7 @@
                                     </div>
                                 </div>
 
-                                <div id="Attachment" runat="server" visible="false">
+                                <div id="Attachment" runat="server" visible="false" >
                                     <div>
                                         <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
@@ -525,7 +544,7 @@
 
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
                                         <asp:Button ID="Next5" ValidationGroup="CompanyInfo" runat="server"
-                                            OnClick="Next5_Click"
+                                            OnClick="Next4_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="إرسال"></asp:Button>
 
                                     </div>

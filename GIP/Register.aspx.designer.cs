@@ -60,24 +60,6 @@ namespace GIP
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// txtNatNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNatNo;
-
-        /// <summary>
-        /// CompanyNatValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator CompanyNatValidator;
-
-        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -508,6 +490,42 @@ namespace GIP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContactInfo;
+
+        /// <summary>
+        /// Label23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label23;
+
+        /// <summary>
+        /// txtNatNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNatNo;
+
+        /// <summary>
+        /// CompanyNatValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator CompanyNatValidator;
+
+        /// <summary>
+        /// CheckCSPD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CheckCSPD;
 
         /// <summary>
         /// Label3 control.
