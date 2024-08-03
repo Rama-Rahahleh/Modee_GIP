@@ -87,12 +87,27 @@
           <li><a href="#Program">البرامج التدريبية</a></li>
           <li><a href="#faq">الاسئلة الشائعة</a></li>
           <li><a href="Home.aspx#contact">اتصل بنا</a></li>
+            <li id="userSection" runat="server" class=" dropdown">
+
+    <a href="#"><span id="UserName" runat="server"></span><i class="bi bi-chevron-down"></i></a>
+    <ul>
+        <li><a id="profileLink" runat="server" href="~/Company/CompanyProfile.aspx">الملف الشخصي<i class="fa fa-user"></i> </a></li>
+
+        <li><a id="settingsLink" runat="server" href="#" class="dropdown-item">طلباتي<i class="fa fa-sliders-h"></i> </a></li>
+        <li><a id="chgPwd" runat="server" href="~/ChangePassword.aspx">إعدادات الحساب<span class="small">(تغيير كلمة السر)</span>
+            <i class=" fa fa-cog"></i></a></li>
+        <li>
+            <a href="~/Logout.aspx">خروج<i class="fa fa-sign-out-alt"></i></a>
+        </li>
+    </ul>
+
+
+</li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="Login.aspx">تسجيل دخول</a>
-
+        <a id="signin" runat="server" class="btn-getstarted" href="Login">تسجيل دخول</a>
     </div>
   </header>
 

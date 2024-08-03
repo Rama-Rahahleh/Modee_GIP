@@ -11,6 +11,12 @@ namespace GIP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["CmpID"] != null)
+            {
+                userSection.Visible = true;
+                UserName.InnerText = "أهلاً وسهلاً " + Session["UserName"];
+                signin.Visible = false;
+            }
 
         }
     }

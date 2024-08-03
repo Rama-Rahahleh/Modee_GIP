@@ -31,6 +31,7 @@
 
 
     <section id="hero" class="hero section Login">
+    
 
         <img src="/Asset/img/hero-bg-abstract.jpg" alt="" data-aos="fade-in" class="">
 
@@ -51,9 +52,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4>المعلومات الخاصة بالمتدرب</h4>
+                                        <h6>المعلومات الخاصة بالمتدرب</h6>
                                     </div>
-                                      <asp:Label ID="lblmsg" runat="server" Font-Size="Large" ForeColor="Red" />
+                                    <asp:Label ID="lblmsg" runat="server" Font-Size="Large" ForeColor="Red" />
                                     <div class="col-md-3">
                                         <asp:Label ID="Label17" runat="server" CssClass="form-label mb-2" Text=" الرقم الوطني/الشخصي"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
@@ -189,7 +190,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4>المعلومات الخاصة بالمؤهلات العلمية</h4>
+                                        <h6>المعلومات الخاصة بالمؤهلات العلمية</h6>
                                     </div>
                                     <div class="col-md-6">
                                         <asp:Label ID="Label3" runat="server" CssClass="form-label mb-2" Text=" الجامعة"
@@ -245,38 +246,38 @@
                                             ID="RequiredFieldValidator7" runat="server" ValidationGroup="TranInfo"
                                             ControlToValidate="lblGradYear"></asp:RequiredFieldValidator>
                                     </div>
-                                      <div class="col-md-12">
-      <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة المؤهل العلمي"
-          Font-Bold="true" Font-Size="Small"></asp:Label>
+                                    <div class="col-md-12">
+                                        <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة المؤهل العلمي"
+                                            Font-Bold="true" Font-Size="Small"></asp:Label>
 
-      <div class="container">
-          <asp:FileUpload ID="StudiesCer" CssClass="form-control mb-4" runat="server" />
-      </div>
-      <asp:RequiredFieldValidator runat="server"
-          ID="RequiredFieldValidator10" ControlToValidate="StudiesCer"
-          ErrorMessage="يرجى ادخال شهادة المؤهل العلمي  !"
-          CssClass="validator" Display="Dynamic"
-          ForeColor="Red" Font-Size="Small" Font-Bold="true"
-          ValidationGroup="TranInfo">  
-      </asp:RequiredFieldValidator>
+                                        <div class="container">
+                                            <asp:FileUpload ID="StudiesCer" CssClass="form-control mb-4" runat="server" />
+                                        </div>
+                                        <asp:RequiredFieldValidator runat="server"
+                                            ID="RequiredFieldValidator10" ControlToValidate="StudiesCer"
+                                            ErrorMessage="يرجى ادخال شهادة المؤهل العلمي  !"
+                                            CssClass="validator" Display="Dynamic"
+                                            ForeColor="Red" Font-Size="Small" Font-Bold="true"
+                                            ValidationGroup="TranInfo">  
+                                        </asp:RequiredFieldValidator>
 
-      <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
-          ControlToValidate="StudiesCer" ValidationGroup="TranInfo"
-          ValidationExpression="^.*\.(pdf|PDF)$" SetFocusOnError="true"
-          Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic"
-          ErrorMessage="يرجى اختيار امتداد صحيح  (.pdf)"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                                            ControlToValidate="StudiesCer" ValidationGroup="TranInfo"
+                                            ValidationExpression="^.*\.(pdf|PDF)$" SetFocusOnError="true"
+                                            Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic"
+                                            ErrorMessage="يرجى اختيار امتداد صحيح  (.pdf)"></asp:RegularExpressionValidator>
 
-      <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
-          ControlToValidate="StudiesCer" ValidationGroup="TranInfo"
-          Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-          ClientValidationFunction="StudiesCerFileSize"></asp:CustomValidator>
-  </div>
+                                        <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
+                                            ControlToValidate="StudiesCer" ValidationGroup="TranInfo"
+                                            Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
+                                            ClientValidationFunction="StudiesCerFileSize"></asp:CustomValidator>
+                                    </div>
                                 </div>
 
                                 <hr />
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4>المعلومات الخاصة ضمان الاجتماعي </h4>
+                                        <h6>المعلومات الخاصة ضمان الاجتماعي </h4>
                                     </div>
                                     <div class="col-md-12">
                                         <asp:GridView ID="GridView1" runat="server" CssClass="table" AutoGenerateColumns="false">
@@ -294,7 +295,7 @@
                                 <hr />
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4>تاريخ بداية التدريب ونهاية</h4>
+                                        <h6>تاريخ بداية التدريب ونهاية</h6>
                                     </div>
                                     <div class="col-md-6">
                                         <asp:Label ID="Label7" runat="server" CssClass="form-label mb-2" Text="تاريخ بداية التدريب"
@@ -327,7 +328,7 @@
 
                                     <div class="col-md-12">
                                         <asp:Button ID="Save" ValidationGroup="TranInfo" runat="server"
-                                            OnClick="Save_Click" 
+                                            OnClick="Save_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-2 mb-4  login-btn col-md-12" Text="حفظ"></asp:Button>
                                     </div>
                                 </div>
