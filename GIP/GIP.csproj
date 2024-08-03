@@ -2296,9 +2296,9 @@
     <Content Include="bin\System.Web.Optimization.dll" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Company\CompanyProfile.aspx" />
-    <Content Include="Company\GIP.aspx" />
+    <Content Include="Company\MyApplication.aspx" />
+    <Content Include="Company\NewApplication.aspx" />
     <Content Include="Company\Programmes.aspx" />
-    <Content Include="Company\QesaTech.aspx" />
     <Content Include="Company\Site.Master" />
     <None Include="Connected Services\CCD\configuration91.svcinfo" />
     <None Include="Connected Services\CCD\configuration.svcinfo" />
@@ -2678,12 +2678,19 @@
     <Compile Include="Company\CompanyProfile.aspx.designer.cs">
       <DependentUpon>CompanyProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Company\GIP.aspx.cs">
-      <DependentUpon>GIP.aspx</DependentUpon>
+    <Compile Include="Company\MyApplication.aspx.cs">
+      <DependentUpon>MyApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Company\GIP.aspx.designer.cs">
-      <DependentUpon>GIP.aspx</DependentUpon>
+    <Compile Include="Company\MyApplication.aspx.designer.cs">
+      <DependentUpon>MyApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company\NewApplication.aspx.cs">
+      <DependentUpon>NewApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\NewApplication.aspx.designer.cs">
+      <DependentUpon>NewApplication.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\Programmes.aspx.cs">
       <DependentUpon>Programmes.aspx</DependentUpon>
@@ -2691,13 +2698,6 @@
     </Compile>
     <Compile Include="Company\Programmes.aspx.designer.cs">
       <DependentUpon>Programmes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Company\QesaTech.aspx.cs">
-      <DependentUpon>QesaTech.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Company\QesaTech.aspx.designer.cs">
-      <DependentUpon>QesaTech.aspx</DependentUpon>
     </Compile>
     <Compile Include="Company\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

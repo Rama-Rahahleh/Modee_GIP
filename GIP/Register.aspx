@@ -240,7 +240,6 @@
                                             <asp:DropDownList ID="GovernateList" CssClass="mb-4"
                                                 runat="server" AppendDataBoundItems="true"
                                                 DataSourceID="SqlDataSource1" ClientIDMode="Static"
-                                                OnSelectedIndexChanged="DelegetTypeList_SelectedIndexChanged"
                                                 DataTextField="GovernateName" DataValueField="GovernateID">
                                                 <asp:ListItem Text="اختر المحافظة" Value="0" />
                                             </asp:DropDownList>
@@ -483,7 +482,7 @@
                                         <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompSignDelFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                            ClientValidationFunction="FileSize"></asp:CustomValidator>
+                                            ClientValidationFunction="CompSignDelFileSize"></asp:CustomValidator>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة تسجيل الشركة"
@@ -509,7 +508,7 @@
                                         <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompRegisterFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                            ClientValidationFunction="FileSize"></asp:CustomValidator>
+                                            ClientValidationFunction="CompRegisterFileSize"></asp:CustomValidator>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label21" runat="server" CssClass="form-label mb-2" Text="رخصة مهن سارية المفعول"
@@ -535,7 +534,7 @@
                                         <asp:CustomValidator ID="CustomValidator3" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompCertFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                            ClientValidationFunction="FileSize"></asp:CustomValidator>
+                                            ClientValidationFunction="CompCertFileSize"></asp:CustomValidator>
                                     </div>
                                     <div>
                                         <asp:CheckBox ID="chkApprove" runat="server"
@@ -576,6 +575,53 @@
             }
             return true;
         }
+
+
+
+        function CompSignDelFileSize(source, arguments) {
+            arguments.IsValid = false;
+
+            var size = document.getElementById("<%=CompSignDelFile.ClientID%>").files[0].size;
+            if (size > 4194304) {
+                arguments.IsValid = false;
+                return false;
+            }
+            else {
+                arguments.IsValid = true;
+                return true;
+            }
+        }
+
+
+
+        function CompRegisterFileSize(source, arguments) {
+            arguments.IsValid = false;
+
+            var size = document.getElementById("<%=CompRegisterFile.ClientID%>").files[0].size;
+     if (size > 4194304) {
+         arguments.IsValid = false;
+         return false;
+     }
+     else {
+         arguments.IsValid = true;
+         return true;
+     }
+ }
+
+
+ function CompCertFileSize(source, arguments) {
+     arguments.IsValid = false;
+
+     var size = document.getElementById("<%=CompCertFile.ClientID%>").files[0].size;
+     if (size > 4194304) {
+         arguments.IsValid = false;
+         return false;
+     }
+     else {
+         arguments.IsValid = true;
+         return true;
+     }
+ }
     </script>
     <script>
         function showContent(status, messgae) {
