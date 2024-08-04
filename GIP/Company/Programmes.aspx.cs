@@ -22,5 +22,18 @@ namespace GIP.Company
             }
 
         }
+
+        protected void StartGIP_Click(object sender, EventArgs e)
+        {
+            Session["TrianType"] = "1";
+            Response.Redirect("NewApplication.aspx");
+
+        }
+
+        protected void StartQsaTech_Click(object sender, EventArgs e)
+        {
+            Session["TrianType"] = "2";
+            Response.Redirect("NewApplication.aspx");
+        }
     }
 }

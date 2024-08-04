@@ -42,7 +42,7 @@
     <!-- Font-awesome  Css -->
     <link href="/Asset/css/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet" media='all' />
 
-   
+
     <!-- Favicons -->
     <link href="/Asset/img/Logo/MoDEE1.png" rel="icon">
     <link href="/Asset/img/Logo/MoDEE1.png" rel="apple-touch-icon">
@@ -57,13 +57,13 @@
     <link href="/Asset/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="/Asset/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-     <%--Toaster--%>
- <link href="/Asset/css/toastr/toastr.min.css" rel="stylesheet" />
- <script src="/Asset/css/toastr/toastr.min.js"></script>
+    <%--Toaster--%>
+    <link href="/Asset/css/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="/Asset/css/toastr/toastr.min.js"></script>
 
- <%--PhoneNumber--%>
- <link href="/Asset/css/build/css/intITellnputRTL.css" rel="stylesheet" />
- <script src="/Asset/css/build/js/intlTelInput.js"></script>
+    <%--PhoneNumber--%>
+    <link href="/Asset/css/build/css/intITellnputRTL.css" rel="stylesheet" />
+    <script src="/Asset/css/build/js/intlTelInput.js"></script>
     <!-- Main CSS File -->
     <link href="/Asset/css/main.css" rel="stylesheet">
 
@@ -96,12 +96,28 @@
                         <li><a href="/Home.aspx#services">البرامج التدريبية</a></li>
                         <li><a href="/Home.aspx#faq">الاسئلة الشائعة</a></li>
                         <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
+                        <li id="userSection" runat="server" class=" dropdown">
+
+                            <a href="#"><span id="UserName" runat="server"></span><i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a id="profileLink" runat="server" href="CompanyProfile.aspx">الملف الشخصي<i class="fa fa-user"></i> </a></li>
+
+                                <li><a id="settingsLink" runat="server" href="#" class="dropdown-item">طلباتي<i class="fa fa-sliders-h"></i> </a></li>
+                                <li><a id="chgPwd" runat="server" href="~/ChangePassword.aspx">إعدادات الحساب<span class="small">(تغيير كلمة السر)</span>
+                                    <i class=" fa fa-cog"></i></a></li>
+                                <li>
+                                    <a href="/Logout.aspx">خروج<i class="fa fa-sign-out-alt"></i></a>
+                                </li>
+                            </ul>
+
+
+                        </li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="btn-getstarted" href="Login">تسجيل دخول</a>
-                
+                <a id="signin" runat="server" class="btn-getstarted" href="Login">تسجيل دخول</a>
+
             </div>
 
         </header>
@@ -134,6 +150,7 @@
                         <li><a href="/Home.aspx#Program">برامجنا</a></li>
                         <li><a href="/Home.aspx#faq">أسئلة شائعه</a></li>
                         <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
+
                     </ul>
                 </div>
 
@@ -168,7 +185,7 @@
 
     <!-- Vendor JS Files -->
     <script src="/Asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
- 
+
     <script src="/Asset/vendor/aos/aos.js"></script>
     <script src="/Asset/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="/Asset/vendor/glightbox/js/glightbox.min.js"></script>

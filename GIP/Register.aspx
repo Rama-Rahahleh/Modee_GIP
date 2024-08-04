@@ -77,14 +77,14 @@
                                         <asp:Label ID="Label1" runat="server" CssClass="form-label mb-2" Text="الرقم الوطني/الشخصي"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
-                                        <asp:TextBox ID="txtNatNo" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني/الشخصي"
+                                      <%--  <asp:TextBox ID="txtNatNo" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني/الشخصي"
                                             Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
 
                                         <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
                                             Font-Size="Small" Font-Bold="true" Display="Dynamic"
                                             ErrorMessage="يرجى ادخال ادخل الرقم الوطني/ الشخصي"
                                             ID="CompanyNatValidator" runat="server" ValidationGroup="Sanadlogin"
-                                            ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>
+                                            ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>--%>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label2" runat="server" CssClass="form-label mb-2" Text="كلمة مرور تطبيق سند"
@@ -240,8 +240,7 @@
                                             <asp:DropDownList ID="GovernateList" CssClass="mb-4"
                                                 runat="server" AppendDataBoundItems="true"
                                                 DataSourceID="SqlDataSource1" ClientIDMode="Static"
-                                            
-                                                DataTextField="GovernateName" DataValueField="GovernateID" OnSelectedIndexChanged="DelegetTypeList_SelectedIndexChanged">
+                                                DataTextField="GovernateName" DataValueField="GovernateID">
                                                 <asp:ListItem Text="اختر المحافظة" Value="0" />
                                             </asp:DropDownList>
                                             <asp:SqlDataSource ID="SqlDataSource1" runat="server"
@@ -285,7 +284,7 @@
                                     </div>
                                 </div>
 
-                                <div id="CompanyBranch" runat="server" visible="false">
+                                <div id="CompanyBranch" runat="server" visible="false" >
                                     <div>
                                         <div>
                                             <asp:Label ID="Label18" runat="server" CssClass="form-label mb-2" Text="أفرع للشركة/ المؤسسة فردية"
@@ -364,32 +363,51 @@
                                         <span class="form-header mb-4">يرجى إدخال تفاصيل الخاصة في مقدم الطلب </span>
                                     </div>
                                     <div>
+                                        <asp:Label ID="Label23" runat="server" CssClass="form-label mb-2" Text="الرقم الوطني/الشخصي"
+                                            Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                        <asp:TextBox ID="txtNatNo" runat="server" CssClass="form-control mb-2" placeholder="الرقم الوطني/الشخصي"
+                                            Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
+
+                                        <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
+                                            Font-Size="Small" Font-Bold="true" Display="Dynamic"
+                                            ErrorMessage="يرجى ادخال ادخل الرقم الوطني/ الشخصي"
+                                            ID="CompanyNatValidator" runat="server" ValidationGroup="Sanadlogin"
+                                            ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="col-md-12 align-content-center " style="text-align: center;">
+                                        <asp:Button ID="CheckCSPD" ValidationGroup="CompanyInfo" runat="server"
+                                            OnClick="CheckCSPD_Click"
+                                            CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
+
+                                    </div>
+                                    <div>
                                         <asp:Label ID="Label3" runat="server" CssClass="form-label mb-2" Text="اسم مقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadName" runat="server" CssClass="form-control mb-4" placeholder="اسم مقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label4" runat="server" CssClass="form-label mb-2" Text="جنسية مقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadNat" runat="server" CssClass="form-control mb-4" placeholder="جنسية مقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label5" runat="server" CssClass="form-label mb-2 " Text="رقم الهاتف لمقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadPhone" runat="server" CssClass="form-control mb-4 phoneInput" placeholder="رقم الهاتف لمقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label6" runat="server" CssClass="form-label mb-2" Text="البريد الالكتروني لمقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadEmail" runat="server" CssClass="form-control mb-4" placeholder="البريد الالكتروني لمقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" ></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label7" runat="server" CssClass="form-label mb-2" Text="المسمى الوظيفي لمقدم الطلب"
@@ -439,7 +457,7 @@
                                     </div>
                                 </div>
 
-                                <div id="Attachment" runat="server" visible="false">
+                                <div id="Attachment" runat="server" visible="false" >
                                     <div>
                                         <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
@@ -459,12 +477,12 @@
                                             ControlToValidate="CompSignDelFile" ValidationGroup="CompanyAttch"
                                             ValidationExpression="^.*\.(pdf|PDF)$" SetFocusOnError="true"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic"
-                                            ErrorMessage="يرجى اختيار امتداد صحيح(.pdf)"></asp:RegularExpressionValidator>
+                                            ErrorMessage="يرجى اختيار امتداد صحيح  (.pdf)"></asp:RegularExpressionValidator>
 
                                         <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompSignDelFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                            ClientValidationFunction="FileSize"></asp:CustomValidator>
+                                            ClientValidationFunction="CompSignDelFileSize"></asp:CustomValidator>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة تسجيل الشركة"
@@ -490,7 +508,7 @@
                                         <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompRegisterFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                            ClientValidationFunction="FileSize"></asp:CustomValidator>
+                                            ClientValidationFunction="CompRegisterFileSize"></asp:CustomValidator>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label21" runat="server" CssClass="form-label mb-2" Text="رخصة مهن سارية المفعول"
@@ -516,16 +534,16 @@
                                         <asp:CustomValidator ID="CustomValidator3" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompCertFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
-                                            ClientValidationFunction="FileSize"></asp:CustomValidator>
+                                            ClientValidationFunction="CompCertFileSize"></asp:CustomValidator>
                                     </div>
                                     <div>
                                         <asp:CheckBox ID="chkApprove" runat="server"
                                             Text=" - اقر انا معبئ الطلب أن جميع المعلومات المعبأة بهذا الطلب صحيحة، واتحمل مسؤولية اي خطأ" Checked="true" />
                                     </div>
 
-                                  <%--  <div class="col-md-12 align-content-center " style="text-align: center;">
+                                    <div class="col-md-12 align-content-center " style="text-align: center;">
                                         <asp:Button ID="Next5" ValidationGroup="CompanyInfo" runat="server"
-                                            <%--OnClick="Next5_Click"--%>
+                                            OnClick="Next4_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="إرسال"></asp:Button>
 
                                     </div>
@@ -557,6 +575,53 @@
             }
             return true;
         }
+
+
+
+        function CompSignDelFileSize(source, arguments) {
+            arguments.IsValid = false;
+
+            var size = document.getElementById("<%=CompSignDelFile.ClientID%>").files[0].size;
+            if (size > 4194304) {
+                arguments.IsValid = false;
+                return false;
+            }
+            else {
+                arguments.IsValid = true;
+                return true;
+            }
+        }
+
+
+
+        function CompRegisterFileSize(source, arguments) {
+            arguments.IsValid = false;
+
+            var size = document.getElementById("<%=CompRegisterFile.ClientID%>").files[0].size;
+     if (size > 4194304) {
+         arguments.IsValid = false;
+         return false;
+     }
+     else {
+         arguments.IsValid = true;
+         return true;
+     }
+ }
+
+
+ function CompCertFileSize(source, arguments) {
+     arguments.IsValid = false;
+
+     var size = document.getElementById("<%=CompCertFile.ClientID%>").files[0].size;
+     if (size > 4194304) {
+         arguments.IsValid = false;
+         return false;
+     }
+     else {
+         arguments.IsValid = true;
+         return true;
+     }
+ }
     </script>
     <script>
         function showContent(status, messgae) {

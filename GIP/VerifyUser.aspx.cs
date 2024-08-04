@@ -198,7 +198,7 @@ namespace GIP
                                             Session["CmpID"] = odr["Company_No"].ToString();
 
 
-                                            Response.Redirect("Company/Programmes.aspx");
+                                            Response.Redirect("/Company/Programmes.aspx");
                                                 
                                             }
                                         }

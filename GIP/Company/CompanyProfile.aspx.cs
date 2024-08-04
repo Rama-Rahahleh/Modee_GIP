@@ -1,14 +1,15 @@
-﻿using GIP.App_Code;
+﻿using DocumentFormat.OpenXml.Math;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.IO;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GIP.App_Code;
+using System.IO;
 
 namespace GIP.Company
 {
@@ -24,7 +25,7 @@ namespace GIP.Company
             }
             else
             {
-
+               
                 CompanyDeatlis();
                 Company_DELEGATOR();
             }
@@ -42,11 +43,11 @@ namespace GIP.Company
                     {
                         connection.Open();
                         Command.CommandType = CommandType.StoredProcedure;
-                        Command.Parameters.AddWithValue("@Company_No", Convert.ToInt32(Session["CmpID"].ToString()));
+                        Command.Parameters.AddWithValue("@Company_No",Convert.ToInt32(Session["CmpID"].ToString()));
                         SqlDataReader dr = Command.ExecuteReader();
                         while (dr.Read())
                         {
-
+                          
                             CompanyNatNumber.Text = dr["Company_No"].ToString();
                             CompanyName.Text = dr["Company_Name"].ToString();
                             CompanyPhone.Text = dr["Company_Phone"].ToString();
@@ -93,8 +94,8 @@ namespace GIP.Company
                         while (dr.Read())
                         {
 
-                            SanadName.Text = dr["Delegation_Name"].ToString();
-
+                            SanadName.Text = dr["Delegation_Name"].ToString();     
+      
                             SanadNat.Text = dr["Delegation_Nation"].ToString();
                             SanadPhone.Text = dr["Delegation_Phone"].ToString();
                             SanadEmail.Text = dr["Delegation_Email"].ToString();
@@ -102,7 +103,7 @@ namespace GIP.Company
                             DelegetType.Text = dr["Delegation_Type"].ToString();
                         }
                         connection.Close();
-
+                        
                     }
                 }
 

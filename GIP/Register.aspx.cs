@@ -29,7 +29,6 @@ namespace GIP
 
         BasicString Basic = new BasicString();
         int branchCounter;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Basic.Errorpath = "/ErrorLog/Josn.txt";
@@ -41,44 +40,33 @@ namespace GIP
                 ViewState["Branches"] = dt;
                 this.BindGrid();
 
-                //if (Session["Step"]!=null)
-                //{
-                //    if (Convert.ToInt32(Session["Step"].ToString()) == 1) {
-                //        SanadDiv.Visible = true;
-                //        ContactInfo.Visible = false;
-                //        CompanyInfo.Visible = false;
-                //        CompanyBranch.Visible = false;
-                //        Attachment.Visible = false;
-                //    }
-                //   else if (Convert.ToInt32(Session["Step"].ToString()) == 2) {
-                //        SanadDiv.Visible = false;
-                //        ContactInfo.Visible = true;
-                //        CompanyInfo.Visible = false;
-                //        CompanyBranch.Visible = false;
-                //        Attachment.Visible = false;
-                //    }
-                //    else if (Convert.ToInt32(Session["Step"].ToString()) == 3) {
-                //        SanadDiv.Visible = false;
-                //        ContactInfo.Visible = false;
-                //        CompanyInfo.Visible = true;
-                //        CompanyBranch.Visible = false;
-                //        Attachment.Visible = false;
-                //    }
-                //    else if (Convert.ToInt32(Session["Step"].ToString()) == 4) {
-                //        SanadDiv.Visible = false;
-                //        ContactInfo.Visible = false;
-                //        CompanyInfo.Visible = false;
-                //        CompanyBranch.Visible = true;
-                //        Attachment.Visible = false;
-                //    }
-                //    else if (Convert.ToInt32(Session["Step"].ToString()) == 5) {
-                //        SanadDiv.Visible = false;
-                //        ContactInfo.Visible = false;
-                //        CompanyInfo.Visible = false;
-                //        CompanyBranch.Visible = false;
-                //        Attachment.Visible = true;
-                //    }
-                //}
+
+
+                if (Session["Step"] != null)
+                {
+                    if (Convert.ToInt32(Session["Step"].ToString()) == 1)
+                    {
+                        CompanyInfo.Visible = false;
+                        CompanyBranch.Visible = true;
+                        ContactInfo.Visible = false;
+
+                        Attachment.Visible = false;
+                    }
+                    else if (Convert.ToInt32(Session["Step"].ToString()) == 2)
+                    {
+                        CompanyInfo.Visible = false;
+                        CompanyBranch.Visible = false;
+                        ContactInfo.Visible = true;
+                        Attachment.Visible = false;
+                    }
+                    else if (Convert.ToInt32(Session["Step"].ToString()) == 3)
+                    {
+                        CompanyInfo.Visible = false;
+                        CompanyBranch.Visible = false;
+                        ContactInfo.Visible = false;
+                        Attachment.Visible = true;
+                    }
+                }
             }
         }
         private void GetPersonNationality(string id)
@@ -130,6 +118,8 @@ namespace GIP
                     // Read the NATIONALITY field
                     if (apiResponse != null && apiResponse.ToString() != " ")
                     {
+                        SanadName.Text = apiResponse.Data.ANAME1 + " " + apiResponse.Data.ANAME2 + " " + apiResponse.Data.ANAME3 + " " + apiResponse.Data.ANAME4;
+
                         nationality = apiResponse.Data.NATIONALITY?.Trim();
                     }
                     else
@@ -283,10 +273,18 @@ namespace GIP
 
                 if (CorporationBasicInfo != null)
                 {
+                    if(CorporationBasicInfo.Status!="-1")
+                    {
+                        SSCNumber.Text = CorporationBasicInfo.CorporationBasicInfo_Array[0].CompanyID.ToString();
+                        SSCNumber.Enabled = false;
+                    }
+                    else
+                    {
+                        SSCNumber.Text = CorporationBasicInfo.StatusDescription.ToString();
+                       SSCNumber.Enabled = false;
+                    }
 
-
-                    SSCNumber.Text = CorporationBasicInfo.CorporationBasicInfo_Array[0].CompanyID.ToString();
-                    SSCNumber.Enabled = false;
+                   
                 }
             }
 
@@ -321,12 +319,57 @@ namespace GIP
                 SanadEmail.Text = IDMuserInfoClass.result.attributes.email[0].ToString();
                 string NatoinalID = IDMuserInfoClass.result.attributes.nationalNumber[0].ToString();
 
-                GetPersonNationality(NatoinalID);
+               
 
                 Session["SanadName"] = IDMuserInfoClass.result.attributes.userFullName_ar[0].ToString();
                 Session["SanadEmail"] = IDMuserInfoClass.result.attributes.email[0].ToString();
 
             }
+        }
+
+        public void CompanyDeatlis()
+        {
+            try { 
+            
+            using(SqlConnection connection=new SqlConnection((Basic.GetConnectionString)))
+                {
+                    using (SqlCommand Command = new SqlCommand("PROC_READ_COMPANY_INFO", connection))
+                    {
+                        connection.Open();
+                        Command.CommandType = CommandType.StoredProcedure;
+                        Command.Parameters.AddWithValue("@Company_No", CompNat.Text);
+                        SqlDataReader dr = Command.ExecuteReader();
+                        while(dr.Read())
+                        {
+                            Session["Step"] = dr["RegistertiontStep"].ToString();
+                            CompanyNatNumber.Text = dr["Company_No"].ToString();
+                            CompanyName.Text = dr["Company_Name"].ToString();
+                            CompanyPhone.Text= dr["Company_Phone"].ToString();
+                            CompanyEmail.Text=dr["Company_Email"].ToString();
+                            SSCNumber.Text= dr["Insurance_NO"].ToString();
+                            CompanyRegDate.Text= dr["Establishment_Date"].ToString();
+                            MainActive.Text=dr["Main_Activity"].ToString();
+                              
+                            CompSignDel.Text= dr["SignDelegatorName"].ToString();
+
+                            GovernateList.SelectedValue = dr["GovernateID"].ToString();
+                        }
+                        connection.Close();
+;
+                    }
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is ThreadAbortException))
+                {
+                    File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "CompCheck:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
+
+                }
+
+            }
+
         }
         protected void DelegetTypeList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -339,7 +382,58 @@ namespace GIP
                 RequiredFieldValidator8.Enabled = false;
             }
         }
-        
+
+        private string GetRealContentType(Stream fileStream)
+        {
+            byte[] buffer = new byte[8];
+            fileStream.Read(buffer, 0, 8);
+
+            if (IsPdf(buffer))
+            {
+                return "application/pdf";
+            }
+            else if (IsPng(buffer))
+            {
+                return "image/png";
+            }
+            else if (IsJpeg(buffer))
+            {
+                return "image/jpeg";
+            }
+            else if (IsBmp(buffer))
+            {
+                return "image/bmp";
+            }
+
+            return "unknown";
+        }
+        public static bool IsPdf(byte[] buffer)
+        {
+            return buffer[0] == 0x25 && buffer[1] == 0x50 && buffer[2] == 0x44 && buffer[3] == 0x46; // %PDF
+        }
+
+        public static bool IsPng(byte[] buffer)
+        {
+            return buffer[0] == 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47 && buffer[4] == 0xD && buffer[5] == 0xA && buffer[6] == 0x1A && buffer[7] == 0xA; // PNG signature
+        }
+
+        public static bool IsJpeg(byte[] buffer)
+        {
+            return buffer[0] == 0xFF && buffer[1] == 0xD8 && buffer[2] == 0xFF && buffer[3] == 0xE0 && buffer[6] == 0x4A && buffer[7] == 0x46 && buffer[8] == 0x49 && buffer[9] == 0x46; // JPEG start
+                                                                                                                                                                                         // "JFIF"
+        }
+
+        public static bool IsBmp(byte[] buffer)
+        {
+            return buffer[0] == 0x42 && buffer[1] == 0x4D; // BM (BMP signature)
+        }
+        public static bool IsGif(byte[] buffer)
+        {
+            // Check for GIF signature: "GIF"
+            return buffer.Length >= 3 && buffer[0] == 0x47 && buffer[1] == 0x49 && buffer[2] == 0x46; 
+                                                                                                      
+                                                                                                      
+        }
 
         protected void BindGrid()
         {
@@ -380,6 +474,9 @@ namespace GIP
             {
                 try
                 {
+                    CompanyDeatlis();
+                    
+                   
                     GetCompanyName();
                     GetCompanySSC();
 
@@ -404,7 +501,7 @@ namespace GIP
                 {
                     if (!(ex is ThreadAbortException))
                     {
-                        File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "CompCheck:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                        File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "CompCheck:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                     }
 
@@ -447,7 +544,14 @@ namespace GIP
                             }
                             if (SSCNumber.Text != null && SSCNumber.Text != string.Empty && SSCNumber.Text != "")
                             {
-                                cmdCompany.Parameters.Add(new SqlParameter("@Insurance_NO", SqlDbType.BigInt)).Value = SSCNumber.Text;
+                                if (SSCNumber.Text == "لا يوجد منشأة تحمل الرقم الوطني المدخل")
+                                {
+                                    cmdCompany.Parameters.Add(new SqlParameter("@Insurance_NO", SqlDbType.BigInt)).Value = -1;
+                                }
+                                else
+                                {
+                                    cmdCompany.Parameters.Add(new SqlParameter("@Insurance_NO", SqlDbType.BigInt)).Value = SSCNumber.Text;
+                                }
                             }
 
                             if (CompanyRegDate.Text != null && CompanyRegDate.Text != string.Empty && CompanyRegDate.Text != "")
@@ -468,6 +572,7 @@ namespace GIP
                                 cmdCompany.Parameters.Add(new SqlParameter("@SignDelegatorName", SqlDbType.NVarChar)).Value = CompSignDel.Text;
                             }
                             cmdCompany.Parameters.Add(new SqlParameter("@RegistertiontStep", SqlDbType.Int)).Value = 2;
+                            Session["Step"] = 2;
                             cmdCompany.ExecuteNonQuery();
 
 
@@ -485,8 +590,7 @@ namespace GIP
                 {
                     if (!(ex is ThreadAbortException))
                     {
-                        
-                      File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Register:  " + Session["UnVerifiedUserID"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                        File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Register:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                     }
                 }
@@ -514,7 +618,8 @@ namespace GIP
                                 cmdBranch.Parameters.Add(new SqlParameter("@BranchID", SqlDbType.Int)).Value = i + 1;
                                 cmdBranch.Parameters.Add(new SqlParameter("@Company_No", SqlDbType.BigInt)).Value = CompNat.Text;
                                 cmdBranch.Parameters.Add(new SqlParameter("@BranchName", SqlDbType.NVarChar)).Value = GridView1.Rows[i].Cells[1].Text;
-                                cmdBranch.Parameters.Add(new SqlParameter("@@RegistertiontStep", SqlDbType.Int)).Value =3;
+                                cmdBranch.Parameters.Add(new SqlParameter("@RegistertiontStep", SqlDbType.Int)).Value =3;
+                                Session["Step"] = 3;
                                 cmdBranch.ExecuteNonQuery();
                             }
 
@@ -529,7 +634,7 @@ namespace GIP
                 {
                     if (!(ex is ThreadAbortException))
                     {
-                        File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Register:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                        File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Register:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                     }
                 }
@@ -556,14 +661,14 @@ namespace GIP
                             cmdDelagator.CommandType = CommandType.StoredProcedure;
 
                             //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_NO", SqlDbType.BigInt)).Value = txtNatNo.Text;
-                            cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Name", SqlDbType.NVarChar)).Value = SanadName.Text;
-                            cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Nation", SqlDbType.NVarChar)).Value = SanadNat.Text;
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Name", SqlDbType.NVarChar)).Value = "ايهاب راتب المحادين"; //txtName.Text;
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Nation", SqlDbType.NVarChar)).Value = "اردنية"; //txtNation.Text;
                             //cmdDelagator.Parameters.Add(new SqlParameter("@Status_ID", SqlDbType.Int)).Value = 2;
-                            cmdDelagator.Parameters.Add(new SqlParameter("@Type_ID", SqlDbType.Int)).Value = DelegetTypeList.SelectedValue;
-                            cmdDelagator.Parameters.Add(new SqlParameter("@Phone_No", SqlDbType.NVarChar)).Value = SanadPhone.Text;
-                            cmdDelagator.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar)).Value = SanadEmail.Text;
-                            cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Position", SqlDbType.NVarChar)).Value = SanadJob.Text;
-                            
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Type_ID", SqlDbType.Int)).Value = lstDelegetType.SelectedValue;
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Phone_No", SqlDbType.NVarChar)).Value = txtPhone.Text;
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar)).Value = txtEmail.Text;
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Position", SqlDbType.NVarChar)).Value = txtJob.Text;
+                            //cmdDelagator.Parameters.Add(new SqlParameter("@Company_NO", SqlDbType.BigInt)).Value = txtCompNo.Text;
                             //cmdDelagator.Parameters.Add(new SqlParameter("@Filename", SqlDbType.NVarChar)).Value = "كتاب التفويض.pdf";
 
 
@@ -588,8 +693,121 @@ namespace GIP
 
         }
 
+
+        //protected void uploadFiles()
+        //{
+        //    string folderPath = Server.MapPath("~/CompanyFiles/" + txtCompNo.Text + "/");
+
+        //    if (!Directory.Exists(folderPath))
+        //    {
+        //        Directory.CreateDirectory(folderPath);
+        //    }
+
+        //    try
+        //    {
+        //        HttpFileCollection filecolln = Request.Files;
+
+        //        HttpPostedFile file1 = filecolln[0];
+        //        HttpPostedFile file2 = filecolln[1];
+        //        HttpPostedFile file3 = filecolln[2];
+        //        if (filecolln.Count == 3)
+        //        {
+        //            if (file1.ContentLength > 0)
+        //            {
+        //                file1.SaveAs(folderPath + "كتاب التفويض بالتوقيع" + ".pdf");
+        //            }
+
+        //            if (file2.ContentLength > 0)
+        //            {
+        //                file2.SaveAs(folderPath + "شهادة تسجيل" + ".pdf");
+        //            }
+
+        //            if (file3.ContentLength > 0)
+        //            {
+        //                file3.SaveAs(folderPath + "رخصة مهن" + ".pdf");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (file1.ContentLength > 0)
+        //            {
+        //                file1.SaveAs(folderPath + "كتاب التفويض" + ".pdf");
+        //            }
+
+        //            if (file2.ContentLength > 0)
+        //            {
+        //                file2.SaveAs(folderPath + "كتاب التفويض بالتوقيع" + ".pdf");
+        //            }
+
+        //            if (file3.ContentLength > 0)
+        //            {
+        //                file3.SaveAs(folderPath + "شهادة تسجيل" + ".pdf");
+        //            }
+
+        //            HttpPostedFile file4 = filecolln[2];
+        //            if (file4.ContentLength > 0)
+        //            {
+        //                file4.SaveAs(folderPath + "رخصة مهن" + ".pdf");
+        //            }
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblmsg.Text = ex.Message;
+        //    }
+        //}
+
+
+
         protected void Next4_Click(object sender, EventArgs e)
         {
+            if (CompSignDelFile.HasFile)
+            {
+                string CompSignDelFileType = GetRealContentType(CompSignDelFile.PostedFile.InputStream);
+                string CompRegisterFileType = GetRealContentType(CompRegisterFile.PostedFile.InputStream);
+                string CompCertFileType = GetRealContentType(CompCertFile.PostedFile.InputStream);
+                if(Page.IsValid)
+                {
+
+
+                   
+
+                }
+                //if (CompSignDelFile.HasFile)
+                //{
+                //    if (CompSignDelFile.PostedFile.ContentLength < 4194304)
+                //    {
+                //        if (CompSignDelFileType == "application/pdf")
+                //        {
+                //            string filePath = @"../Documents/TeamCV/" + Sanitizer.GetSafeHtml(Session["ProfileReg"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "(" + Sanitizer.GetSafeHtml(Session["ProjectID"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + ")" + Sanitizer.GetSafeHtml(Session["MemberName"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "_CV" + Path.GetExtension(UpdateCV.FileName);
+                //            UpdateCV.SaveAs(Server.MapPath(filePath));
+                //            command.Parameters.AddWithValue("FilePath", Sanitizer.GetSafeHtml(Session["ProfileReg"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "(" + Sanitizer.GetSafeHtml(Session["ProjectID"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + ")" + Sanitizer.GetSafeHtml(Session["MemberName"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "_CV" + Path.GetExtension(UpdateCV.FileName));
+
+                //        }
+                //        else
+                //        {
+                //            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openUpload();", true);
+
+                //            UpdateCVEValidator.Validate();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openUpload();", true);
+
+                //        UpdateCVFileSize.Validate();
+                //    }
+                //}
+                //else
+                //{
+
+                //    CVAttachmentValidator.Validate();
+                //}
+
+
+            }
+
 
 
             SanadDiv.Visible = false;
@@ -599,7 +817,10 @@ namespace GIP
             Attachment.Visible = true;
         }
 
-
+        protected void CheckCSPD_Click(object sender, EventArgs e)
+        {
+            GetPersonNationality(txtNatNo.Text);
+        }
     }
     public class ApiResponse
     {
@@ -610,6 +831,11 @@ namespace GIP
 
     public class PersonInfo
     {
+       public string ANAME1 { get; set; }
+        public string ANAME2 { get; set; }
+        public string ANAME3 { get; set; }
+        public string ANAME4 { get; set; } 
+
         public string NATIONALITY { get; set; }
 
     }
