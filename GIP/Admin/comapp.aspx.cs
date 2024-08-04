@@ -43,7 +43,7 @@ namespace GIP
                 Int32 index = Convert.ToInt16(e.CommandArgument);
                 Int64 id = Convert.ToInt64(GridView1.DataKeys[index].Value.ToString());
                 Session["appid"] = id;
-                Session["Compno"] = GridView1.Rows[index].Cells[1].Text;                
+                Session["Compno"] = GridView1.Rows[index].Cells[1].Text;
                 Session["log"] = "yesyoucan";
                 Session["status"] = GridView1.Rows[index].Cells[18].Text;
                 Response.Redirect("ComDetails.aspx");

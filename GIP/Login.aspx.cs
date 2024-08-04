@@ -115,8 +115,8 @@ namespace GIP
                                         {
                                             //Session["compno"] = CompanyNat.Text;
 
-                                            //Session["log"] = "yesyoucan";
-                                            //Session["userOper"] = "1";
+                                            Session["log"] = "yesyoucan";
+                                            Session["userOper"] = "1";
 
                                             Session["UserName"] = reader["Company_Name"].ToString();
                                             string otp = Generate_otp();

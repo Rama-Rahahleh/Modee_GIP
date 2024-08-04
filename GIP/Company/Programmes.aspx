@@ -118,7 +118,7 @@
                     <div class="buttons">
                         <asp:Button ID="StartQsaTech"  runat="server"
                             BackColor="#2487ce" ForeColor="White" Font-Bold="true" Font-Size="Small" PostBackUrl="~/Company/QesaTech.aspx"
-                           CssClass="btn  mt-2 login-btn col-md-12" Text="لتقديم"></asp:Button>
+                           CssClass="btn  mt-2 login-btn col-md-12" Text="للتقديم"></asp:Button>
                     </div>
                 </div>
             </div>

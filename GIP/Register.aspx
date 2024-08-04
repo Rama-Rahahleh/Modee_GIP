@@ -240,8 +240,8 @@
                                             <asp:DropDownList ID="GovernateList" CssClass="mb-4"
                                                 runat="server" AppendDataBoundItems="true"
                                                 DataSourceID="SqlDataSource1" ClientIDMode="Static"
-                                                OnSelectedIndexChanged="DelegetTypeList_SelectedIndexChanged"
-                                                DataTextField="GovernateName" DataValueField="GovernateID">
+                                            
+                                                DataTextField="GovernateName" DataValueField="GovernateID" OnSelectedIndexChanged="DelegetTypeList_SelectedIndexChanged">
                                                 <asp:ListItem Text="اختر المحافظة" Value="0" />
                                             </asp:DropDownList>
                                             <asp:SqlDataSource ID="SqlDataSource1" runat="server"
@@ -368,28 +368,28 @@
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadName" runat="server" CssClass="form-control mb-4" placeholder="اسم مقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label4" runat="server" CssClass="form-label mb-2" Text="جنسية مقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadNat" runat="server" CssClass="form-control mb-4" placeholder="جنسية مقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label5" runat="server" CssClass="form-label mb-2 " Text="رقم الهاتف لمقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadPhone" runat="server" CssClass="form-control mb-4 phoneInput" placeholder="رقم الهاتف لمقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label6" runat="server" CssClass="form-label mb-2" Text="البريد الالكتروني لمقدم الطلب"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                         <asp:TextBox ID="SanadEmail" runat="server" CssClass="form-control mb-4" placeholder="البريد الالكتروني لمقدم الطلب"
-                                            Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                            Font-Bold="true" Font-Size="Small" Enabled="true"></asp:TextBox>
                                     </div>
                                     <div>
                                         <asp:Label ID="Label7" runat="server" CssClass="form-label mb-2" Text="المسمى الوظيفي لمقدم الطلب"
@@ -459,7 +459,7 @@
                                             ControlToValidate="CompSignDelFile" ValidationGroup="CompanyAttch"
                                             ValidationExpression="^.*\.(pdf|PDF)$" SetFocusOnError="true"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic"
-                                            ErrorMessage="يرجى اختيار امتداد صحيح  (.pdf)"></asp:RegularExpressionValidator>
+                                            ErrorMessage="يرجى اختيار امتداد صحيح(.pdf)"></asp:RegularExpressionValidator>
 
                                         <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="يرجى مراعاة حجم الملف المرفق "
                                             ControlToValidate="CompSignDelFile" ValidationGroup="CompanyAttch"
@@ -523,9 +523,9 @@
                                             Text=" - اقر انا معبئ الطلب أن جميع المعلومات المعبأة بهذا الطلب صحيحة، واتحمل مسؤولية اي خطأ" Checked="true" />
                                     </div>
 
-                                    <div class="col-md-12 align-content-center " style="text-align: center;">
+                                  <%--  <div class="col-md-12 align-content-center " style="text-align: center;">
                                         <asp:Button ID="Next5" ValidationGroup="CompanyInfo" runat="server"
-                                            OnClick="Next5_Click"
+                                            <%--OnClick="Next5_Click"--%>
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="إرسال"></asp:Button>
 
                                     </div>

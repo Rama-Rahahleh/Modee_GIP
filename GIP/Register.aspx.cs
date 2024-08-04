@@ -29,6 +29,7 @@ namespace GIP
 
         BasicString Basic = new BasicString();
         int branchCounter;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Basic.Errorpath = "/ErrorLog/Josn.txt";
@@ -338,7 +339,7 @@ namespace GIP
                 RequiredFieldValidator8.Enabled = false;
             }
         }
-
+        
 
         protected void BindGrid()
         {
@@ -458,15 +459,15 @@ namespace GIP
                                 cmdCompany.Parameters.Add(new SqlParameter("@Main_Activity", SqlDbType.NVarChar)).Value = MainActive.Text;
                             }
 
-                            if (GovernateList != null)
+                            if (GovernateList.SelectedValue != null)
                             {
-                                cmdCompany.Parameters.Add(new SqlParameter("@GovernateID", SqlDbType.Int)).Value = GovernateList;
+                                cmdCompany.Parameters.Add(new SqlParameter("@GovernateID", SqlDbType.Int)).Value = GovernateList.SelectedValue;
                             }
                             if (CompSignDel.Text != null && CompSignDel.Text != string.Empty && CompSignDel.Text != "")
                             {
                                 cmdCompany.Parameters.Add(new SqlParameter("@SignDelegatorName", SqlDbType.NVarChar)).Value = CompSignDel.Text;
                             }
-                            cmdCompany.Parameters.Add(new SqlParameter("@@RegistertiontStep", SqlDbType.Int)).Value = 2;
+                            cmdCompany.Parameters.Add(new SqlParameter("@RegistertiontStep", SqlDbType.Int)).Value = 2;
                             cmdCompany.ExecuteNonQuery();
 
 
@@ -484,7 +485,8 @@ namespace GIP
                 {
                     if (!(ex is ThreadAbortException))
                     {
-                        File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Register:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                        
+                      File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Register:  " + Session["UnVerifiedUserID"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                     }
                 }
@@ -554,14 +556,14 @@ namespace GIP
                             cmdDelagator.CommandType = CommandType.StoredProcedure;
 
                             //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_NO", SqlDbType.BigInt)).Value = txtNatNo.Text;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Name", SqlDbType.NVarChar)).Value = "ايهاب راتب المحادين"; //txtName.Text;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Nation", SqlDbType.NVarChar)).Value = "اردنية"; //txtNation.Text;
+                            cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Name", SqlDbType.NVarChar)).Value = SanadName.Text;
+                            cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Nation", SqlDbType.NVarChar)).Value = SanadNat.Text;
                             //cmdDelagator.Parameters.Add(new SqlParameter("@Status_ID", SqlDbType.Int)).Value = 2;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Type_ID", SqlDbType.Int)).Value = lstDelegetType.SelectedValue;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Phone_No", SqlDbType.NVarChar)).Value = txtPhone.Text;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar)).Value = txtEmail.Text;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Position", SqlDbType.NVarChar)).Value = txtJob.Text;
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Company_NO", SqlDbType.BigInt)).Value = txtCompNo.Text;
+                            cmdDelagator.Parameters.Add(new SqlParameter("@Type_ID", SqlDbType.Int)).Value = DelegetTypeList.SelectedValue;
+                            cmdDelagator.Parameters.Add(new SqlParameter("@Phone_No", SqlDbType.NVarChar)).Value = SanadPhone.Text;
+                            cmdDelagator.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar)).Value = SanadEmail.Text;
+                            cmdDelagator.Parameters.Add(new SqlParameter("@Delegation_Position", SqlDbType.NVarChar)).Value = SanadJob.Text;
+                            
                             //cmdDelagator.Parameters.Add(new SqlParameter("@Filename", SqlDbType.NVarChar)).Value = "كتاب التفويض.pdf";
 
 
