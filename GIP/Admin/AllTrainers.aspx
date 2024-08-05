@@ -28,16 +28,16 @@
                             <asp:BoundField DataField="Name" HeaderText="الاسم" SortExpression="Name">
                                 <ItemStyle Width="250px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="SSNO" HeaderText="SSNO" SortExpression="SSNO" Visible="False">
+                            <asp:BoundField DataField="SSNO" HeaderText="رقم الضمان" SortExpression="Trainee_SoicalSNo" Visible="False">
                                 <ItemStyle Width="100px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="CompanyID" HeaderText="CompanyID" SortExpression="CompanyID" HeaderStyle-CssClass = "hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
-                            <asp:BoundField DataField="CompName" HeaderText="CompName" ReadOnly="True" SortExpression="CompName" Visible="True" />
+                            <asp:BoundField DataField="CompanyID" HeaderText="CompanyID" SortExpression="CompanyID" HeaderStyle-CssClass = "hideGridColumn" Visible="false" ItemStyle-CssClass="hideGridColumn" />
+                            <asp:BoundField DataField="CompName" HeaderText="اسم الشركة" ReadOnly="True" SortExpression="CompName" Visible="True" />
                             <asp:BoundField DataField="ProgramID" HeaderText="ProgramID" SortExpression="SpecialityID" Visible="False" />
                             <asp:BoundField DataField="ProgName" HeaderText="برنامج التدريب" ReadOnly="True" SortExpression="ProgName">
                                 <ItemStyle Width="100px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="StatusID" HeaderText="StatusID" SortExpression="StatusID" HeaderStyle-CssClass = "hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
+                            <asp:BoundField DataField="StatusID" HeaderText="StatusID" SortExpression="StatusID" Visible="false" HeaderStyle-CssClass = "hideGridColumn" ItemStyle-CssClass="hideGridColumn" />
                             <asp:BoundField DataField="StatName" HeaderText="حالة الطلب" ReadOnly="True" SortExpression="StatusID">
                                 <ItemStyle Width="80px" />
                             </asp:BoundField>

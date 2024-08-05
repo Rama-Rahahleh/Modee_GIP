@@ -24,10 +24,10 @@ namespace GIP.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["AdminUnVerifiedUserEmail"] != null)
-            {
-                //Response.Redirect("VerifyUser.aspx");
-            }
+            //if (Session["AdminUnVerifiedUserEmail"] != null)
+            //{
+            //    //Response.Redirect("VerifyUser.aspx");
+            //}
 
         }
         protected string Generate_otp()
@@ -203,6 +203,8 @@ namespace GIP.Admin
                                     if (rd.HasRows == true)
                                     {
                                         Session["AdminName"] = rd["AdminName"].ToString();
+                                        Session["UserID"] = rd["UserID"].ToString();
+
                                         string otp = Generate_otp();
                                         Session["OTP"] = otp;
                                         Session["Allowed_OTP_Attempts"] = 3;

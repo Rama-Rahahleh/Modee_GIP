@@ -1,22 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/DashBored.Master" AutoEventWireup="true" CodeBehind="comapp.aspx.cs" Inherits="GIP.comapp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .hideGridColumn {
-            display: none;
+     <link href="/Asset/css/Forms.css" rel="stylesheet" />
+    <style>
+        .form-signin{
+            width:100%;
         }
     </style>
-
+       
     </asp:Content>
     <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-        <div class=" modal-dialog modal-dailog-centered">
-            <div class="modal-content">
-                <div class="modal-body mx-auto">
-                    <div class="modal-header mx-auto d-flex justify-content-center">
-                        <h4 class="modal-title">طلبات الشركات</h4>
-                    </div>
-                    <asp:GridView ID="GridView1" runat="server"  CSSclass="table table-bordered  table-hover table-striped" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" DataKeyNames="App_ID" DataSourceID="SqlDataSource1" ForeColor="Black" OnRowCommand="GridView1_RowCommand">
+        <section id="hero" class="hero section Login">
+
+        <img src="/Asset/img/hero-bg-abstract.jpg" alt="" data-aos="fade-in" class="">
+
+        <div class="container login">
+            <!-- Section Title -->
+
+            <div class="form-signin rounded-sm shadow">
+                <div class="tab-content">
+
+                    <!-- Tab1 -->
+                    <div id="login" class="container tab-pane active ">
+                        
+                        <div class="container section-title" data-aos="fade-up">
+                            <h2>طلبات الشركات</h2>
+                        </div>
+
+                          <asp:GridView ID="GridView1" runat="server" 
+                              CSSclass="table table-bordered  table-hover table-striped" 
+                              AutoGenerateColumns="False" BackColor="#CCCCCC"
+                              BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" 
+                              CellPadding="4" CellSpacing="2" DataKeyNames="App_ID" 
+                              DataSourceID="SqlDataSource1" ForeColor="Black" 
+                              OnRowCommand="GridView1_RowCommand">
                         <Columns>
+                            
                         <asp:BoundField DataField="App_ID" HeaderText="رقم الطلب" InsertVisible="False" ReadOnly="True" SortExpression="App_ID" />
                             <asp:BoundField DataField="Company_No" HeaderText="رقم المنشأة" SortExpression="Company_No">
                             <ItemStyle Width="100px" />
@@ -54,8 +72,13 @@
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>" SelectCommand="ReadAllComp" SelectCommandType="StoredProcedure"> </asp:SqlDataSource>
+            
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            </section>
+
+    
 </asp:Content>

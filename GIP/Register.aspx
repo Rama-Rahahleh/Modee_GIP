@@ -26,7 +26,9 @@
         .phoneInput {
             direction: ltr;
             text-align: end;
-        }
+        }.iti--allow-dropdown input, .iti--allow-dropdown input[type=text], .iti--allow-dropdown input[type=tel], .iti--separate-dial-code input, .iti--separate-dial-code input[type=text], .iti--separate-dial-code input[type=tel] {
+    padding: 1rem 5.75rem !important;
+}
     </style>
     <script type="text/javascript">   
         function pageLoad(sender, args) {
@@ -39,16 +41,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="false" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="UpdatePanel1">
-
-        <ProgressTemplate>
-            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0;">
-                <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="assets/images/loader.gif"
-                    AlternateText="Loading ..." ToolTip="Loading ..."
-                    Style="padding: 10px; position: fixed; top: 45%; left: 50%;" />
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
+ 
     <section id="hero" class="hero section Login">
 
         <img src="Asset/img/hero-bg-abstract.jpg" alt="" data-aos="fade-in" class="">
@@ -107,12 +100,16 @@
 
 
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
-                                        <asp:Button ID="Next1" ValidationGroup="Sanadlogin" runat="server"
+                                        <asp:Button ID="Next11" ValidationGroup="Sanadlogin" runat="server"
                                             OnClick="Next1_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="تسجيل دخول بإستخدام سند "></asp:Button>
 
                                     </div>
                                 </div>
+
+
+
+
 
                                 <div id="CompanyInfo" runat="server" >
                                     <div class="container section-title" data-aos="fade-up">
@@ -170,10 +167,10 @@
 
                                         <div>
                                             <asp:Label ID="Label16" runat="server" CssClass="form-label mb-2" Text="رقم الضمان الاجتماعي للشركة/ المؤسسة فردية"
-                                                Font-Bold="true" Font-Size="Small"></asp:Label>
+                                                Font-Bold="true" Font-Size="Small" Visible="false"></asp:Label>
 
                                             <asp:TextBox ID="SSCNumber" runat="server" CssClass="form-control mb-4" placeholder="رقم الضمان الاجتماعي للشركة/ المؤسسة فردية"
-                                                Font-Bold="true" Font-Size="Small"></asp:TextBox>
+                                                Font-Bold="true" Font-Size="Small" Visible="false"></asp:TextBox>
                                         </div>
 
                                         <div>
@@ -181,11 +178,26 @@
                                                 Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                             <asp:TextBox ID="CompanyPhone" runat="server" CssClass="form-control mb-2 phoneInput" placeholder="رقم الهاتف الشركة/مؤسسة فردية"
-                                                Font-Bold="true" Font-Size="Small"></asp:TextBox>
+                                                 type="tel" ClientIDMode="Static"
+                                                         Font-Bold="true" Font-Size="Small"                                                      
+                                                        onKeypress="return onlyNumbers(event);"
+                                                        Width="100%" TextMode="Phone" ></asp:TextBox>
+
+                                                    <span id="valid-msg" class=" d-inline-block" style="color: green" tabindex="0" data-toggle="popover" data-content="" data-placement="right"></span>
+                                                    <%--<span id="error-msg" class=" d-inline-block"  style="color:red" tabindex="0" data-toggle="tooltip" data-placement="right"></span>--%>
+                                                    <span id="error-msg" class=" d-inline-block" style="color: red" data-toggle="popover" data-placement="right"></span>
+
+                                                    <asp:CustomValidator ID="CustomValidator4" runat="server"
+                                                        ClientValidationFunction="phonenumber" ControlToValidate="CompanyPhone"
+                                                        ValidationGroup="CompanyInfo"
+                                                        CssClass="validator" Display="Dynamic"
+                                                        Font-Bold="true" Font-Size="Smaller" ForeColor="Red"></asp:CustomValidator>
+
+                                                    
 
                                             <asp:RequiredFieldValidator runat="server"
                                                 ID="RequiredFieldValidator11" ControlToValidate="CompanyPhone"
-                                                ErrorMessage="يرجى ادخال رقم الهاتف   !" InitialValue="0"
+                                                ErrorMessage="يرجى ادخال رقم الهاتف   !" 
                                                 CssClass="validator"
                                                 ForeColor="Red" Font-Size="Small" Font-Bold="true"
                                                 ValidationGroup="CompanyInfo">  
@@ -238,15 +250,16 @@
                                                 Font-Bold="true" Font-Size="Small"></asp:Label>
 
                                             <asp:DropDownList ID="GovernateList" CssClass="mb-4"
-                                                runat="server" AppendDataBoundItems="true"
-                                                DataSourceID="SqlDataSource1" ClientIDMode="Static"
-                                                DataTextField="GovernateName" DataValueField="GovernateID">
+                                                runat="server" AppendDataBoundItems="true"                                                
+                                                 ClientIDMode="Static"
+                                                DataTextField="GovernateID" DataValueField="GovernateID"
+                                                >
                                                 <asp:ListItem Text="اختر المحافظة" Value="0" />
                                             </asp:DropDownList>
-                                            <asp:SqlDataSource ID="SqlDataSource1" runat="server"
+                                           <%-- <asp:SqlDataSource ID="SqlDataSource1" runat="server"
                                                 ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>"
                                                 SelectCommandType="StoredProcedure"
-                                                SelectCommand="GovernateLookUp"></asp:SqlDataSource>
+                                                SelectCommand="GovernateLookUp"></asp:SqlDataSource>--%>
 
                                             <asp:RequiredFieldValidator runat="server"
                                                 ID="RequiredFieldValidator5" ControlToValidate="GovernateList"
@@ -276,7 +289,7 @@
 
 
                                         <div class="col-md-12 align-content-center " style="text-align: center;">
-                                            <asp:Button ID="Next3" ValidationGroup="CompanyInfo" runat="server"
+                                            <asp:Button ID="Next1" ValidationGroup="CompanyInfo" runat="server"
                                                 OnClick="Next1_Click"
                                                 CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
 
@@ -304,10 +317,10 @@
                                         <asp:Button ID="AddBranch" Text="اضافة الفرع" CssClass="btn btn-primary mt-2 login-btn col-md-12" runat="server"
                                             OnClick="AddBranch_Click" ValidationGroup="CompanyBranch" />
 
-                                        <div class="table-responsive mt-2">
+                                        <div class="table-responsive mt-2" dir="rtl">
                                             <asp:GridView ID="GridView1" runat="server" DataKeyNames="BranchID"
                                                 Width="100%"
-                                                CssClass="table table-borderless"
+                                                CssClass= "table-bordered table-hover table-striped"
                                                 HorizontalAlign="Center"
                                                 BackColor="White" BorderStyle="None"
                                                 ForeColor="#333333"
@@ -341,7 +354,7 @@
 
                                             <asp:SqlDataSource ID="SqlDataSource4" runat="server"
                                                 ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>"
-                                                SelectCommand="SELECT [BranchID], [Placename] FROM [Branches] WHERE ([Company_No] = @Company_No) ORDER BY [BranchID]">
+                                                SelectCommand="Read_All_Branch" SelectCommandType="StoredProcedure">
                                                 <SelectParameters>
                                                     <asp:SessionParameter Name="Company_No" SessionField="compno" Type="Int32" />
                                                 </SelectParameters>
@@ -350,7 +363,7 @@
                                     </div>
 
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
-                                        <asp:Button ID="Next4" ValidationGroup="CompanyInfo" runat="server"
+                                        <asp:Button ID="Next2" ValidationGroup="CompanyInfo" runat="server"
                                             OnClick="Next2_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
 
@@ -375,6 +388,33 @@
                                             ID="CompanyNatValidator" runat="server" ValidationGroup="Sanadlogin"
                                             ControlToValidate="txtNatNo"></asp:RequiredFieldValidator>
                                     </div>
+                                 <%--   <div>
+                                        <asp:Label ID="Label24" runat="server" CssClass="form-label mb-2" Text="القيد المدني"
+                                            Font-Bold="true" Font-Size="Small"></asp:Label>
+                                        <asp:TextBox ID="civilRec" runat="server" CssClass="form-control mb-2" placeholder="القيد المدني"
+                                            Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
+
+                                        <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
+                                            Font-Size="Small" Font-Bold="true" Display="Dynamic"
+                                            ErrorMessage="يرجى ادخال القيد المدني"
+                                            ID="RequiredFieldValidator14" runat="server" ValidationGroup="Sanadlogin"
+                                            ControlToValidate="civilRec"></asp:RequiredFieldValidator>
+
+                                    </div>
+                                    <div>
+                                        <asp:Label ID="Label25" runat="server" CssClass="form-label mb-2" Text="القيد المدني"
+                                             Font-Bold="true" Font-Size="Small"></asp:Label>
+                                        <asp:TextBox ID="BOD" runat="server" CssClass="form-control mb-2" placeholder="تاريخ الميلاد"
+                                            Font-Bold="true" Font-Size="Smaller" onKeypress="return onlyNumbers(event);"></asp:TextBox>
+
+                                        <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
+                                            Font-Size="Small" Font-Bold="true" Display="Dynamic"
+                                            ErrorMessage="يرجى ادخال تاريخ الميلاد"
+                                            ID="RequiredFieldValidator15" runat="server" ValidationGroup="Sanadlogin"
+                                            ControlToValidate="civilRec"></asp:RequiredFieldValidator>
+
+                                    </div>--%>
+
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
                                         <asp:Button ID="CheckCSPD" ValidationGroup="CompanyInfo" runat="server"
                                             OnClick="CheckCSPD_Click"
@@ -450,7 +490,7 @@
                                     </div>
 
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
-                                        <asp:Button ID="Next2" ValidationGroup="ApplicantInfo" runat="server"
+                                        <asp:Button ID="Next3" ValidationGroup="ApplicantInfo" runat="server"
                                             OnClick="Next3_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
 
@@ -458,6 +498,7 @@
                                 </div>
 
                                 <div id="Attachment" runat="server" visible="false" >
+                                    <asp:Label ID="lblmsg" runat="server"  </label>
                                     <div>
                                         <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
@@ -467,7 +508,7 @@
                                         </div>
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator8" ControlToValidate="CompSignDelFile"
-                                            ErrorMessage="يرجى ادخال المسمى الوظيفي  !"
+                                            ErrorMessage="يرجى ادخال كتاب التفويض  !"
                                             CssClass="validator" Display="Dynamic"
                                             ForeColor="Red" Font-Size="Small" Font-Bold="true"
                                             ValidationGroup="CompanyAttch">  
@@ -493,7 +534,7 @@
                                         </div>
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator9" ControlToValidate="CompRegisterFile"
-                                            ErrorMessage="يرجى ادخال المسمى الوظيفي  !"
+                                            ErrorMessage="يرجى ادخال شهادة تسجيل الشركة  !"
                                             CssClass="validator" Display="Dynamic"
                                             ForeColor="Red" Font-Size="Small" Font-Bold="true"
                                             ValidationGroup="CompanyAttch">  
@@ -519,7 +560,7 @@
                                         </div>
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator10" ControlToValidate="CompCertFile"
-                                            ErrorMessage="يرجى ادخال المسمى الوظيفي  !"
+                                            ErrorMessage="يرجى ادخال رخصة المهن  !"
                                             CssClass="validator" Display="Dynamic"
                                             ForeColor="Red" Font-Size="Small" Font-Bold="true"
                                             ValidationGroup="CompanyAttch">  
@@ -542,7 +583,7 @@
                                     </div>
 
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
-                                        <asp:Button ID="Next5" ValidationGroup="CompanyInfo" runat="server"
+                                        <asp:Button ID="Next4" ValidationGroup="CompanyInfo" runat="server"
                                             OnClick="Next4_Click"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="إرسال"></asp:Button>
 
@@ -553,18 +594,73 @@
                         </div>
                     </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="Next1" />
-                        <asp:AsyncPostBackTrigger ControlID="Next2" />
-                        <asp:AsyncPostBackTrigger ControlID="Next3" />
-                        <asp:AsyncPostBackTrigger ControlID="Next4" />
-
-                        <asp:AsyncPostBackTrigger ControlID="CheckComp" />
+                     
+                         <asp:PostBackTrigger ControlID="Next2" />
+                               <asp:PostBackTrigger ControlID="CheckComp" />
+                               <asp:PostBackTrigger ControlID="Next3" />
+                        <asp:PostBackTrigger ControlID="Next4" />
+                       
+            
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
         </div>
 
     </section>
+    <%--phone number--%>
+    <script>
+        function phonenumber(sender, args) {
+            var input = document.getElementById("<%=CompanyPhone.ClientID%>");
+            if (window.intlTelInput && input) {
+                var errorMap = ["رقم غير صالح", "رمز البلد غير صالح", "الرقم المدخل اقصر من المسموح به", "الرقم المدخل اطول من المسموح به", "رقم غير صالح"];
+
+                // Initialize the plugin
+                var iti = window.intlTelInput(input, {
+                    utilsScript: "/Asset/css/build/js/utils.js?1638200991544",
+                    nationalMode: false,
+                    separateDialCode: true,
+                    dropdownContainer: 'body',
+                    initialCountry: "jo" // Set Jordan as the default country
+                });
+
+                if (input.value.trim()) {
+                    if (iti.isValidNumber()) {
+                        args.IsValid = true;
+                    } else {
+                        input.classList.add("error");
+                        var errorCode = iti.getValidationError();
+                        sender.innerHTML = errorMap[errorCode];
+                        args.IsValid = false;
+                    }
+                }
+            }
+        }
+
+        function initializeIntlTelInput() {
+            var input = document.getElementById("<%=CompanyPhone.ClientID%>");
+            // Initialize the plugin
+            var iti = window.intlTelInput(input, {
+                utilsScript: "/Asset/css/build/js/utils.js?1638200991544",      
+                nationalMode: false,
+                separateDialCode: true,
+                dropdownContainer: 'body',
+                initialCountry: "jo" // Set Jordan as the default country
+            });
+        }
+
+        // Call the initialization function on page load
+        initializeIntlTelInput();
+    </script>
+
+    <script>
+        // Function to reinitialize intlTelInput and styles after an async postback
+        function reinitializeAfterAsyncPostback() {
+            initializeIntlTelInput();
+        }
+
+        // Attach the reinitialization function to the EndRequest event
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(reinitializeAfterAsyncPostback);
+    </script>
 
     <script>
         function onlyNumbers(event) {

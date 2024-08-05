@@ -30,7 +30,7 @@ namespace GIP
           
             if(Session["CmpID"]!=null)
             {
-                Response.Redirect("../Company/Programmes.aspx");
+                Response.Redirect("../Company/MyApps.aspx");
             }
             
         }
