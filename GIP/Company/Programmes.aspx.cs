@@ -15,6 +15,7 @@ namespace GIP.Company
             {
                 Response.Redirect("/Logout.aspx");
 
+
             }
             else
             {
