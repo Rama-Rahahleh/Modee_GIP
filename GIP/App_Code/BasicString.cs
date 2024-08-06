@@ -49,7 +49,7 @@ namespace GIP.App_Code
                 msgObj.To.Add(rec2);
 
                 // Add BCC recipients if any
-                string BCC_email = "EForms@modee.gov.jo";
+                string BCC_email = "GIP@modee.gov.jo";
                 if (!string.IsNullOrEmpty(BCC_email) && BCC_email != recip_To)
                 {
 
@@ -69,7 +69,7 @@ namespace GIP.App_Code
                 emlContent.AppendLine(Message_body);
 
                 //please do'not delete 
-                string outputFolder = @"C:\Users\rama.r\Desktop\Mail\GIP"; // Change this to your desired folder path
+                string outputFolder = @"E:\Mails"; // Change this to your desired folder path
 
                 // Create a unique file name for the email
                 string fileName = $"email_{DateTime.Now.ToString("yyyyMMddHHmmss")}.eml";

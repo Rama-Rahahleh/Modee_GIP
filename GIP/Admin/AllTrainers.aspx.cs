@@ -22,23 +22,23 @@ namespace GIP
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                try
-                {
-                    if (Session["trapp"].ToString() != "go")
-                    {
-                        Response.Redirect("frmErrorPage.aspx");
-                        return;
-                    }
-                }
-                catch
-                {
-                    Response.Redirect("frmErrorPage.aspx");
-                    return;
-                }
-            }
-            Session["trapp"] = "no";
+            //if (!Page.IsPostBack)
+            //{
+            //    try
+            //    {
+            //        if (Session["trapp"].ToString() != "go")
+            //        {
+            //            Response.Redirect("frmErrorPage.aspx");
+            //            return;
+            //        }
+            //    }
+            //    catch
+            //    {
+            //        Response.Redirect("frmErrorPage.aspx");
+            //        return;
+            //    }
+            //}
+            //Session["trapp"] = "no";
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)

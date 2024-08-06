@@ -69,15 +69,15 @@
                             <!-- Tab1 -->
                             <div id="login" class="container tab-pane active">
                                 <div>
-                                    <asp:Label ID="Label1" runat="server" CssClass="form-label mb-2" Text="أسم المستخدم"
+                                    <asp:Label ID="Label1" runat="server" CssClass="form-label mb-2" Text="اسم المستخدم"
                                         Font-Bold="true" Font-Size="Small"></asp:Label>
 
 
-                                    <asp:TextBox ID="username" runat="server" CssClass="form-control mb-2" placeholder="أسم المستخدم"
+                                    <asp:TextBox ID="username" runat="server" CssClass="form-control mb-2" placeholder="اسم المستخدم"
                                         Font-Bold="true" Font-Size="Smaller" ></asp:TextBox>
                                     <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
                                         Font-Size="Small" Font-Bold="true"
-                                        ErrorMessage="يرجى ادخال أسم المستخدم"
+                                        ErrorMessage="يرجى ادخال اسم المستخدم"
                                         ID="CompanyNatValidator" runat="server" ValidationGroup="login"
                                         ControlToValidate="username"></asp:RequiredFieldValidator>
                                 </div>

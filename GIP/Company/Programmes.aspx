@@ -101,7 +101,7 @@
                     <div class="buttons">
                         <asp:Button ID="StartGIP" runat="server"
                             BackColor="#2487ce" ForeColor="White" Font-Bold="true" Font-Size="Small" OnClick="StartGIP_Click"
-                             CssClass="btn  mt-2 login-btn col-md-12" Text="لتقديم"></asp:Button>
+                             CssClass="btn  mt-2 login-btn col-md-12" Text="للتقديم"></asp:Button>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                     <div class="buttons">
                         <asp:Button ID="StartQsaTech"  runat="server"
                             BackColor="#2487ce" ForeColor="White" Font-Bold="true" Font-Size="Small" OnClick="StartQsaTech_Click"
-                           CssClass="btn  mt-2 login-btn col-md-12" Text="لتقديم"></asp:Button>
+                           CssClass="btn  mt-2 login-btn col-md-12" Text="للتقديم"></asp:Button>
                     </div>
                 </div>
             </div>

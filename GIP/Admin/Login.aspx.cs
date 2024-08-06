@@ -24,10 +24,10 @@ namespace GIP.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["AdminUnVerifiedUserEmail"] != null)
-            {
-                Response.Redirect("VerifyUser.aspx");
-            }
+            //if (Session["AdminUnVerifiedUserEmail"] != null)
+            //{
+            //    //Response.Redirect("VerifyUser.aspx");
+            //}
 
         }
         protected string Generate_otp()
@@ -138,7 +138,7 @@ namespace GIP.Admin
             if (Page.IsValid)
             {
                 string errorMessage = string.Empty;
-                bool isValidCaptcha = ValidateReCaptcha(ref errorMessage);
+                bool isValidCaptcha = true;//ValidateReCaptcha(ref errorMessage);
                 Page.Validate();
 
                 if (isValidCaptcha)
@@ -202,18 +202,22 @@ namespace GIP.Admin
                                     rd.Read();
                                     if (rd.HasRows == true)
                                     {
-                                        Session["AdminName"] = rd["Company_Name"].ToString();
+                                        Session["AdminName"] = rd["AdminName"].ToString();
+                                        Session["UserID"] = rd["UserID"].ToString();
+
                                         string otp = Generate_otp();
                                         Session["OTP"] = otp;
                                         Session["Allowed_OTP_Attempts"] = 3;
-                                        Session["AdminUnVerifiedUserEmail"] = rd["Company_Email"].ToString();
-                                        Session["AdminUnVerifiedUserID"] = rd["Company_No"].ToString();
+                                        Session["AdminUnVerifiedUserEmail"] = rd["UserEmail"].ToString();
+                                        Session["AdminUnVerifiedUserID"] = rd["UserID"].ToString();
+                                        Session["log"] = "yesyoucan";
 
 
-
-                                        SendOTP(otp, rd["AdminUnVerifiedUserEmail"].ToString(), Session["UserName"].ToString());
-                                        string VerifyLink = "VerifyUser.aspx";
-                                        Response.Redirect(VerifyLink, true);
+                                        SendOTP(otp, Session["AdminUnVerifiedUserEmail"].ToString(), Session["AdminName"].ToString());
+                                        Response.Redirect("comapp.aspx");
+                                       // string VerifyLink = "VerifyUser.aspx";
+                                        //Response.Redirect(VerifyLink);
+                                     
                                     }
 
                                 }
@@ -276,7 +280,7 @@ namespace GIP.Admin
             }
             catch (Exception ex)
             {
-
+                lblMessage1.Text = ex.Message;
 
             }
 

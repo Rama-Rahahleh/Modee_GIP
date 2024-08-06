@@ -131,7 +131,7 @@
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-about">
                     <a href="Home.aspx" class="logo d-flex align-items-center">
-                        <span class="sitename">منصة تدريب خريجي تكنولوجيات المعلومات</span>
+                        <span class="sitename">منصة تدريب خريجي تكنولوجيا المعلومات</span>
                     </a>
                     <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
                     <div class="social-links d-flex mt-4">
@@ -157,7 +157,7 @@
 
 
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-end">
-                    <h4>أتصل بنا</h4>
+                    <h4>اتصل بنا</h4>
                     <p>عمان- الدوار الثامن -بيادر وادي السير -</p>
 
                     <p>عمان- الأردن</p>

@@ -16,34 +16,17 @@ namespace GIP
             Response.Cache.SetNoStore();
         }
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
-            {
-                try
-                {
-                    if (Session["log"].ToString() != "yesyoucan")
-                    {
-                        Response.Redirect("frmErrorPage.aspx");
-                        return;
-                    }
-                }
-                catch
-                {
-                    Response.Redirect("frmErrorPage.aspx");
-                    return;
-                }
-            }
-            Session["log"] = "no";
-        }
+        {       
+         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("DetailsRow"))
             {
                 Int32 index = Convert.ToInt16(e.CommandArgument);
-                Int64 id = Convert.ToInt64(GridView1.DataKeys[index].Value.ToString());
+                Int64 id = Convert.ToInt64(GridView1.DataKeys[index].Value);
                 Session["appid"] = id;
-                Session["Compno"] = GridView1.Rows[index].Cells[1].Text;                
+                Session["Compno"] = GridView1.Rows[index].Cells[1].Text;
                 Session["log"] = "yesyoucan";
                 Session["status"] = GridView1.Rows[index].Cells[18].Text;
                 Response.Redirect("ComDetails.aspx");

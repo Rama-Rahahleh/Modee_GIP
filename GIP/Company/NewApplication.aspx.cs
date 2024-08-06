@@ -24,6 +24,7 @@ namespace GIP.Company
         string SocialSNumber = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             Basic.Errorpath = "/ErrorLog/Josn.txt";
             if (Session["CmpID"] == null)
             {
@@ -34,6 +35,7 @@ namespace GIP.Company
             {
 
             }
+            
         }
         private void GetPersonNationality(string natNo,string birthDate,string civNo)
         {
@@ -144,8 +146,20 @@ namespace GIP.Company
         protected void CheckNat_Click(object sender, EventArgs e)
         {
             GetPersonNationality(txtNatNo.Text,Convert.ToDateTime(txtDOB.Text).ToString("M/dd/yyyy"), txtCivilNo.Text);
+            if (lstGender.Text == "ذكر" && Session["TrianType"] == "2")
+            {
+                lblmsg.Text = "هذا البرنامج مخصص للاناث فقط";
+                txtNatNo.Text = "";
+                txtCivilNo.Text = "";
+                txtDOB.Text = "";
+            }
+            else
+            {
+                lblmsg.Text = "";
+              GetSSCSubscription();
+            }
             
-            GetSSCSubscription();
+          
         }
 
         protected void Save_Click(object sender, EventArgs e)

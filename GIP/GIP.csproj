@@ -2297,6 +2297,7 @@
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Company\CompanyProfile.aspx" />
     <Content Include="Company\MyApplication.aspx" />
+    <Content Include="Company\MyApps.aspx" />
     <Content Include="Company\NewApplication.aspx" />
     <Content Include="Company\Programmes.aspx" />
     <Content Include="Company\Site.Master" />
@@ -2685,6 +2686,13 @@
     <Compile Include="Company\MyApplication.aspx.designer.cs">
       <DependentUpon>MyApplication.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Company\MyApps.aspx.cs">
+      <DependentUpon>MyApps.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company\MyApps.aspx.designer.cs">
+      <DependentUpon>MyApps.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Company\NewApplication.aspx.cs">
       <DependentUpon>NewApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2790,7 +2798,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="CompanyFiles\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>

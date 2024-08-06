@@ -30,7 +30,7 @@ namespace GIP
           
             if(Session["CmpID"]!=null)
             {
-                Response.Redirect("../Company/Programmes.aspx");
+                Response.Redirect("../Company/MyApps.aspx");
             }
             
         }
@@ -115,8 +115,8 @@ namespace GIP
                                         {
                                             //Session["compno"] = CompanyNat.Text;
 
-                                            //Session["log"] = "yesyoucan";
-                                            //Session["userOper"] = "1";
+                                            Session["log"] = "yesyoucan";
+                                            Session["userOper"] = "1";
 
                                             Session["UserName"] = reader["Company_Name"].ToString();
                                             string otp = Generate_otp();

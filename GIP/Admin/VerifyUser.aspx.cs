@@ -18,9 +18,9 @@ namespace GIP.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             Basic.Errorpath = "/ErrorLog/Login.txt";
-            if (Session["UnVerifiedUserEmail"] == null)
+            if (Session["AdminUnVerifiedUserEmail"] == null)
             {
-                Response.Redirect("logout.aspx");
+                Response.Redirect("../logout.aspx");
             }
             else
             {
@@ -29,7 +29,7 @@ namespace GIP.Admin
 
                 if (Session["OTP"] == null)
                 {
-                    if (Session["UnVerifiedUserID"] == null)
+                    if (Session["AdminUnVerifiedUserID"] == null)
                     {
                         Response.Redirect("Home.aspx");
 
@@ -97,7 +97,7 @@ namespace GIP.Admin
             {
                 if (!(ex is ThreadAbortException))
                 {
-                    File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "OTP Matching:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                    File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "OTP Matching:  " + Session["AdminUnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                 }
 
@@ -140,7 +140,7 @@ namespace GIP.Admin
                     }
                     else
                     {
-                        LockUserAccountAfterAllAttempts(Session["UnVerifiedUserID"].ToString(), true);
+                        LockUserAccountAfterAllAttempts(Session["AdminUnVerifiedUserID"].ToString(), true);
                         Session["IsLocked"] = 1;
                         contact2.Visible = true;
 
@@ -174,7 +174,7 @@ namespace GIP.Admin
                                     command.Connection = connection;
                                     command.CommandType = CommandType.StoredProcedure;
                                     command.CommandText = "VerifyUser";
-                                command.Parameters.AddWithValue("@Company_No", Session["UnVerifiedUserID"].ToString());
+                                command.Parameters.AddWithValue("@Company_No", Session["AdminUnVerifiedUserID"].ToString());
 
                                 odr = command.ExecuteReader();
                                     if (odr.HasRows == true)
@@ -191,7 +191,7 @@ namespace GIP.Admin
                                             else
                                             {
 
-                                            Session["UserName"] = odr["Company_Name"].ToString();
+                                            Session["AdminName"] = odr["Company_Name"].ToString();
                                          
                                          
                                             Session["UserEmail"] = odr["Company_Email"].ToString();
@@ -217,7 +217,7 @@ namespace GIP.Admin
                         {
                             if (!(ex is ThreadAbortException))
                             {
-                                File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "OTP Matching:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                                File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "OTP Matching:  " + Session["AdminUnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                             }
 
@@ -241,7 +241,7 @@ namespace GIP.Admin
                             ///
                             //LockUserAccountAfterAllAttempts(Server.HtmlEncode(Session["UnVerifiedAdminEmail"].ToString()), Server.HtmlEncode(Session["UnVerifiedAdminPassword"].ToString()), true);
 
-                            LockUserAccountAfterAllAttempts(Session["UnVerifiedUserID"].ToString(), true);
+                            LockUserAccountAfterAllAttempts(Session["AdminUnVerifiedUserID"].ToString(), true);
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openInvalid();", true);
 
                         }
@@ -263,9 +263,9 @@ namespace GIP.Admin
                 Session["Allowed_OTP_Attempts"] = 3;
 
 
-                SendOTP(otp, Session["UnVerifiedUserEmail"].ToString(), Session["UserName"].ToString());
+                SendOTP(otp, Session["AdminUnVerifiedUserEmail"].ToString(), Session["AdminName"].ToString());
 
-                string VerifyLink = "VU.aspx";
+                string VerifyLink = "VerifyUser.aspx";
 
                 Response.Redirect(VerifyLink, true);
 
@@ -351,7 +351,7 @@ namespace GIP.Admin
             {
                 if (!(ex is ThreadAbortException))
                 {
-                    File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "OTP Matching:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                    File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "OTP Matching:  " + Session["AdminUnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                 }
 

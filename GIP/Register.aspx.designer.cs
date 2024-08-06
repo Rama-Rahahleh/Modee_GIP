@@ -15,15 +15,6 @@ namespace GIP
     {
 
         /// <summary>
-        /// UpdateProgress1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
-
-        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -105,13 +96,13 @@ namespace GIP
         protected global::System.Web.UI.WebControls.LinkButton ForgetLkBtn;
 
         /// <summary>
-        /// Next1 control.
+        /// Next11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Next1;
+        protected global::System.Web.UI.WebControls.Button Next11;
 
         /// <summary>
         /// CompanyInfo control.
@@ -267,6 +258,15 @@ namespace GIP
         protected global::System.Web.UI.WebControls.TextBox CompanyPhone;
 
         /// <summary>
+        /// CustomValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator4;
+
+        /// <summary>
         /// RequiredFieldValidator11 control.
         /// </summary>
         /// <remarks>
@@ -357,15 +357,6 @@ namespace GIP
         protected global::System.Web.UI.WebControls.DropDownList GovernateList;
 
         /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-
-        /// <summary>
         /// RequiredFieldValidator5 control.
         /// </summary>
         /// <remarks>
@@ -402,13 +393,13 @@ namespace GIP
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
-        /// Next3 control.
+        /// Next1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Next3;
+        protected global::System.Web.UI.WebControls.Button Next1;
 
         /// <summary>
         /// CompanyBranch control.
@@ -474,13 +465,13 @@ namespace GIP
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
 
         /// <summary>
-        /// Next4 control.
+        /// Next2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Next4;
+        protected global::System.Web.UI.WebControls.Button Next2;
 
         /// <summary>
         /// ContactInfo control.
@@ -663,13 +654,13 @@ namespace GIP
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
-        /// Next2 control.
+        /// Next3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Next2;
+        protected global::System.Web.UI.WebControls.Button Next3;
 
         /// <summary>
         /// Attachment control.
@@ -825,12 +816,12 @@ namespace GIP
         protected global::System.Web.UI.WebControls.CheckBox chkApprove;
 
         /// <summary>
-        /// Next5 control.
+        /// Next4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Next5;
+        protected global::System.Web.UI.WebControls.Button Next4;
     }
 }
