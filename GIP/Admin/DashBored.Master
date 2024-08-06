@@ -92,12 +92,10 @@
                     <ul>
                         <li><a href="/Home.aspx" class="active">الصفحة الرئيسية<br>
                         </a></li>
-                        <li><a href="/Home.aspx#about">من نحن</a></li>
-                        <li><a href="/Home.aspx#services">البرامج التدريبية</a></li>
-                        <li><a href="/Home.aspx#faq">الاسئلة الشائعة</a></li>
-                        <li><a href="/Home.aspx#contact">اتصل بنا</a></li>
-
-                         <li id="userSection" runat="server" class=" dropdown">
+                        <li><a href="Companies.aspx">طلبات الشركات</a></li>
+                        <li><a href="Companies.aspx">طلبات التدريب</a></li>
+                        <li><a href="Companies.aspx">أهم القوائم</a></li>
+                         <li id="userSection" runat="server" class=" dropdown" visible="false">
 
                             <a href="#"><span id="UserName" runat="server"></span><i class="bi bi-chevron-down"></i></a>
                             <ul>

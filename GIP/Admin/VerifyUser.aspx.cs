@@ -17,7 +17,8 @@ namespace GIP.Admin
         BasicString Basic = new BasicString();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Basic.Errorpath = "/ErrorLog/Login.txt";
+            Basic.Errorpath = "/ErrorLog/AdminLogin.txt";
+
             if (Session["AdminUnVerifiedUserEmail"] == null)
             {
                 Response.Redirect("../logout.aspx");
@@ -31,14 +32,9 @@ namespace GIP.Admin
                 {
                     if (Session["AdminUnVerifiedUserID"] == null)
                     {
-                        Response.Redirect("Home.aspx");
+                        Response.Redirect("admin/login.aspx");
 
                     }
-                    else if (Session["compno"] != null)
-                    {
-                        Response.Redirect("Company/Programmes.aspx");
-                    }
-
                 }
                 else
                 {
@@ -82,8 +78,8 @@ namespace GIP.Admin
                         connection.Open();
                         command.CommandType = CommandType.StoredProcedure;
                         command.Connection = connection;
-                        command.CommandText = "Lock_Unlock";
-                        command.Parameters.AddWithValue("@Comp_Nat", Session["compno"].ToString());                      
+                        command.CommandText = "Admin_Lock_Unlock";
+                        command.Parameters.AddWithValue("@AdminID", Session["AdminUnVerifiedUserID"].ToString());                      
                         command.Parameters.AddWithValue("@IsLocked", 1);
                         int result = command.ExecuteNonQuery();
                         Session["IsLocked"] = 1;
@@ -167,50 +163,40 @@ namespace GIP.Admin
                         try
                         {
                             using (SqlConnection connection = new SqlConnection(Basic.GetConnectionString))
-                                {
-                                    connection.Open();
-                                    SqlDataReader odr;
-                                    SqlCommand command = new SqlCommand();
-                                    command.Connection = connection;
-                                    command.CommandType = CommandType.StoredProcedure;
-                                    command.CommandText = "VerifyUser";
-                                command.Parameters.AddWithValue("@Company_No", Session["AdminUnVerifiedUserID"].ToString());
+                            {
+                                connection.Open();
+                                SqlDataReader odr;
+                                SqlCommand command = new SqlCommand();
+                                command.Connection = connection;
+                                command.CommandType = CommandType.StoredProcedure;
+                                command.CommandText = "isAdmin";
+                                command.Parameters.AddWithValue("@email", Session["AdminUnVerifiedUserEmail"].ToString());
 
                                 odr = command.ExecuteReader();
-                                    if (odr.HasRows == true)
+                                if (odr.HasRows == true)
+                                {
+                                    while (odr.Read())
                                     {
-                                        while (odr.Read())
+                                        if (Convert.ToBoolean(odr["AdminLocked"].ToString()))
                                         {
-                                            if (Convert.ToBoolean(odr["IsLocked"].ToString()))
-                                            {
-                                                /// show Locked Acount Msg....
-                                                /// then referesh
-                                                ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openLockedModal();", true);
+                                            /// show Locked Acount Msg....
+                                            /// then referesh
+                                            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openLockedModal();", true);
 
-                                            }
-                                            else
-                                            {
-
-                                            Session["AdminName"] = odr["Company_Name"].ToString();
-                                         
-                                         
-                                            Session["UserEmail"] = odr["Company_Email"].ToString();
-                                            Session["CmpID"] = odr["Company_No"].ToString();
-
-
-                                            Response.Redirect("Company/Programmes.aspx");
-                                                
-                                            }
                                         }
+                                        else
+                                        {
 
-                                    }
-                                    else
-                                    {
-                                        ErrorLabel.Text = "البريد الالكتروني أو كلمة السر غير صحيحة";
-                                        ErrorLabel.Visible = true;
-                                    }
 
-                                
+                                            Session["AdminName"] = odr["AdminName"].ToString();
+                                            Session["AdminEmail"] = odr["UserEmail"].ToString();
+                                            Session["AdminID"] = odr["UserID"].ToString();
+
+                                            Response.Redirect("Companies.aspx");
+
+                                        }
+                                    }
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -224,31 +210,7 @@ namespace GIP.Admin
                         }
                     }
 
-                    else if (Convert.ToInt32(Session["Allowed_OTP_Attempts"].ToString()) == 0)
-                    {
-                        if (Session["UserType"].ToString() == "5")
-                        {
-                            contact2.Visible = false; Session["IsLocked"] = 1;
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openInvalid();", true);
-
-                        }
-                        else
-                        {
-
-                            contact2.Visible = true;
-                            Session["IsLocked"] = 1;
-                            /////********* lock the Account and show lock Msg ***  //////////////
-                            ///
-                            //LockUserAccountAfterAllAttempts(Server.HtmlEncode(Session["UnVerifiedAdminEmail"].ToString()), Server.HtmlEncode(Session["UnVerifiedAdminPassword"].ToString()), true);
-
-                            LockUserAccountAfterAllAttempts(Session["AdminUnVerifiedUserID"].ToString(), true);
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openInvalid();", true);
-
-                        }
-
-
-                    }
-                }
+                                   }
             }
         }
 
@@ -263,7 +225,7 @@ namespace GIP.Admin
                 Session["Allowed_OTP_Attempts"] = 3;
 
 
-                SendOTP(otp, Session["AdminUnVerifiedUserEmail"].ToString(), Session["AdminName"].ToString());
+                SendOTP(otp, Session["AdminUnVerifiedUserEmail"].ToString(), Session["AdminUnVerifiedUserName"].ToString());
 
                 string VerifyLink = "VerifyUser.aspx";
 
@@ -293,8 +255,8 @@ namespace GIP.Admin
                     SqlDataReader odr;
                     using (SqlCommand command = new SqlCommand())
                     {
-                        command.CommandText = "Lock_Unlock_UserAccount";
-                        command.Parameters.AddWithValue("@CompanyNa", UnVerifiedUserID);
+                        command.CommandText = "Lock_Unlock_Admin";
+                        command.Parameters.AddWithValue("@AdminID", UnVerifiedUserID);
 
                         command.Parameters.AddWithValue("@Lock_Status", Lock_status);
 

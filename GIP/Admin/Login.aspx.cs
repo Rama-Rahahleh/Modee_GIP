@@ -1,5 +1,4 @@
 ﻿using GIP.App_Code;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,9 +10,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Grants.App_Code;
-using Newtonsoft.Json;
 using RestSharp;
 using System.Threading;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace GIP.Admin
 {
@@ -24,10 +24,12 @@ namespace GIP.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["AdminUnVerifiedUserEmail"] != null)
-            //{
-            //    //Response.Redirect("VerifyUser.aspx");
-            //}
+            Basic.Errorpath = "/ErrorLog/AdminLogin.txt";
+
+            if (Session["AdminUnVerifiedUserEmail"] != null)
+            {
+                Response.Redirect("VerifyUser.aspx");
+            }
 
         }
         protected string Generate_otp()
@@ -180,49 +182,74 @@ namespace GIP.Admin
                             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3; ;
 
                             RestResponse response2 = client2.Execute(request2);
-                            JArray jsonarr = JArray.Parse(response2.Content);
-                            for (var arrcount = 0; arrcount <= jsonarr.Count - 1; arrcount++)
+                            string jsonResponse = response2.Content.ToString();
+        //                        @"
+        //[
+        //    'x500:/o=ExchangeLabs/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=3e0b7aff7185408989b2d9a5f89e5f74-2e0e995b-67',
+        //    'rama.r@modeegovjo.mail.onmicrosoft.com',
+        //    'rama.r@MOICT.GOV.JO',
+        //    'Rama.Rahahleh@MOICT.GOV.JO',
+        //    'rama.r@modee.gov.jo',
+        //    'Rama.Rahahleh@modee.gov.jo'
+        //]";
+
+                            JArray jsonarr = JArray.Parse(jsonResponse);
+
+                            //for (var arrcount = 0; arrcount <= jsonarr.Count-1; arrcount++)
+                            //
+                            foreach (var item in jsonarr)
                             {
-                                SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["GIPInatiativesConnectionString"].ConnectionString);
-                                SqlDataReader rd;
-
-                                using (con)
+                                string email = item.ToString();
+                                using (SqlConnection con = new SqlConnection(Basic.GetConnectionString))
                                 {
-
-                                    SqlCommand cmdCompany = new SqlCommand("isAdmin", con); // Read user-> stored procedure name
-                                    cmdCompany.CommandType = CommandType.StoredProcedure;
-                                    cmdCompany.Parameters.Clear();
-                                    cmdCompany.Parameters.AddWithValue("@email", jsonarr[arrcount].ToString());
-                                    cmdCompany.Parameters.Add("message", SqlDbType.NVarChar, 300);
-                                    cmdCompany.Parameters["message"].Direction = ParameterDirection.Output;
-                                    con.Open();
-                                    cmdCompany.ExecuteNonQuery();
-                                    Session["message"] = Convert.ToString(cmdCompany.Parameters["message"].Value);
-                                    rd = cmdCompany.ExecuteReader();
-                                    rd.Read();
-                                    if (rd.HasRows == true)
+                                    using (SqlCommand cmdCompany = new SqlCommand("isAdmin", con))
                                     {
-                                        Session["AdminName"] = rd["AdminName"].ToString();
-                                        Session["UserID"] = rd["UserID"].ToString();
 
-                                        string otp = Generate_otp();
-                                        Session["OTP"] = otp;
-                                        Session["Allowed_OTP_Attempts"] = 3;
-                                        Session["AdminUnVerifiedUserEmail"] = rd["UserEmail"].ToString();
-                                        Session["AdminUnVerifiedUserID"] = rd["UserID"].ToString();
-                                        Session["log"] = "yesyoucan";
+                                        con.Open();
+                                        cmdCompany.CommandType = CommandType.StoredProcedure;
+                                        cmdCompany.Parameters.AddWithValue("@email", email);
+
+                                        using (SqlDataReader reader = cmdCompany.ExecuteReader())
+                                        {
+                                            if (reader.HasRows)
+                                            {
+                                                while (reader.Read())
+                                                {
 
 
-                                        SendOTP(otp, Session["AdminUnVerifiedUserEmail"].ToString(), Session["AdminName"].ToString());
-                                        Response.Redirect("comapp.aspx");
-                                       // string VerifyLink = "VerifyUser.aspx";
-                                        //Response.Redirect(VerifyLink);
-                                     
+                                                    if (reader["Result"].ToString() != "-1")
+                                                    {
+                                                        if (Convert.ToBoolean(reader["AdminLocked"].ToString()) == true)
+                                                        {
+                                                            /// show Locked Acount Msg....
+                                                            /// then referesh
+                                                            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openLockedModal();", true);
+
+                                                        }
+                                                        else if (Convert.ToBoolean(reader["AdminLocked"].ToString()) == false)
+                                                        {
+
+                                                            string otp = Generate_otp();
+                                                        Session["OTP"] = otp;
+                                                        Session["Allowed_OTP_Attempts"] = 3;
+
+                                                        Session["AdminUnVerifiedUserName"] = reader["AdminName"].ToString();
+                                                        Session["AdminUnVerifiedUserEmail"] = reader["UserEmail"].ToString();
+                                                        Session["AdminUnVerifiedUserID"] = reader["UserID"].ToString();
+
+
+
+                                                        SendOTP(otp, Session["AdminUnVerifiedUserEmail"].ToString(), Session["AdminUnVerifiedUserName"].ToString());
+                                                        string VerifyLink = "VerifyUser.aspx";
+                                                        Response.Redirect(VerifyLink);
+                                                       }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
-
                                 }
                             }
-                            //if not found return UNAUTHORIZED
                         }
                         else
                         {
@@ -235,11 +262,11 @@ namespace GIP.Admin
 
                         if (!(ex is ThreadAbortException))
                         {
-                            File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "AdmibLogin:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
+                            File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "AdminLogin:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
                         }
                     }
-                   
+
                 }
                 else
                 {

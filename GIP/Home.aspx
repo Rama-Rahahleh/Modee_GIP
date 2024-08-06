@@ -87,7 +87,7 @@
           <li><a href="#Program">البرامج التدريبية</a></li>
           <li><a href="#faq">الاسئلة الشائعة</a></li>
           <li><a href="Home.aspx#contact">اتصل بنا</a></li>
-            <li id="userSection" runat="server" class=" dropdown">
+            <li id="userSection" runat="server" class=" dropdown" visible="false">
 
     <a href="#"><span id="UserName" runat="server"></span><i class="bi bi-chevron-down"></i></a>
     <ul>

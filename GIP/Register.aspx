@@ -498,7 +498,7 @@
                                 </div>
 
                                 <div id="Attachment" runat="server" visible="false" >
-                                    <asp:Label ID="lblmsg" runat="server"  </label>
+                                    <asp:Label ID="lblmsg" runat="server" ></asp:Label>
                                     <div>
                                         <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>

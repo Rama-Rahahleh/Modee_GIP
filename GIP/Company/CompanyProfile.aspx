@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Company/Site.Master" AutoEventWireup="true" CodeBehind="CompanyProfile.aspx.cs" Inherits="GIP.Company.CompanyProfile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <link href="/Asset/css/Forms.css" rel="stylesheet" />
+    <link href="/Asset/css/Forms.css" rel="stylesheet" />
     <style>
-        .form-signin{
-            width:100%;
+        .form-signin {
+            width: 100%;
         }
     </style>
-       
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12"> 
+                            <div class="col-md-12">
                                 <h4>تفاصيل الشركة</h4>
                             </div>
                             <div class="col-md-6">
@@ -111,7 +111,7 @@
                         </div>
 
 
-                            <hr />
+                        <hr />
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-12">
@@ -119,44 +119,40 @@
                                 </div>
 
                                 <div class="table-responsive mt-2">
-                                    <asp:GridView ID="GridView1" runat="server" DataKeyNames="BranchID"
-                                        Width="100%"
+                                    <asp:GridView ID="Branchs" runat="server" DataKeyNames="BranchID"
+                                        AutoGenerateColumns="False"
+                                        EmptyDataText="لا يوجد فروع"
                                         CssClass="table table-borderless"
                                         HorizontalAlign="Center"
                                         BackColor="White" BorderStyle="None"
-                                        ForeColor="#333333"
-                                        AutoGenerateColumns="False"
-                                        EmptyDataText="لا يوجد فروع">
+                                        ForeColor="#333333" DataSourceID="BranchSqlDataSource"
+                                        HeaderStyle-HorizontalAlign="Center">
                                         <Columns>
-                                            <asp:BoundField DataField="BranchID" HeaderText="التسلسل">
-                                                <ItemStyle></ItemStyle>
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="Placename" HeaderText="الفرع">
-                                                <ItemStyle></ItemStyle>
-                                            </asp:BoundField>
 
-                                            <asp:ButtonField ButtonType="Image" CommandName="DeleteRow" ImageUrl="~/Asset/img/Delete.png" Text="حذف" />
+                                            <asp:TemplateField AccessibleHeaderText="number" HeaderText="#" SortExpression="number">
+                                                <ItemTemplate>
+                                                    <%# Container.DataItemIndex + 1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:BoundField DataField="BranchName" HeaderText="الفرع" />
                                         </Columns>
+                                        <HeaderStyle ForeColor="#1277a7" Font-Bold="true" CssClass="TableHeader" Font-Size="x-small" />
+                                        <RowStyle BackColor="#FFFFFFF" ForeColor="#333333" HorizontalAlign="Center" Font-Size="x-small" Font-Bold="true" BorderColor="White" />
 
 
-
-                                        <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
-                                        <RowStyle BackColor="White" BorderStyle="Solid" BorderWidth="1px" />
+                                        <RowStyle BackColor="White" />
                                         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
                                         <SortedAscendingHeaderStyle BackColor="#808080" />
                                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                         <SortedDescendingHeaderStyle BackColor="#383838" />
-
-                                        <HeaderStyle ForeColor="#1277a7" Font-Bold="true" CssClass="TableHeader" Font-Size="x-small" />
-                                        <RowStyle BackColor="#FFFFFFF" ForeColor="#333333" HorizontalAlign="Center" Font-Size="x-small" Font-Bold="true" BorderColor="White" />
                                     </asp:GridView>
 
-                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server"
-                                        ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>"
-                                        SelectCommand="SELECT [BranchID], [Placename] FROM [Branches] WHERE ([Company_No] = @Company_No) ORDER BY [BranchID]">
+                                    <asp:SqlDataSource ID="BranchSqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>"
+                                        SelectCommand="ReadBranch" SelectCommandType="StoredProcedure">
                                         <SelectParameters>
-                                            <asp:SessionParameter Name="Company_No" SessionField="compno" Type="Int32" />
+                                            <asp:SessionParameter Name="Company_No" SessionField="CmpID" Type="Int64" />
                                         </SelectParameters>
                                     </asp:SqlDataSource>
                                 </div>
@@ -165,89 +161,89 @@
 
                         </div>
                         <hr />
-                         <div class="row">
-                              <div class="col-md-12"> 
-     <h4>تفاصيل المفوض</h4>
- </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>تفاصيل المفوض</h4>
+                            </div>
 
-                        <div class="col-md-6">
-                            <asp:Label ID="Label3" runat="server" CssClass="form-label mb-2" Text="اسم مقدم الطلب"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
+                            <div class="col-md-6">
+                                <asp:Label ID="Label3" runat="server" CssClass="form-label mb-2" Text="اسم مقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
 
-                            <asp:TextBox ID="SanadName" runat="server" CssClass="form-control mb-4" placeholder="اسم مقدم الطلب"
-                                Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="SanadName" runat="server" CssClass="form-control mb-4" placeholder="اسم مقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:Label ID="Label4" runat="server" CssClass="form-label mb-2" Text="جنسية مقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                <asp:TextBox ID="SanadNat" runat="server" CssClass="form-control mb-4" placeholder="جنسية مقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:Label ID="Label5" runat="server" CssClass="form-label mb-2 " Text="رقم الهاتف لمقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                <asp:TextBox ID="SanadPhone" runat="server" CssClass="form-control mb-4 phoneInput" placeholder="رقم الهاتف لمقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:Label ID="Label6" runat="server" CssClass="form-label mb-2" Text="البريد الالكتروني لمقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                <asp:TextBox ID="SanadEmail" runat="server" CssClass="form-control mb-4" placeholder="البريد الالكتروني لمقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6">
+                                <asp:Label ID="Label7" runat="server" CssClass="form-label mb-2" Text="المسمى الوظيفي لمقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                <asp:TextBox ID="SanadJob" runat="server" CssClass="form-control mb-2" placeholder="المسمى الوظيفي لمقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+
+                            </div>
+                            <div class="col-md-6">
+                                <asp:Label ID="Label8" runat="server" CssClass="form-label mb-2" Text="صفة مقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+                                <asp:TextBox ID="DelegetType" runat="server" CssClass="form-control mb-2" placeholder="صفة مقدم الطلب"
+                                    Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label4" runat="server" CssClass="form-label mb-2" Text="جنسية مقدم الطلب"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
-
-                            <asp:TextBox ID="SanadNat" runat="server" CssClass="form-control mb-4" placeholder="جنسية مقدم الطلب"
-                                Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label5" runat="server" CssClass="form-label mb-2 " Text="رقم الهاتف لمقدم الطلب"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
-
-                            <asp:TextBox ID="SanadPhone" runat="server" CssClass="form-control mb-4 phoneInput" placeholder="رقم الهاتف لمقدم الطلب"
-                                Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label6" runat="server" CssClass="form-label mb-2" Text="البريد الالكتروني لمقدم الطلب"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
-
-                            <asp:TextBox ID="SanadEmail" runat="server" CssClass="form-control mb-4" placeholder="البريد الالكتروني لمقدم الطلب"
-                                Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label7" runat="server" CssClass="form-label mb-2" Text="المسمى الوظيفي لمقدم الطلب"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
-
-                            <asp:TextBox ID="SanadJob" runat="server" CssClass="form-control mb-2" placeholder="المسمى الوظيفي لمقدم الطلب"
-                                Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
-
-                        </div>
-                        <div class="col-md-6">
-                            <asp:Label ID="Label8" runat="server" CssClass="form-label mb-2" Text="صفة مقدم الطلب"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
-                             <asp:TextBox ID="DelegetType" runat="server" CssClass="form-control mb-2" placeholder="صفة مقدم الطلب"
-     Font-Bold="true" Font-Size="Small" Enabled="false"></asp:TextBox>
-                        </div>
-                             </div>
                         <hr />
 
-                         <div class="row">
+                        <div class="row">
 
-                              <div class="col-md-12"> 
-     <h4>المرفقات</h4>
- </div>
-                        <div class="col-md-4">
-                            <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
-
-                            <div class="container">
-                               <asp:LinkButton ID="LinkButton1" runat="server">تنزيل</asp:LinkButton>
+                            <div class="col-md-12">
+                                <h4>المرفقات</h4>
                             </div>
-                            
-                        </div>
-                        <div class="col-md-4">
-                            <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة تسجيل الشركة"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
 
-                            <div class="container">
-                                <asp:LinkButton ID="LinkButton2" runat="server">تنزيل</asp:LinkButton>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-4">
-                            <asp:Label ID="Label21" runat="server" CssClass="form-label mb-2" Text="رخصة مهن سارية المفعول"
-                                Font-Bold="true" Font-Size="Small"></asp:Label>
+                                <div class="container">
+                                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="SignFileDownload_Click">تنزيل</asp:LinkButton>
+                                </div>
 
-                            <div class="container">
-                               <asp:LinkButton ID="LinkButton3" runat="server">تنزيل</asp:LinkButton>
                             </div>
-                            
+                            <div class="col-md-4">
+                                <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة تسجيل الشركة"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                <div class="container">
+                                    <asp:LinkButton ID="LinkButton2" runat="server" OnClick="RegFileDownload_Click">تنزيل</asp:LinkButton>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <asp:Label ID="Label21" runat="server" CssClass="form-label mb-2" Text="رخصة مهن سارية المفعول"
+                                    Font-Bold="true" Font-Size="Small"></asp:Label>
+
+                                <div class="container">
+                                    <asp:LinkButton ID="LinkButton3" runat="server" OnClick="CertFileDownload_Click">تنزيل</asp:LinkButton>
+                                </div>
+
+                            </div>
                         </div>
-                       </div>
 
                     </div>
                 </div>

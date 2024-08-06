@@ -23,8 +23,10 @@ namespace GIP
        
         protected void Page_Load(object sender, EventArgs e)
         {
+            Basic.Errorpath = "/ErrorLog/Login.txt";
             if (Session["UnVerifiedUserEmail"] != null)
             {
+               
                 Response.Redirect("VerifyUser.aspx");
             }
           
@@ -134,7 +136,7 @@ namespace GIP
                                     else
                                     {
                                         Session["userID"] = "false";
-                                        lblMessage1.Text = "خطأ في اسم المستخدم او كلمة المرور!!!";
+                                        ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CallMyFunction", "showContent('error','خطأ في اسم المستخدم او كلمة المرور!');", true);
                                         ScriptManager.RegisterStartupScript(this, this.GetType(), "g-recaptcha", "loadGrecaptcha()", true);
                                     }
                                     connection.Close();
@@ -145,10 +147,11 @@ namespace GIP
                         }
                         catch (Exception ex)
                         {
-                            lblMessage1.Text = ex.Message;
-                        }
-                        finally
-                        {
+                            if (!(ex is ThreadAbortException))
+                            {
+                                File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Login:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
+
+                            }
 
                         }
                     }
@@ -261,8 +264,12 @@ namespace GIP
             }
             catch (Exception ex)
             {
+                if (!(ex is ThreadAbortException))
+                {
+                    File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "Login:  " + Session["UnVerifiedUserEmail"].ToString() + ex.Message + ex.StackTrace + " " + DateTime.Now);
 
-                
+                }
+
             }
 
         }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VerifyUser.aspx.cs" Inherits="GIP.Admin.VerifyUser" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="Asset/css/Forms.css" rel="stylesheet" />
+    <link href="/Asset/css/Forms.css" rel="stylesheet" />
     <style>
         .inner-page {
             background-color: #d5dae6;

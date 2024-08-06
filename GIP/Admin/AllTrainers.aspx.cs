@@ -9,11 +9,14 @@ using System.Data;
 using ClosedXML.Excel;
 using System.Configuration;
 using System.Data.SqlClient;
+using DocumentFormat.OpenXml.Math;
+using GIP.App_Code;
 
 namespace GIP
 {
     public partial class AllTrainers : System.Web.UI.Page
     {
+        BasicString Basic = new BasicString();
         protected void Page_Init(object sender, EventArgs e)
         {
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -22,23 +25,11 @@ namespace GIP
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Page.IsPostBack)
-            //{
-            //    try
-            //    {
-            //        if (Session["trapp"].ToString() != "go")
-            //        {
-            //            Response.Redirect("frmErrorPage.aspx");
-            //            return;
-            //        }
-            //    }
-            //    catch
-            //    {
-            //        Response.Redirect("frmErrorPage.aspx");
-            //        return;
-            //    }
-            //}
-            //Session["trapp"] = "no";
+            Basic.Errorpath = "/ErrorLog/Admin.txt";
+            if (Session["AdminID"] == null)
+            {
+                Response.Redirect("/logout.aspx");
+            }
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
