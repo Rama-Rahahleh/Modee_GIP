@@ -17,32 +17,14 @@ namespace GIP
         int x;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+          if(Session["appid"]==null)
             {
-                try
-                {
-                    if (Session["log"].ToString() != "yesyoucan")
-                    {
-                        Response.Redirect("frmErrorPage.aspx");
-                        return;
-                    }
-
-                    LoadGrid();
-                }
-                catch
-                {
-                    Response.Redirect("frmErrorPage.aspx");
-                    return;
-                }
+                Response.Redirect("comapp.aspx");
             }
-
-            x = 0;
-       //     reasonCounter = GridView2.Rows.Count;
-
-           
-            
-            if (!this.IsPostBack)
+            else
             {
+                LoadGrid();
+
                 if (Session["status"].ToString() == "1" || Session["status"].ToString() == "3")
                 {
                     btnsave.Visible = true;
@@ -94,7 +76,7 @@ namespace GIP
                 SqlCommand cmdCompany = new SqlCommand("PROC_READ_COMPANY_INFO", con); // Read user-> stored procedure name
                 cmdCompany.CommandType = CommandType.StoredProcedure;
                 cmdCompany.Parameters.Clear();
-                cmdCompany.Parameters.Add(new SqlParameter("@App_ID", SqlDbType.Int)).Value = Session["appid"].ToString();
+                cmdCompany.Parameters.Add(new SqlParameter("@Company_No", SqlDbType.Int)).Value = Session["appid"].ToString();
 
                 con.Open();
 
@@ -117,7 +99,7 @@ namespace GIP
                 cmdDelagator.CommandType = CommandType.StoredProcedure;
                 cmdDelagator.Parameters.Clear();
                 string s = Session["Compno"].ToString();
-                cmdDelagator.Parameters.Add(new SqlParameter("@Company_No", SqlDbType.BigInt)).Value = Session["Compno"].ToString();
+                cmdDelagator.Parameters.AddWithValue("@Company_No", (s));
 
                 rd = cmdDelagator.ExecuteReader();
                 rd.Read();

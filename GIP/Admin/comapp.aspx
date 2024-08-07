@@ -30,12 +30,12 @@
                               CSSclass="table table-bordered  table-hover table-striped" 
                               AutoGenerateColumns="False" BackColor="#CCCCCC"
                               BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" 
-                              CellPadding="4" CellSpacing="2" DataKeyNames="App_ID" 
+                              CellPadding="4" CellSpacing="2" DataKeyNames="Company_No"
                               DataSourceID="SqlDataSource1" ForeColor="Black" 
                               OnRowCommand="GridView1_RowCommand">
                         <Columns>
                             
-                        <asp:BoundField DataField="App_ID" HeaderText="رقم الطلب" InsertVisible="False" ReadOnly="True" SortExpression="App_ID" />
+                       <%--// <asp:BoundField DataField="App_ID" HeaderText="رقم الطلب" InsertVisible="False" ReadOnly="True" SortExpression="App_ID" />--%>
                             <asp:BoundField DataField="Company_No" HeaderText="رقم المنشأة" SortExpression="Company_No">
                             <ItemStyle Width="100px" />
                             </asp:BoundField>

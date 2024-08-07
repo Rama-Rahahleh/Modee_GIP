@@ -37,8 +37,19 @@ namespace GIP
             {
                 GovernateLockUp();
                 DataTable dt = new DataTable();
-                dt.Columns.AddRange(new DataColumn[2] { new DataColumn("BranchID"), new DataColumn("Placename") });
+                dt.Columns.AddRange(new DataColumn[2] { new DataColumn("BranchID"), new DataColumn("BranchName") });
+
+                DataSourceSelectArguments args = new DataSourceSelectArguments();
+                DataView view = (DataView)SqlDataSource4.Select(DataSourceSelectArguments.Empty);
+                if (view != null)
+                {
+                    dt = view.ToTable();
+                }
+                
+
+
                 ViewState["Branches"] = dt;
+
                 this.BindGrid();
 
 
@@ -383,7 +394,7 @@ namespace GIP
                 RequiredFieldValidator8.Enabled = false;
             }
         }
-
+    
         private string GetRealContentType(Stream fileStream)
         {
             byte[] buffer = new byte[8];
@@ -438,8 +449,8 @@ namespace GIP
 
         protected void BindGrid()
         {
-            GridView1.DataSource = (DataTable)ViewState["Branches"];
-            GridView1.DataBind();
+                GridView1.DataSource = (DataTable)ViewState["Branches"];
+                GridView1.DataBind();           
         }
 
         protected void AddBranch_Click(object sender, EventArgs e)
@@ -486,6 +497,7 @@ namespace GIP
                     {
                         Nat.Visible = false;
                         CompInfoResult.Visible = true;
+                        Session["compno"] = CompNat.Text;
                     }
                     else
                     {
@@ -605,7 +617,8 @@ namespace GIP
                             else
                             {
                                 cmdCompany.Parameters.AddWithValue("@RegistertiontStep", 2);
-                                Session["Step"] = 2;
+                                Session["Step"] = 2;                               
+                                
                             }
                             
                             cmdCompany.ExecuteNonQuery();
@@ -614,6 +627,8 @@ namespace GIP
                         }
                         CompanyInfo.Visible = false;
                         CompanyBranch.Visible = true;
+                        hdn.Value = CompanyNatNumber.Text;
+
                         ContactInfo.Visible = false;
                         Attachment.Visible = false;
                     }
@@ -697,14 +712,14 @@ namespace GIP
 
                             cmdDelagator.Parameters.AddWithValue("@Delegation_No", txtNatNo.Text);
                             cmdDelagator.Parameters.AddWithValue("@Delegation_Name", SanadName.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_Nation",SanadNat.Text);
+                            cmdDelagator.Parameters.AddWithValue("@Delegation_Nation", SanadNat.Text);
                             cmdDelagator.Parameters.AddWithValue("@Status_ID", "2");
                             cmdDelagator.Parameters.AddWithValue("@Type_ID", DelegetTypeList.SelectedValue);
-                            cmdDelagator.Parameters.AddWithValue("@PDelegation_Phone", SanadPhone.Text);
+                            cmdDelagator.Parameters.AddWithValue("@Delegation_Phone", SanadPhone.Text);
                             cmdDelagator.Parameters.AddWithValue("@Delegation_Email", SanadEmail.Text);
                             cmdDelagator.Parameters.AddWithValue("@Delegation_Position", SanadJob.Text);
                             cmdDelagator.Parameters.AddWithValue("@Company_NO", CompNat.Text);
-                            //cmdDelagator.Parameters.Add(new SqlParameter("@Filename", SqlDbType.NVarChar)).Value = "كتاب التفويض.pdf";
+                           // cmdDelagator.Parameters.AddWithValue("@Filename", SqlDbType.NVarChar)).Value = "كتاب التفويض.pdf";
 
 
                             DelagatorCon.Close();
@@ -802,54 +817,74 @@ namespace GIP
                 string CompSignDelFileType = GetRealContentType(CompSignDelFile.PostedFile.InputStream);
                 string CompRegisterFileType = GetRealContentType(CompRegisterFile.PostedFile.InputStream);
                 string CompCertFileType = GetRealContentType(CompCertFile.PostedFile.InputStream);
-                if(Page.IsValid)
+                if (Page.IsValid)
                 {
 
+                    try
+                    {
 
-                   
+                        using (SqlConnection Attachedfiles = new SqlConnection(Basic.GetConnectionString))
+                        {
+                            using (SqlCommand cmdattached = new SqlCommand("INSERT_ALL_FILES", Attachedfiles))
+                            {
+                                Attachedfiles.Open();
+                                cmdattached.Parameters.Clear();
+                                cmdattached.CommandType = CommandType.StoredProcedure;
 
+                                cmdattached.Parameters.AddWithValue("@SignFilename", CompSignDelFile.ToString());
+                                cmdattached.Parameters.AddWithValue("@RegFilename", CompRegisterFile.ToString());
+                                cmdattached.Parameters.AddWithValue("@CertFilename", CompCertFile.ToString());
+                                uploadFiles();
+                                lblmsg.Text = "";
+                                lblmsg.Text = "تم ارسال الطلب بنجاح سيتم اعلامك عند الموافقة او الرفض";
+                            }
+                            //if (CompSignDelFile.HasFile)
+                            //{
+                            //    if (CompSignDelFile.PostedFile.ContentLength < 4194304)
+                            //    {
+                            //        if (CompSignDelFileType == "application/pdf")
+                            //        {
+                            //            string filePath = @"../Documents/TeamCV/" + Sanitizer.GetSafeHtml(Session["ProfileReg"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "(" + Sanitizer.GetSafeHtml(Session["ProjectID"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + ")" + Sanitizer.GetSafeHtml(Session["MemberName"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "_CV" + Path.GetExtension(UpdateCV.FileName);
+                            //            UpdateCV.SaveAs(Server.MapPath(filePath));
+                            //            command.Parameters.AddWithValue("FilePath", Sanitizer.GetSafeHtml(Session["ProfileReg"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "(" + Sanitizer.GetSafeHtml(Session["ProjectID"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + ")" + Sanitizer.GetSafeHtml(Session["MemberName"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "_CV" + Path.GetExtension(UpdateCV.FileName));
+
+                            //        }
+                            //        else
+                            //        {
+                            //            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openUpload();", true);
+
+                            //            UpdateCVEValidator.Validate();
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openUpload();", true);
+
+                            //        UpdateCVFileSize.Validate();
+                            //    }
+                            //}
+                            //else
+                            //{
+
+                            //    CVAttachmentValidator.Validate();
+                            //}
+
+
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        lblmsg.Text = exc.Message;
+                    }
+
+
+                    SanadDiv.Visible = false;
+                    ContactInfo.Visible = false;
+                    CompanyInfo.Visible = false;
+                    CompanyBranch.Visible = false;
+                    Attachment.Visible = false;
                 }
-                //if (CompSignDelFile.HasFile)
-                //{
-                //    if (CompSignDelFile.PostedFile.ContentLength < 4194304)
-                //    {
-                //        if (CompSignDelFileType == "application/pdf")
-                //        {
-                //            string filePath = @"../Documents/TeamCV/" + Sanitizer.GetSafeHtml(Session["ProfileReg"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "(" + Sanitizer.GetSafeHtml(Session["ProjectID"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + ")" + Sanitizer.GetSafeHtml(Session["MemberName"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "_CV" + Path.GetExtension(UpdateCV.FileName);
-                //            UpdateCV.SaveAs(Server.MapPath(filePath));
-                //            command.Parameters.AddWithValue("FilePath", Sanitizer.GetSafeHtml(Session["ProfileReg"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "(" + Sanitizer.GetSafeHtml(Session["ProjectID"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + ")" + Sanitizer.GetSafeHtml(Session["MemberName"].ToString()).Replace("\n", "").Replace("\r", "").Replace("<html>", "").Replace("</html>", "").Replace("<body>", "").Replace("</body>", "") + "_CV" + Path.GetExtension(UpdateCV.FileName));
-
-                //        }
-                //        else
-                //        {
-                //            ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openUpload();", true);
-
-                //            UpdateCVEValidator.Validate();
-                //        }
-                //    }
-                //    else
-                //    {
-                //        ScriptManager.RegisterStartupScript(this, this.GetType(), "modal", "openUpload();", true);
-
-                //        UpdateCVFileSize.Validate();
-                //    }
-                //}
-                //else
-                //{
-
-                //    CVAttachmentValidator.Validate();
-                //}
-
-
             }
-
-
-
-            SanadDiv.Visible = false;
-            ContactInfo.Visible = false;
-            CompanyInfo.Visible = false;
-            CompanyBranch.Visible = false;
-            Attachment.Visible = true;
         }
 
         protected void CheckCSPD_Click(object sender, EventArgs e)

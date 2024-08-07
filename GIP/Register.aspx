@@ -42,7 +42,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  
-    <section id="hero" class="hero section Login">
+    <section id="hero" class="hero section Login" dir="rtl">
 
         <img src="Asset/img/hero-bg-abstract.jpg" alt="" data-aos="fade-in" class="">
 
@@ -318,7 +318,7 @@
                                             OnClick="AddBranch_Click" ValidationGroup="CompanyBranch" />
 
                                         <div class="table-responsive mt-2" dir="rtl">
-                                            <asp:GridView ID="GridView1" runat="server" DataKeyNames="BranchID"
+                                            <asp:GridView ID="GridView1" runat="server"
                                                 Width="100%"
                                                 CssClass= "table-bordered table-hover table-striped"
                                                 HorizontalAlign="Center"
@@ -326,17 +326,7 @@
                                                 ForeColor="#333333"
                                                 AutoGenerateColumns="False"
                                                 EmptyDataText="لا يوجد فروع"
-                                                OnRowCommand="GridView1_RowCommand">
-                                                <Columns>
-                                                    <asp:BoundField DataField="BranchID" HeaderText="التسلسل">
-                                                        <ItemStyle></ItemStyle>
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Placename" HeaderText="الفرع">
-                                                        <ItemStyle></ItemStyle>
-                                                    </asp:BoundField>
-
-                                                    <asp:ButtonField ButtonType="Image" CommandName="DeleteRow" ImageUrl="~/Asset/img/Delete.png" Text="حذف" />
-                                                </Columns>
+                                                OnRowCommand="GridView1_RowCommand" >
 
 
 
@@ -348,23 +338,31 @@
                                                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                                 <SortedDescendingHeaderStyle BackColor="#383838" />
 
+                                                <Columns>
+                                                    <asp:BoundField DataField="BranchID" />
+                                                    <asp:BoundField DataField="BranchName" />
+                                                    <asp:ButtonField ButtonType="Image" Text="Button" />
+                                                </Columns>
+
                                                 <HeaderStyle ForeColor="#1277a7" Font-Bold="true" CssClass="TableHeader" Font-Size="x-small" />
                                                 <RowStyle BackColor="#FFFFFFF" ForeColor="#333333" HorizontalAlign="Center" Font-Size="x-small" Font-Bold="true" BorderColor="White" />
                                             </asp:GridView>
 
+                                            <asp:HiddenField ID="hdn" runat="server" />
+
                                             <asp:SqlDataSource ID="SqlDataSource4" runat="server"
                                                 ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>"
-                                                SelectCommand="Read_All_Branch" SelectCommandType="StoredProcedure">
+                                                SelectCommand="Read_All_Branch" SelectCommandType="StoredProcedure" >
                                                 <SelectParameters>
-                                                    <asp:SessionParameter Name="Company_No" SessionField="compno" Type="Int32" />
+                                                    <asp:ControlParameter ControlID="hdn" Name="Company_No" PropertyName="Value" />
                                                 </SelectParameters>
                                             </asp:SqlDataSource>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 align-content-center " style="text-align: center;">
-                                        <asp:Button ID="Next2" ValidationGroup="CompanyInfo" runat="server"
-                                            OnClick="Next2_Click"
+                                    <div class="col-md-12 align-ct2" ValidationGroup="CompanyInfo" runat="server"
+                                            OnClick="ontent-center " style="text-align: center;">
+                                        <asp:Button ID="Next2" OnClick="Next2_Click" runat="server"
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
 
                                     </div>
@@ -498,7 +496,7 @@
                                 </div>
 
                                 <div id="Attachment" runat="server" visible="false" >
-                                    <asp:Label ID="lblmsg" runat="server"  </label>
+                                    <asp:Label ID="lblmsg" runat="server" Font-Bold="True" ForeColor="Red" />
                                     <div>
                                         <asp:Label ID="Label19" runat="server" CssClass="form-label mb-2" Text="صورة كتاب التفويض بالتوقيع"
                                             Font-Bold="true" Font-Size="Small"></asp:Label>
@@ -579,7 +577,7 @@
                                     </div>
                                     <div>
                                         <asp:CheckBox ID="chkApprove" runat="server"
-                                            Text=" - اقر انا معبئ الطلب أن جميع المعلومات المعبأة بهذا الطلب صحيحة، واتحمل مسؤولية اي خطأ" Checked="true" />
+                                            Text=" أتعهد بصحة البيانات المدخلة واوافق على استرجاع بياناتي الشخصية والاطلاع عليها ومعالجتها من قبل الجهات والأطراف المعنية ذات العلاقة، وذلك لغايات التقديم والحصول على الخدمة." Checked="true" Font-Bold="True" />
                                     </div>
 
                                     <div class="col-md-12 align-content-center " style="text-align: center;">
@@ -594,13 +592,12 @@
                         </div>
                     </ContentTemplate>
                     <Triggers>
-                     
-                         <asp:PostBackTrigger ControlID="Next2" />
+                               <asp:PostBackTrigger ControlID="AddBranch" />
+                               <asp:PostBackTrigger ControlID="Next2" />
                                <asp:PostBackTrigger ControlID="CheckComp" />
                                <asp:PostBackTrigger ControlID="Next3" />
-                        <asp:PostBackTrigger ControlID="Next4" />
-                       
-            
+                               <asp:PostBackTrigger ControlID="Next4" />
+                      
                     </Triggers>
                 </asp:UpdatePanel>
             </div>

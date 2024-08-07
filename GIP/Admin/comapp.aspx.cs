@@ -28,7 +28,7 @@ namespace GIP
                 Session["appid"] = id;
                 Session["Compno"] = GridView1.Rows[index].Cells[1].Text;
                 Session["log"] = "yesyoucan";
-                Session["status"] = GridView1.Rows[index].Cells[18].Text;
+                //Session["status"] = GridView1.Rows[index].Cells[18].Text;
                 Response.Redirect("ComDetails.aspx");
             }
         }
