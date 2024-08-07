@@ -45,14 +45,13 @@ namespace GIP
                 {
                     dt = view.ToTable();
                 }
-                
+                DelegetTypeList.DataBind();
 
 
                 ViewState["Branches"] = dt;
 
                 this.BindGrid();
-
-
+           
 
                 //if (Session["Step"] != null)
                 //{
@@ -80,6 +79,8 @@ namespace GIP
                 //    }
                 //}
             }
+     
+          
         }
         private void GetPersonNationality(string id)
         {
@@ -198,7 +199,7 @@ namespace GIP
                         else
                         {
                             Hasname = false;
-                         //   ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CallMyFunction", "showContent('error','الرقم الوطني لشركة غير قائمة');", true);
+                          ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CallMyFunction", "showContent('error','الرقم الوطني لشركة غير قائمة');", true);
 
                         }
                     }
@@ -259,7 +260,7 @@ namespace GIP
                     else
                     {
                         Hasname = false;
-                      //  ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CallMyFunction", "showContent('error','الرقم الوطني لمؤسسة غير صحيح');", true);
+                       ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "CallMyFunction", "showContent('error','الرقم الوطني لمؤسسة غير صحيح');", true);
 
                     }
                 }
@@ -285,7 +286,7 @@ namespace GIP
 
                 if (CorporationBasicInfo != null)
                 {
-                    if(CorporationBasicInfo.Status!="-1")
+                    if (CorporationBasicInfo.Status != "-1")
                     {
                         SSCNumber.Text = CorporationBasicInfo.CorporationBasicInfo_Array[0].CompanyID.ToString();
                         SSCNumber.Enabled = false;
@@ -293,10 +294,10 @@ namespace GIP
                     else
                     {
                         SSCNumber.Text = CorporationBasicInfo.StatusDescription.ToString();
-                       SSCNumber.Enabled = false;
+                        SSCNumber.Enabled = false;
                     }
 
-                   
+
                 }
             }
 
@@ -331,7 +332,7 @@ namespace GIP
                 SanadEmail.Text = IDMuserInfoClass.result.attributes.email[0].ToString();
                 string NatoinalID = IDMuserInfoClass.result.attributes.nationalNumber[0].ToString();
 
-               
+
 
                 Session["SanadName"] = IDMuserInfoClass.result.attributes.userFullName_ar[0].ToString();
                 Session["SanadEmail"] = IDMuserInfoClass.result.attributes.email[0].ToString();
@@ -341,9 +342,10 @@ namespace GIP
 
         public void CompanyDeatlis()
         {
-            try { 
-            
-            using(SqlConnection connection=new SqlConnection((Basic.GetConnectionString)))
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection((Basic.GetConnectionString)))
                 {
                     using (SqlCommand Command = new SqlCommand("PROC_READ_COMPANY_INFO", connection))
                     {
@@ -351,26 +353,26 @@ namespace GIP
                         Command.CommandType = CommandType.StoredProcedure;
                         Command.Parameters.AddWithValue("@Company_No", CompNat.Text);
                         SqlDataReader dr = Command.ExecuteReader();
-                        while(dr.Read())
+                        while (dr.Read())
                         {
                             Session["Step"] = dr["RegistertiontStep"].ToString();
                             CompanyNatNumber.Text = dr["Company_No"].ToString();
                             CompanyName.Text = dr["Company_Name"].ToString();
-                            CompanyPhone.Text= dr["Company_Phone"].ToString();
-                            CompanyEmail.Text=dr["Company_Email"].ToString();
-                            SSCNumber.Text= dr["Insurance_NO"].ToString();
-                            CompanyRegDate.Text= dr["Establishment_Date"].ToString();
-                            MainActive.Text=dr["Main_Activity"].ToString();
-                              
-                            CompSignDel.Text= dr["SignDelegatorName"].ToString();
+                            CompanyPhone.Text = dr["Company_Phone"].ToString();
+                            CompanyEmail.Text = dr["Company_Email"].ToString();
+                            SSCNumber.Text = dr["Insurance_NO"].ToString();
+                            CompanyRegDate.Text = dr["Establishment_Date"].ToString();
+                            MainActive.Text = dr["Main_Activity"].ToString();
+
+                            CompSignDel.Text = dr["SignDelegatorName"].ToString();
                             string x = dr["GovernateID"].ToString();
                             GovernateList.SelectedValue = x;
                         }
                         connection.Close();
-;
+                        ;
                     }
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -394,7 +396,7 @@ namespace GIP
                 RequiredFieldValidator8.Enabled = false;
             }
         }
-    
+
         private string GetRealContentType(Stream fileStream)
         {
             byte[] buffer = new byte[8];
@@ -442,26 +444,44 @@ namespace GIP
         public static bool IsGif(byte[] buffer)
         {
             // Check for GIF signature: "GIF"
-            return buffer.Length >= 3 && buffer[0] == 0x47 && buffer[1] == 0x49 && buffer[2] == 0x46; 
-                                                                                                      
-                                                                                                      
+            return buffer.Length >= 3 && buffer[0] == 0x47 && buffer[1] == 0x49 && buffer[2] == 0x46;
+
+
         }
 
         protected void BindGrid()
         {
-                GridView1.DataSource = (DataTable)ViewState["Branches"];
-                GridView1.DataBind();           
+
+            GridView1.DataBind();
         }
 
         protected void AddBranch_Click(object sender, EventArgs e)
         {
 
-            DataTable dt = (DataTable)ViewState["Branches"];
-            dt.Rows.Add(branchCounter + 1, CompBranch.Text.Trim());
-            ViewState["Branches"] = dt;
-            this.BindGrid();
-            //txtName.Text = string.Empty;
-            CompBranch.Text = string.Empty;
+            //PROC_INSERT_BRANCH_INFO
+
+            using (SqlConnection connection = new SqlConnection(Basic.GetConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                SqlCommand command = new SqlCommand("PROC_INSERT_BRANCH_INFO", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                command.Parameters.AddWithValue("Company_No", Session["compno"].ToString());
+                command.Parameters.AddWithValue("BranchName", CompBranch.Text);
+                command.Parameters.AddWithValue("RegistertiontStep", 3);
+                command.ExecuteNonQuery();
+                connection.Close();
+                BindGrid();
+            }
+                catch (Exception ex)
+            {
+
+                File.AppendAllText(Server.MapPath(Basic.Errorpath), Environment.NewLine + "addBranch:  " + ex.Message + ex.StackTrace + " " + DateTime.Now);
+
+            }
+        }
 
 
         }
@@ -486,9 +506,10 @@ namespace GIP
             {
                 try
                 {
+                    Session["compno"] = CompNat.Text;
                     CompanyDeatlis();
-                    
-                   
+
+
                     GetCompanyName();
                     GetCompanySSC();
 
@@ -497,7 +518,7 @@ namespace GIP
                     {
                         Nat.Visible = false;
                         CompInfoResult.Visible = true;
-                        Session["compno"] = CompNat.Text;
+
                     }
                     else
                     {
@@ -567,7 +588,7 @@ namespace GIP
                             CompCon.Open();
                             if (CompanyNatNumber != null && CompanyNatNumber.Text != string.Empty && CompanyNatNumber.Text != "")
                             {
-                                cmdCompany.Parameters.AddWithValue("@Company_No",long.Parse(CompanyNatNumber.Text));
+                                cmdCompany.Parameters.AddWithValue("@Company_No", long.Parse(CompanyNatNumber.Text));
                             }
                             if (CompanyName.Text != null && CompanyName.Text != string.Empty && CompanyName.Text != "")
                             {
@@ -585,7 +606,7 @@ namespace GIP
                             {
                                 if (SSCNumber.Text == "لا يوجد منشأة تحمل الرقم الوطني المدخل")
                                 {
-                                    cmdCompany.Parameters.AddWithValue("@Insurance_NO",-1);
+                                    cmdCompany.Parameters.AddWithValue("@Insurance_NO", -1);
                                 }
                                 else
                                 {
@@ -595,7 +616,7 @@ namespace GIP
 
                             if (CompanyRegDate.Text != null && CompanyRegDate.Text != string.Empty && CompanyRegDate.Text != "")
                             {
-                                cmdCompany.Parameters.AddWithValue("@Establishment_Date",CompanyRegDate.Text);
+                                cmdCompany.Parameters.AddWithValue("@Establishment_Date", CompanyRegDate.Text);
                             }
                             if (MainActive.Text != null && MainActive.Text != string.Empty && MainActive.Text != "")
                             {
@@ -604,31 +625,31 @@ namespace GIP
 
                             if (GovernateList.SelectedValue != null)
                             {
-                                cmdCompany.Parameters.AddWithValue("@GovernateID",GovernateList.SelectedValue);
+                                cmdCompany.Parameters.AddWithValue("@GovernateID", GovernateList.SelectedValue);
                             }
                             if (CompSignDel.Text != null && CompSignDel.Text != string.Empty && CompSignDel.Text != "")
                             {
-                                cmdCompany.Parameters.AddWithValue("@SignDelegatorName",CompSignDel.Text);
+                                cmdCompany.Parameters.AddWithValue("@SignDelegatorName", CompSignDel.Text);
                             }
                             if (Convert.ToInt32(Session["Step"]) >= 2)
                             {
-                                cmdCompany.Parameters.AddWithValue("@RegistertiontStep",Convert.ToInt32(Session["Step"].ToString()));
+                                cmdCompany.Parameters.AddWithValue("@RegistertiontStep", Convert.ToInt32(Session["Step"].ToString()));
                             }
                             else
                             {
                                 cmdCompany.Parameters.AddWithValue("@RegistertiontStep", 2);
-                                Session["Step"] = 2;                               
-                                
-                            }
-                            
-                            cmdCompany.ExecuteNonQuery();
+                                Session["Step"] = 2;
 
+                            }
+
+                            cmdCompany.ExecuteNonQuery();
+                            Session["Company_No"] = CompanyNatNumber.Text;
 
                         }
                         CompanyInfo.Visible = false;
                         CompanyBranch.Visible = true;
                         hdn.Value = CompanyNatNumber.Text;
-
+                        BindGrid();
                         ContactInfo.Visible = false;
                         Attachment.Visible = false;
                     }
@@ -654,31 +675,65 @@ namespace GIP
             {
                 try
                 {
-
-                    using (SqlConnection BranchCon = new SqlConnection(Basic.GetConnectionString))
-                    {
-                        using (SqlCommand cmdBranch = new SqlCommand("PROC_INSERT_BRANCH_INFO", BranchCon))
+                 
+                        using (SqlConnection CompCon = new SqlConnection(Basic.GetConnectionString))
                         {
-                            cmdBranch.CommandType = CommandType.StoredProcedure;
 
-                            BranchCon.Open();
-                            for (int i = 0; i < GridView1.Rows.Count; i++)
+                            using (SqlCommand cmdCompany = new SqlCommand("selectdelegatorcompno", CompCon))
                             {
-                                cmdBranch.Parameters.Clear();
-                                cmdBranch.Parameters.Add(new SqlParameter("@BranchID", SqlDbType.Int)).Value = i + 1;
-                                cmdBranch.Parameters.Add(new SqlParameter("@Company_No", SqlDbType.BigInt)).Value = CompNat.Text;
-                                cmdBranch.Parameters.Add(new SqlParameter("@BranchName", SqlDbType.NVarChar)).Value = GridView1.Rows[i].Cells[1].Text;
-                                cmdBranch.Parameters.Add(new SqlParameter("@RegistertiontStep", SqlDbType.Int)).Value =3;
-                                 Session["Step"] = 3;
-                                cmdBranch.ExecuteNonQuery();
+
+                                cmdCompany.Parameters.Clear();
+                                cmdCompany.CommandType = CommandType.StoredProcedure;
+                                CompCon.Open();
+                                cmdCompany.Parameters.AddWithValue("compno", Session["compno"].ToString());
+                                SqlDataReader reader = cmdCompany.ExecuteReader();
+                                while (reader.Read())
+                                {
+
+                                    if (reader["Delegation_No"] != DBNull.Value)
+                                    {
+                                        SanadNat.Text = reader["Delegation_No"].ToString();
+                                    }
+
+                                    if (reader["Delegation_Name"] != DBNull.Value)
+                                    {
+                                        SanadName.Text = reader["Delegation_Name"].ToString();
+                                    }
+                                    if (reader["Delegation_Email"] != DBNull.Value)
+                                    {
+                                        SanadEmail.Text = reader["Delegation_Email"].ToString();
+                                    }
+                                    if (reader["Delegation_Phone"] != DBNull.Value)
+                                    {
+                                        SanadPhone.Text = reader["Delegation_Phone"].ToString();
+                                    }
+                                    if (reader["Delegation_Nation"] != DBNull.Value)
+                                    {
+                                        SanadNat.Text = reader["Delegation_Nation"].ToString();
+                                    }
+
+                                    if (reader["Type_ID"] != DBNull.Value)
+                                    {
+
+                                        DelegetTypeList.SelectedValue = reader["Type_ID"].ToString();
+                                    }
+                                    if (reader["Delegation_Position"] != DBNull.Value)
+                                    {
+                                        SanadJob.Text = reader["Delegation_Position"].ToString();
+                                    }
+
+
+
+                                }
+
                             }
-                             
-                            CompanyInfo.Visible = false;
-                            CompanyBranch.Visible = false;
-                            ContactInfo.Visible = true;
-                            Attachment.Visible = false;
                         }
-                    }
+                  
+                    CompanyInfo.Visible = false;
+                    CompanyBranch.Visible = false;
+                    ContactInfo.Visible = true;
+                    Attachment.Visible = false;
+
                 }
                 catch (Exception ex)
                 {
@@ -688,9 +743,8 @@ namespace GIP
 
                     }
                 }
-            }
 
-         
+            }
         }
 
         protected void Next3_Click(object sender, EventArgs e)
@@ -701,35 +755,43 @@ namespace GIP
                 {
 
                     using (SqlConnection DelagatorCon = new SqlConnection(Basic.GetConnectionString))
+                {
+                    using (SqlCommand cmdDelagator = new SqlCommand("PROC_INSERT_DELEGATOR_INFO", DelagatorCon))
                     {
-                        using (SqlCommand cmdDelagator = new SqlCommand("PROC_INSERT_DELEGATOR_INFO", DelagatorCon))
-                        {
-                            DelagatorCon.Open();
+                        DelagatorCon.Open();
 
 
-                            cmdDelagator.Parameters.Clear();
-                            cmdDelagator.CommandType = CommandType.StoredProcedure;
+                        cmdDelagator.Parameters.Clear();
+                        cmdDelagator.CommandType = CommandType.StoredProcedure;
 
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_No", txtNatNo.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_Name", SanadName.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_Nation", SanadNat.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Status_ID", "2");
-                            cmdDelagator.Parameters.AddWithValue("@Type_ID", DelegetTypeList.SelectedValue);
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_Phone", SanadPhone.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_Email", SanadEmail.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Delegation_Position", SanadJob.Text);
-                            cmdDelagator.Parameters.AddWithValue("@Company_NO", CompNat.Text);
-                           // cmdDelagator.Parameters.AddWithValue("@Filename", SqlDbType.NVarChar)).Value = "كتاب التفويض.pdf";
+                        cmdDelagator.Parameters.AddWithValue("@Delegation_No", txtNatNo.Text);
+                        cmdDelagator.Parameters.AddWithValue("@Delegation_Name", SanadName.Text);
+                        cmdDelagator.Parameters.AddWithValue("@Delegation_Nation", SanadNat.Text);
+                        cmdDelagator.Parameters.AddWithValue("@Status_ID", "2");
+                        cmdDelagator.Parameters.AddWithValue("@Type_ID", DelegetTypeList.SelectedValue);
+                        cmdDelagator.Parameters.AddWithValue("@Phone_No", SanadPhone.Text);
+                        cmdDelagator.Parameters.AddWithValue("@Email", SanadEmail.Text);
+                        cmdDelagator.Parameters.AddWithValue("@Delegation_Position", SanadJob.Text);
+                        cmdDelagator.Parameters.AddWithValue("@Company_NO", CompNat.Text);
+                        // cmdDelagator.Parameters.AddWithValue("@Filename", SqlDbType.NVarChar)).Value = "كتاب التفويض.pdf";
 
-
-                            DelagatorCon.Close();
-                            CompanyInfo.Visible = false;
-                            CompanyBranch.Visible = false;
-                            ContactInfo.Visible = false;
-                            Attachment.Visible = true;
+                        cmdDelagator.ExecuteNonQuery();
+                        DelagatorCon.Close();
+                        CompanyInfo.Visible = false;
+                        CompanyBranch.Visible = false;
+                        ContactInfo.Visible = false;
+                        Attachment.Visible = true;
+                            string folderPath = Server.MapPath("~/CompanyFiles/" + Session["compno"].ToString() + "/");
+                            CompCertFileLink.Text = "رخصة مهن" + ".pdf";
+                            CompRegisterFileLink.Text = "شهادة تسجيل" + ".pdf";
+                            CompSignDelFilelink.Text = "كتاب التفويض بالتوقيع" + ".pdf";
+                            CompCertFileLink.Visible = true;
+                            CompRegisterFileLink.Visible = true;
+                            CompSignDelFilelink.Visible = true;
+                       
                         }
-                    }
                 }
+            }
                 catch (Exception ex)
                 {
                     if (!(ex is ThreadAbortException))
@@ -751,7 +813,17 @@ namespace GIP
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
+
             }
+            else
+            {
+                CompCertFileLink.Text = "رخصة مهن" + ".pdf";
+                CompRegisterFileLink.Text = "شهادة تسجيل" + ".pdf";
+                CompSignDelFilelink.Text = "كتاب التفويض بالتوقيع" + ".pdf";
+                CompCertFileLink.Visible = true;
+                CompRegisterFileLink.Visible = true;
+                CompSignDelFilelink.Visible = true;
+              }
 
             try
             {
@@ -830,10 +902,11 @@ namespace GIP
                                 Attachedfiles.Open();
                                 cmdattached.Parameters.Clear();
                                 cmdattached.CommandType = CommandType.StoredProcedure;
-
-                                cmdattached.Parameters.AddWithValue("@SignFilename", CompSignDelFile.ToString());
-                                cmdattached.Parameters.AddWithValue("@RegFilename", CompRegisterFile.ToString());
-                                cmdattached.Parameters.AddWithValue("@CertFilename", CompCertFile.ToString());
+                                cmdattached.Parameters.AddWithValue("@Company_no", Session["compno"].ToString());
+                                cmdattached.Parameters.AddWithValue("@SignFilename", "كتاب التفويض بالتوقيع" + ".pdf");
+                                cmdattached.Parameters.AddWithValue("@RegFilename", "شهادة تسجيل" + ".pdf");
+                                cmdattached.Parameters.AddWithValue("@CertFilename", "رخصة مهن" + ".pdf");
+                                cmdattached.ExecuteNonQuery();
                                 uploadFiles();
                                 lblmsg.Text = "";
                                 lblmsg.Text = "تم ارسال الطلب بنجاح سيتم اعلامك عند الموافقة او الرفض";
@@ -883,6 +956,7 @@ namespace GIP
                     CompanyInfo.Visible = false;
                     CompanyBranch.Visible = false;
                     Attachment.Visible = false;
+                    Response.Redirect("Home.aspx");
                 }
             }
         }
@@ -890,6 +964,23 @@ namespace GIP
         protected void CheckCSPD_Click(object sender, EventArgs e)
         {
             GetPersonNationality(txtNatNo.Text);
+        }
+
+        protected void CompSignDelFilelink_Click(object sender, EventArgs e)
+        {
+           Response.Redirect("~/CompanyFiles/" + Session["compno"].ToString() + "/" + "كتاب التفويض بالتوقيع" + ".pdf");
+         
+        }
+
+        protected void CompCertFileLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CompanyFiles/" + Session["compno"].ToString() + "/" + "رخصة مهن" + ".pdf");
+        }
+
+        protected void CompRegisterFileLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CompanyFiles/" + Session["compno"].ToString() + "/" + "شهادة تسجيل" + ".pdf");
+
         }
     }
     public class ApiResponse
@@ -901,10 +992,10 @@ namespace GIP
 
     public class PersonInfo
     {
-       public string ANAME1 { get; set; }
+        public string ANAME1 { get; set; }
         public string ANAME2 { get; set; }
         public string ANAME3 { get; set; }
-        public string ANAME4 { get; set; } 
+        public string ANAME4 { get; set; }
 
         public string NATIONALITY { get; set; }
 

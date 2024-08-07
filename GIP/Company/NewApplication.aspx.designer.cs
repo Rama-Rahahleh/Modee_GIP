@@ -393,6 +393,15 @@ namespace GIP.Company
         protected global::System.Web.UI.WebControls.FileUpload StudiesCer;
 
         /// <summary>
+        /// StudiesCerFilelink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton StudiesCerFilelink;
+
+        /// <summary>
         /// RequiredFieldValidator10 control.
         /// </summary>
         /// <remarks>

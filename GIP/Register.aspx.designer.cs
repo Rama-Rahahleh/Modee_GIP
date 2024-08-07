@@ -456,15 +456,6 @@ namespace GIP
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// hdn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdn;
-
-        /// <summary>
         /// SqlDataSource4 control.
         /// </summary>
         /// <remarks>
@@ -708,6 +699,15 @@ namespace GIP
         protected global::System.Web.UI.WebControls.FileUpload CompSignDelFile;
 
         /// <summary>
+        /// CompSignDelFilelink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CompSignDelFilelink;
+
+        /// <summary>
         /// RequiredFieldValidator8 control.
         /// </summary>
         /// <remarks>
@@ -751,6 +751,15 @@ namespace GIP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload CompRegisterFile;
+
+        /// <summary>
+        /// CompRegisterFileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CompRegisterFileLink;
 
         /// <summary>
         /// RequiredFieldValidator9 control.
@@ -798,6 +807,15 @@ namespace GIP
         protected global::System.Web.UI.WebControls.FileUpload CompCertFile;
 
         /// <summary>
+        /// CompCertFileLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CompCertFileLink;
+
+        /// <summary>
         /// RequiredFieldValidator10 control.
         /// </summary>
         /// <remarks>
@@ -841,5 +859,14 @@ namespace GIP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Next4;
+
+        /// <summary>
+        /// hdn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn;
     }
 }

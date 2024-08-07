@@ -15,6 +15,11 @@
 
 
     </script>
+    <script type="text/javascript">
+        function SetTarget() {
+            document.forms[0].target = "_blank";
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -252,6 +257,8 @@
 
                                         <div class="container">
                                             <asp:FileUpload ID="StudiesCer" CssClass="form-control mb-4" runat="server" />
+                                             <asp:LinkButton ID="StudiesCerFilelink" runat="server"  Visible="false" OnClick="StudiesCerFilelink_Click" OnClientClick="SetTarget()"></asp:LinkButton>
+                                      
                                         </div>
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator10" ControlToValidate="StudiesCer"
@@ -338,6 +345,7 @@
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="CheckNat" />
+                        <asp:AsyncPostBackTrigger ControlID="Save" />
                     </Triggers>
                 </asp:UpdatePanel>
             </div>

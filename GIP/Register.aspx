@@ -38,7 +38,16 @@
 
 
     </script>
-
+    <script>
+        function NewWindow() {
+            document.forms[1].target = "_blank";
+        }
+    </script>
+    <script type="text/javascript">
+        function SetTarget() {
+            document.forms[0].target = "_blank";
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  
@@ -318,8 +327,8 @@
                                             OnClick="AddBranch_Click" ValidationGroup="CompanyBranch" />
 
                                         <div class="table-responsive mt-2" dir="rtl">
-                                            <asp:GridView ID="GridView1" runat="server" DataKeyNames="BranchID"
-                                                Width="100%"
+                                            <asp:GridView ID="GridView1" runat="server" DataKeyNames="BranchID" DataSourceID="SqlDataSource4"
+                                                Width="100%" 
                                                 CssClass= "table-bordered table-hover table-striped"
                                                 HorizontalAlign="Center"
                                                 BackColor="White" BorderStyle="None"
@@ -331,7 +340,7 @@
                                                     <asp:BoundField DataField="BranchID" HeaderText="التسلسل">
                                                         <ItemStyle></ItemStyle>
                                                     </asp:BoundField>
-                                                    <asp:BoundField DataField="Placename" HeaderText="الفرع">
+                                                    <asp:BoundField DataField="BranchName" HeaderText="الفرع">
                                                         <ItemStyle></ItemStyle>
                                                     </asp:BoundField>
 
@@ -473,16 +482,17 @@
                                             runat="server" Font-Size="10pt" AppendDataBoundItems="true"
                                             DataSourceID="SqlDataSource3" ClientIDMode="Static"
                                             OnSelectedIndexChanged="DelegetTypeList_SelectedIndexChanged"
-                                            DataTextField="Delegation_Type" DataValueField="Delegation_ID">
-                                            <asp:ListItem Text="صفة مقدم الطلب" Value="0" />
+                                            DataTextField="Delegation_Type" DataValueField="Delegation_ID" >
+                                            <asp:ListItem Text="صفة مقدم الطلب" Value=0  Selected="False"/>
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource3" runat="server"
                                             ConnectionString="<%$ ConnectionStrings:GIPInatiativesConnectionString %>"
                                             SelectCommand="DelegationLookUp" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
 
+
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator2" ControlToValidate="DelegetTypeList"
-                                            ErrorMessage="يرجى اختيار صفة المقدم   !" InitialValue="0"
+                                            ErrorMessage="يرجى اختيار صفة المقدم   !" InitialValue=0
                                             CssClass="validator" Display="Dynamic"
                                             ForeColor="Red" Font-Size="Small" Font-Bold="true"
                                             ValidationGroup="ApplicantInfo">  
@@ -495,6 +505,7 @@
                                             CausesValidation="true" CssClass="btn btn-primary mt-5 login-btn col-md-12" Text="التالي"></asp:Button>
 
                                     </div>
+
                                 </div>
 
                                 <div id="Attachment" runat="server" visible="false" >
@@ -505,7 +516,9 @@
 
                                         <div class="container">
                                             <asp:FileUpload ID="CompSignDelFile" CssClass="form-control mb-4" runat="server" />
+                                                   <asp:LinkButton ID="CompSignDelFilelink" runat="server"  Visible="false" OnClick="CompSignDelFilelink_Click" OnClientClick="SetTarget()"></asp:LinkButton>
                                         </div>
+                                        
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator8" ControlToValidate="CompSignDelFile"
                                             ErrorMessage="يرجى ادخال كتاب التفويض  !"
@@ -524,6 +537,7 @@
                                             ControlToValidate="CompSignDelFile" ValidationGroup="CompanyAttch"
                                             Font-Size="X-Small" Font-Bold="true" ForeColor="Red" Display="Dynamic" SetFocusOnError="true"
                                             ClientValidationFunction="CompSignDelFileSize"></asp:CustomValidator>
+                                 
                                     </div>
                                     <div>
                                         <asp:Label ID="Label20" runat="server" CssClass="form-label mb-2" Text="شهادة تسجيل الشركة"
@@ -531,6 +545,7 @@
 
                                         <div class="container">
                                             <asp:FileUpload ID="CompRegisterFile" CssClass="form-control mb-4" runat="server" />
+                                                 <asp:LinkButton ID="CompRegisterFileLink" runat="server" Visible="false"  OnClick="CompRegisterFileLink_Click" OnClientClick="SetTarget()"></asp:LinkButton>
                                         </div>
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator9" ControlToValidate="CompRegisterFile"
@@ -557,6 +572,7 @@
 
                                         <div class="container">
                                             <asp:FileUpload ID="CompCertFile" CssClass="form-control mb-4" runat="server" />
+                                                   <asp:LinkButton ID="CompCertFileLink" runat="server" Visible="false" OnClick="CompCertFileLink_Click" OnClientClick="SetTarget()"></asp:LinkButton>
                                         </div>
                                         <asp:RequiredFieldValidator runat="server"
                                             ID="RequiredFieldValidator10" ControlToValidate="CompCertFile"
@@ -592,15 +608,15 @@
 
                             </div>
                         </div>
-                    </ContentTemplate>
+                        <asp:HiddenField ID="hdn" runat="server" />
+               </ContentTemplate>
                     <Triggers>
                      
                          <asp:PostBackTrigger ControlID="Next2" />
                                <asp:PostBackTrigger ControlID="CheckComp" />
                                <asp:PostBackTrigger ControlID="Next3" />
                         <asp:PostBackTrigger ControlID="Next4" />
-                       
-            
+                                        
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
