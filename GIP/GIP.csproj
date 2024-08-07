@@ -200,8 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AllTrainers.aspx" />
-    <Content Include="Admin\comapp.aspx" />
-    <Content Include="Admin\ComDetails.aspx" />
+    <Content Include="Admin\Companies.aspx" />
+    <Content Include="Admin\CompanyDetails.aspx" />
     <Content Include="Admin\ComTrDetail.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\VerifyUser.aspx" />
@@ -1885,8 +1885,10 @@
     <Content Include="Asset\css\Forms.css" />
     <Content Include="Asset\css\Grids.css" />
     <Content Include="Asset\css\main.css" />
+    <Content Include="Asset\css\ModalPopup.css" />
     <Content Include="Asset\css\select2\select2.min.css" />
     <Content Include="Asset\css\select2\select2.min.js" />
+    <Content Include="Asset\css\Tabs.css" />
     <Content Include="Asset\css\toastr\toastr.min.css" />
     <Content Include="Asset\css\toastr\toastr.min.js" />
     <Content Include="Asset\font\Cairo-Black.svg" />
@@ -2463,6 +2465,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="ErrorLog\Admin.txt" />
+    <Content Include="ErrorLog\AdminLogin.txt" />
     <Content Include="ErrorLog\Josn.txt" />
     <Content Include="ErrorLog\Login.txt" />
     <Content Include="favicon.ico" />
@@ -2624,19 +2628,19 @@
     <Compile Include="Admin\AllTrainers.aspx.designer.cs">
       <DependentUpon>AllTrainers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\comapp.aspx.cs">
-      <DependentUpon>comapp.aspx</DependentUpon>
+    <Compile Include="Admin\Companies.aspx.cs">
+      <DependentUpon>Companies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\comapp.aspx.designer.cs">
-      <DependentUpon>comapp.aspx</DependentUpon>
+    <Compile Include="Admin\Companies.aspx.designer.cs">
+      <DependentUpon>Companies.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ComDetails.aspx.cs">
-      <DependentUpon>ComDetails.aspx</DependentUpon>
+    <Compile Include="Admin\CompanyDetails.aspx.cs">
+      <DependentUpon>CompanyDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ComDetails.aspx.designer.cs">
-      <DependentUpon>ComDetails.aspx</DependentUpon>
+    <Compile Include="Admin\CompanyDetails.aspx.designer.cs">
+      <DependentUpon>CompanyDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ComTrDetail.aspx.cs">
       <DependentUpon>ComTrDetail.aspx</DependentUpon>
@@ -2798,6 +2802,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CompanyFiles\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>

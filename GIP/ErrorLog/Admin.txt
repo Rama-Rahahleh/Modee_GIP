@@ -1,0 +1,81 @@
+﻿
+AdmibLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 197 8/6/2024 3:26:13 PM
+AdmibLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 197 8/6/2024 3:26:25 PM
+AdmibLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 197 8/6/2024 3:27:41 PM
+AdmibLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 197 8/6/2024 3:30:28 PM
+AdmibLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 198 8/6/2024 3:34:36 PM
+AdmibLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 199 8/6/2024 3:41:35 PM
+AdminLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) 8/6/2024 9:29:43 PM
+AdminLogin:  Locked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) 8/6/2024 9:30:57 PM
+AdminLogin:  Result   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 200 8/6/2024 9:33:34 PM
+AdminLogin:  Result   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 200 8/6/2024 9:34:27 PM
+AdminLogin:  Result   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 200 8/6/2024 9:37:06 PM
+AdminLogin:  AdminLocked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 210 8/6/2024 10:03:02 PM
+AdminLogin:  AdminLocked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 210 8/6/2024 10:04:51 PM
+AdminLogin:  Result   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 206 8/6/2024 10:21:43 PM
+AdminLogin:  Result   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.Login.submit_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\Login.aspx.cs:line 219 8/6/2024 10:35:55 PM
+OTP Matching:  rama.rahahleh@modee.gov.joLocked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.VerifyUser.submitOTP_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\VerifyUser.aspx.cs:line 185 8/6/2024 10:44:37 PM
+OTP Matching:  rama.rahahleh@modee.gov.joLocked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.VerifyUser.submitOTP_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\VerifyUser.aspx.cs:line 185 8/6/2024 10:44:40 PM
+OTP Matching:  rama.rahahleh@modee.gov.joLocked   at System.Data.ProviderBase.FieldNameLookup.GetOrdinal(String fieldName)
+   at System.Data.SqlClient.SqlDataReader.GetOrdinal(String name)
+   at System.Data.SqlClient.SqlDataReader.get_Item(String name)
+   at GIP.Admin.VerifyUser.submitOTP_Click(Object sender, EventArgs e) in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\VerifyUser.aspx.cs:line 180 8/6/2024 10:53:37 PM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.CompanyDeatlis() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 98 8/7/2024 12:19:07 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.Company_DELEGATOR() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 144 8/7/2024 12:19:07 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.CompanyDeatlis() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 98 8/7/2024 12:21:04 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.Company_DELEGATOR() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 144 8/7/2024 12:21:04 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.CompanyDeatlis() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 98 8/7/2024 12:21:23 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.Company_DELEGATOR() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 144 8/7/2024 12:21:23 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.CompanyDeatlis() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 98 8/7/2024 12:21:35 AM
+CompCheck:  Object reference not set to an instance of an object.   at GIP.CompanyDetails.Company_DELEGATOR() in E:\مشاريع قائمة\Modee_GIP\Modee_GIP\GIP\Admin\CompanyDetails.aspx.cs:line 144 8/7/2024 12:21:35 AM
