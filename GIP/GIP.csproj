@@ -202,7 +202,7 @@
     <Content Include="Admin\AllTrainers.aspx" />
     <Content Include="Admin\Companies.aspx" />
     <Content Include="Admin\CompanyDetails.aspx" />
-    <Content Include="Admin\ComTrDetail.aspx" />
+    <Content Include="Admin\Trainer_Details.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\VerifyUser.aspx" />
     <Content Include="Asset\css\bootstrap-5.0.2\bootstrap-grid.css" />
@@ -2642,12 +2642,12 @@
     <Compile Include="Admin\CompanyDetails.aspx.designer.cs">
       <DependentUpon>CompanyDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ComTrDetail.aspx.cs">
-      <DependentUpon>ComTrDetail.aspx</DependentUpon>
+    <Compile Include="Admin\Trainer_Details.aspx.cs">
+      <DependentUpon>Trainer_Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ComTrDetail.aspx.designer.cs">
-      <DependentUpon>ComTrDetail.aspx</DependentUpon>
+    <Compile Include="Admin\Trainer_Details.aspx.designer.cs">
+      <DependentUpon>Trainer_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -35,26 +35,27 @@ namespace GIP
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("DetailsRow"))
-            {
-                Int32 index = Convert.ToInt16(e.CommandArgument);
-                Int64 id = Convert.ToInt64(GridView1.DataKeys[index].Value.ToString());
-
-                Session["compno"] = GridView1.Rows[index].Cells[4].Text;
-                Session["trnno"] = id;
-                Session["trstatus"] = GridView1.Rows[index].Cells[8].Text;
-                Session["trapp"] = "go";
-
-                Response.Redirect("ComTrDetail.aspx");
-            }
-            //else if(e.CommandName.Equals("btnsave"))
-            //{ 
-            //}
-            //else if (e.CommandName.Equals("btnreject"))
-            //{
-
-
-            //}
+            { 
              
+                GridViewRow gvr = (GridViewRow)((LinkButton)e.CommandSource).NamingContainer;
+
+                // Get the row index
+                int rowIndex = gvr.RowIndex;
+
+                // Retrieve the ID from the DataKeys collection using the row index
+                Int64 id = Convert.ToInt64(Trainees.DataKeys[rowIndex].Value);
+
+                Session["TranID"]= Trainees.Rows[rowIndex].Cells[2].Text;
+                Session["TranCompID"] = Trainees.Rows[rowIndex].Cells[4].Text;
+
+                //Session["CompNo"] = GridView1.Rows[rowIndex].Cells[2].Text; // Adjust the index if necessary
+              
+
+              
+                Response.Redirect("Trainer_Details.aspx");
+            }
+            
+
         }
 
         protected void btnLoadData_click(object sender, EventArgs e)

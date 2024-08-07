@@ -68,6 +68,11 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
+                                        <asp:LinkButton ID="HaveNote" runat="server" CommandName="NoteRow">إضافة ملاحظة </asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
                                         <asp:LinkButton ID="Decline" runat="server" CommandName="RejectRow">رفض </asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -125,29 +130,33 @@
          </div>
      </div>
  </div>
-
-               <div class="modal fade" id="DeclineStatus"
+           <div class="modal fade" id="HaveNoteStatus"
     aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="icon-box" runat="server" style="background-color:#f23f3f ; color: white">
+                <div class="icon-box" runat="server" style="background-color: #f23f3f; color: white">
                     <i class="fas fa-times-circle"></i>
                 </div>
 
             </div>
             <div class="modal-body text-center">
+                <asp:Label ID="Label3" runat="server" CssClass="form-label mb-2" Text=" يرجى إضافة سبب الرفض"
+                    Font-Bold="true" Font-Size="Small"></asp:Label>
 
-                <p>
-                   يرجى إضافة سبب الرفض 
-                </p>
-                
-                    <asp:TextBox ID="ReasonText" runat="server" ></asp:TextBox>
+                <asp:TextBox ID="ReasonText" runat="server" CssClass="form-control mb-4"
+                    Font-Bold="true" Font-Size="Small" TextMode="MultiLine"></asp:TextBox>
+
+                <asp:RequiredFieldValidator SetFocusOnError="true" ForeColor="red"
+                    Font-Size="Small" Font-Bold="true" Display="Dynamic"
+                    ErrorMessage="يرجى ادخال اسباب الرفض لطلب الشركة"
+                    ID="RequiredFieldValidator3" runat="server" ValidationGroup="HaveNote"
+                    ControlToValidate="ReasonText"></asp:RequiredFieldValidator>
             </div>
             <div class="modal-footer border-2 d-flex justify-content-md-center">
-                <asp:Button type="button" ID="Decline" class="btn"
+                <asp:Button type="button" ID="HaveNote" class="btn" ValidationGroup="HaveNote"
                     Style="background-color: #f23f3f; color: white; font-weight: 700"
-                    OnClick="Decline_Click" runat="server" Text="تأكيد"></asp:Button>
+                    OnClick="HaveNote_Click" runat="server" Text="تأكيد"></asp:Button>
 
                 <button type="button" class="btn btn-secondary btn-close-modal"
                     style="background-color: lightgray; color: white; font-weight: 700"
@@ -157,21 +166,28 @@
         </div>
     </div>
 </div>
+
+   
                </ContentTemplate>
     <Triggers>
      
-         <asp:PostBackTrigger ControlID="GridView1" />
-        <asp:AsyncPostBackTrigger ControlID="Approve" />
        
+        <asp:AsyncPostBackTrigger ControlID="Approve" />
+       <asp:AsyncPostBackTrigger ControlID="HaveNote" />
             
     </Triggers>
 </asp:UpdatePanel>
-    <script>
-       
 
-        //openConfirmDelete
+
+    
+
+    <script>
         function confirmChange() {
             $("#ChangeStatus").modal('show');
+        }
+     
+        function HaveNoteModal() {
+            $("#HaveNoteStatus").modal('show');
         }
     </script>
       <script>
