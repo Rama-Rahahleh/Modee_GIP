@@ -187,11 +187,12 @@ namespace GIP.Company
                 cmdTrainer.Parameters.Add(new SqlParameter("@PhoneNo", SqlDbType.BigInt)).Value = txtPhone.Text;
                 cmdTrainer.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar)).Value = txtEmail.Text;
                 cmdTrainer.Parameters.Add(new SqlParameter("@UniversityID", SqlDbType.NVarChar)).Value = lstUniversity.Text;
-                cmdTrainer.Parameters.Add(new SqlParameter("@SpecialityID", SqlDbType.NVarChar)).Value = lstDepartment.Text;
-                cmdTrainer.Parameters.Add(new SqlParameter("@GPA", SqlDbType.Float)).Value = 91.5;//lblGPA.Text;
-                cmdTrainer.Parameters.Add(new SqlParameter("@GraduateDate", SqlDbType.Int)).Value = 2005;//lblGradYear;
-                cmdTrainer.Parameters.Add(new SqlParameter("@StartDate", SqlDbType.Date)).Value = txtStartDate.Text;
-                cmdTrainer.Parameters.Add(new SqlParameter("@EndDate", SqlDbType.Date)).Value = txtEndDate.Text; ;
+                cmdTrainer.Parameters.AddWithValue("@SpecialityID",lstDepartment.Text);
+                cmdTrainer.Parameters.AddWithValue("@GPA",lblGPA.Text);
+                cmdTrainer.Parameters.AddWithValue("@GraduateDate",lblGradYear.Text);
+                cmdTrainer.Parameters.AddWithValue("@StartDate",txtStartDate.Text);
+                cmdTrainer.Parameters.AddWithValue("@EndDate", txtEndDate.Text);
+                cmdTrainer.Parameters.AddWithValue("@CertFilename", "شهادة المؤهل" + ".pdf");
 
                 try
                 {
@@ -224,6 +225,12 @@ namespace GIP.Company
 
 
             }
+        }
+
+        protected void StudiesCerFilelink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/CompanyFiles/" + Session["compno"].ToString() + "/" + "شهادة المؤهل" + ".pdf");
+
         }
     }
 
